@@ -1,7 +1,5 @@
 # dependencies
 /node_modules
-/frontend/node_modules
-/backend/node_modules
 /.pnp
 .pnp.*
 
@@ -9,18 +7,17 @@
 /coverage
 
 # next.js
-/frontend/.next/
-/frontend/out/
+/.next/
+/out/
 
 # production
-/frontend/build
-/backend/dist
+/build
 
 # misc
 .DS_Store
 *.pem
 *.tsbuildinfo
-/frontend/next-env.d.ts
+next-env.d.ts
 
 # debug
 npm-debug.log*
@@ -36,10 +33,5 @@ yarn-error.log*
 .env.production.local
 !.env.example
 
-frontend/.env*
-!frontend/.env.example
-backend/.env*
-!backend/.env.example
-
 # vercel
-/frontend/.vercel
+.vercel
