@@ -1,41 +1,46 @@
 "use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth";
 
 export default function Header() {
-  const { user, logout } = useAuth();
-
   return (
-    <header className="border-b sticky top-0 bg-background z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-primary">
-          SkillBridge
-        </Link>
-        <nav className="hidden md:flex gap-6">
-          <Link href="/courses" className="hover:text-primary">Courses</Link>
-          <Link href="/assessments" className="hover:text-primary">Assessments</Link>
-          <Link href="/jobs" className="hover:text-primary">Jobs</Link>
-          <Link href="/about" className="hover:text-primary">About</Link>
-        </nav>
-        <div className="flex gap-2">
-          {user ? (
-            <>
-              <Button asChild variant="ghost">
-                <Link href="/dashboard">Dashboard</Link>
-              </Button>
-              <Button variant="outline" onClick={logout}>Logout</Button>
-            </>
-          ) : (
-            <>
-              <Button asChild variant="ghost">
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/register">Sign Up</Link>
-              </Button>
-            </>
-          )}
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-neutral-800 dark:bg-neutral-950/95">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <div className="flex items-center gap-6 md:gap-10">
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="text-xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50">
+              🌉 edot-bridge
+            </span>
+          </Link>
+          <nav className="hidden md:flex gap-6">
+            <Link
+              href="/courses"
+              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
+            >
+              Courses
+            </Link>
+            <Link
+              href="/jobs"
+              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
+            >
+              Jobs
+            </Link>
+            <Link
+              href="/assessments"
+              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
+            >
+              Assessments
+            </Link>
+          </nav>
+        </div>
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/login">Sign In</Link>
+          </Button>
+          <Button size="sm" asChild>
+            <Link href="/register">Get Started</Link>
+          </Button>
         </div>
       </div>
     </header>
