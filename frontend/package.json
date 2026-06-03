@@ -1,12 +1,12 @@
 {
-  "name": "edot-bridge",
+  "name": "edot-bridge-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
