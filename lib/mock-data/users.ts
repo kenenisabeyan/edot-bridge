@@ -7,6 +7,7 @@ export interface User {
   bio?: string;
   location?: string;
   skills?: string[];
+  company?: string;
 }
 
 export const mockUsers: User[] = [
