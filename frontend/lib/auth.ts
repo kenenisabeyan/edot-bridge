@@ -19,3 +19,5 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
+export { AuthProvider } from "./auth-provider";
