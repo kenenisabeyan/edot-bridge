@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/auth";  // ✅ import your mock auth hook
+import { useAuth } from "@/lib/auth";
 
 export default function Header() {
   const { user, logout } = useAuth();
@@ -17,36 +17,31 @@ export default function Header() {
             </span>
           </Link>
           <nav className="hidden md:flex gap-6">
-            <Link
-              href="/courses"
-              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
+            <Link href="/courses" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
               Courses
             </Link>
-            <Link
-              href="/jobs"
-              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
+            <Link href="/jobs" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
               Jobs
             </Link>
-            <Link
-              href="/assessments"
-              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
+            <Link href="/assessments" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
               Assessments
             </Link>
-            {/* 🆕 Career Coach */}
-            <Link
-              href="/career-coach"
-              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
+            <Link href="/leaderboard" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
+              Leaderboard
+            </Link>
+            <Link href="/learning-paths" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
+              Learning Paths
+            </Link>
+            <Link href="/blog" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
+              Blog
+            </Link>
+            <Link href="/forum" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
+              Forum
+            </Link>
+            <Link href="/career-coach" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
               Career Coach
             </Link>
-            {/* 🆕 Resume Builder */}
-            <Link
-              href="/resume-builder"
-              className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50"
-            >
+            <Link href="/resume-builder" className="flex items-center text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-50">
               Resume Builder
             </Link>
           </nav>
