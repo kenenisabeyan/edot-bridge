@@ -1,34 +1,36 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useState, useEffect } from "react";
 
 export function useAuth() {
-  const { data: session, status } = useSession();
+  const [user, setUser] = useState<any | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const login = async (email: string, password: string) => {
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-    return result;
-  };
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
+      if (storedUser && token) {
+        setUser(JSON.parse(storedUser));
+      }
+    } catch (e) {
+      console.error("Failed to load user auth context from storage", e);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
-  const loginWithGoogle = async () => {
-    await signIn("google", { callbackUrl: "/dashboard" });
-  };
-
-  const logout = async () => {
-    await signOut({ callbackUrl: "/" });
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    window.location.href = "/login";
   };
 
   return {
-    user: session?.user ?? null,
-    session,
-    isLoading: status === "loading",
-    isAuthenticated: status === "authenticated",
-    login,
-    loginWithGoogle,
+    user,
+    isLoading,
+    isAuthenticated: !!user,
     logout,
   };
 }
