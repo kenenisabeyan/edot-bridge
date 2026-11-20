@@ -23,13 +23,13 @@ export default function CoursesPage() {
       });
   }, []);
 
-  if (loading) return <div className="p-12 text-center text-[#8C95A6]">Loading courses...</div>;
+  if (loading) return <div className="p-12 text-center text-[#3B4D7A] font-semibold">Loading courses...</div>;
 
   return (
-    <div className="container mx-auto py-12 px-4 max-w-7xl">
+    <div className="container mx-auto py-12 px-4 max-w-7xl bg-[#FFFFFF]">
       <div className="mb-10">
-        <h1 className="text-4xl font-extrabold text-white mb-2">All Courses</h1>
-        <p className="text-lg text-[#8C95A6]">Explore courses with verified certificates and multilingual AI translation.</p>
+        <h1 className="text-4xl font-extrabold text-[#151B30] mb-2">All Courses</h1>
+        <p className="text-lg text-[#3B4D7A] font-medium">Explore courses with verified certificates and multilingual AI translation.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map(course => <CourseCard key={course.id} course={course} />)}
