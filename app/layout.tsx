@@ -32,12 +32,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${inter.variable}`} style={{ colorScheme: "dark" }}>
+    <html lang="en" className={inter.variable}>
       <body
         style={{
           fontFamily: "var(--font-inter, 'Inter', system-ui, sans-serif)",
-          backgroundColor: "#0D1016",
-          color: "#FFFFFF",
+          backgroundColor: "#FFFFFF",
+          color: "#151B30",
         }}
       >
         <AuthProvider>
