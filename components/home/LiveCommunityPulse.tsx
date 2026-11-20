@@ -27,18 +27,18 @@ export function LiveCommunityPulse() {
   }, []);
 
   return (
-    <div className="w-full border-y border-[#1C202C] bg-[#0A0D14]/90 py-3 px-4">
+    <div className="w-full border-y border-[#3B4D7A]/20 bg-[#F1F4F9] py-3 px-4">
       <div className="container mx-auto flex items-center justify-between text-xs sm:text-sm">
         <div className="flex items-center gap-2.5 overflow-hidden">
           <span className="relative flex h-2.5 w-2.5 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0EA5E9] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0EA5E9]" />
           </span>
-          <span className="font-semibold text-white tracking-wide uppercase text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+          <span className="font-bold text-[#151B30] tracking-wide uppercase text-[11px] px-2.5 py-0.5 rounded-full bg-[#0EA5E9]/15 border border-[#0EA5E9]/30">
             Live Pulse
           </span>
           <div
-            className={`transition-opacity duration-300 font-medium text-slate-300 truncate ${
+            className={`transition-opacity duration-300 font-semibold text-[#151B30] truncate ${
               fade ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
             }`}
           >
@@ -47,7 +47,7 @@ export function LiveCommunityPulse() {
           </div>
         </div>
 
-        <div className="hidden md:flex items-center gap-4 text-[#8C95A6] shrink-0 font-medium text-xs">
+        <div className="hidden md:flex items-center gap-4 text-[#3B4D7A] shrink-0 font-medium text-xs">
           <span>⚡ 98.4% Completion Rate</span>
           <span>•</span>
           <span>🌍 50+ Languages Supported</span>

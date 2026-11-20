@@ -25,26 +25,24 @@ export default function Header() {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        background: "rgba(13, 16, 22, 0.85)",
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
-        borderBottom: "1px solid #1C202C",
-        boxShadow: "0 1px 0 #1C202C",
+        background: "#151B30",
+        borderBottom: "1px solid rgba(59, 77, 122, 0.3)",
+        boxShadow: "0 2px 12px rgba(21, 27, 48, 0.2)",
       }}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-extrabold text-xl tracking-tight shrink-0"
+          className="flex items-center gap-2.5 font-extrabold text-xl tracking-tight shrink-0 text-white"
         >
           <span
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-base font-bold shadow-sm shrink-0"
-            style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
+            className="w-8 h-8 rounded-xl flex items-center justify-center text-[#151B30] text-base font-black shadow-sm shrink-0"
+            style={{ background: "#0EA5E9" }}
           >
             s
           </span>
-          <span className="gradient-text">SkillBridge</span>
+          <span className="font-extrabold text-xl text-white">SkillBridge</span>
         </Link>
 
         {/* Desktop nav */}
@@ -53,10 +51,10 @@ export default function Header() {
             <Link
               key={l.href}
               href={l.href}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors"
+              className="px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors"
               style={{
-                color: pathname === l.href ? "#FFFFFF" : "#8C95A6",
-                background: pathname === l.href ? "#1C202C" : "transparent",
+                color: pathname === l.href ? "#0EA5E9" : "#F1F4F9",
+                background: pathname === l.href ? "rgba(59, 77, 122, 0.3)" : "transparent",
               }}
             >
               {l.label}
@@ -72,28 +70,27 @@ export default function Header() {
                 variant="ghost"
                 size="sm"
                 asChild
-                className="rounded-full hidden sm:inline-flex"
+                className="rounded-full hidden sm:inline-flex text-[#F1F4F9] hover:text-[#0EA5E9]"
               >
                 <Link href="/dashboard">Dashboard</Link>
               </Button>
               <button
                 onClick={logout}
-                className="text-sm font-medium px-4 py-1.5 rounded-full border transition-colors hover:bg-red-50 hover:text-red-600 hover:border-red-200"
-                style={{ borderColor: "hsl(var(--border))", color: "hsl(var(--muted))" }}
+                className="text-sm font-medium px-4 py-1.5 rounded-full border transition-colors hover:bg-red-500/10 text-rose-300 border-rose-400/30"
               >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Button variant="ghost" size="sm" asChild className="rounded-full hidden sm:inline-flex text-[#8C95A6] hover:text-white hover:bg-[#1C202C]">
+              <Button variant="ghost" size="sm" asChild className="rounded-full hidden sm:inline-flex text-[#F1F4F9] hover:text-[#0EA5E9] hover:bg-[#3B4D7A]/20">
                 <Link href="/login">Sign In</Link>
               </Button>
               <Button
                 size="sm"
                 asChild
-                className="rounded-full px-5 font-semibold text-white shadow-sm"
-                style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", border: "none" }}
+                className="rounded-full px-5 font-bold shadow-sm"
+                style={{ background: "#F59E0B", color: "#151B30", border: "none" }}
               >
                 <Link href="/register">Get Started</Link>
               </Button>
@@ -103,7 +100,7 @@ export default function Header() {
           {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2 rounded-lg"
-            style={{ color: "#8C95A6" }}
+            style={{ color: "#F1F4F9" }}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -122,29 +119,29 @@ export default function Header() {
       {menuOpen && (
         <div
           className="lg:hidden border-t px-4 py-4 space-y-1"
-          style={{ background: "rgba(13, 16, 22, 0.98)", borderColor: "#1C202C" }}
+          style={{ background: "#151B30", borderColor: "rgba(59, 77, 122, 0.3)" }}
         >
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-medium"
+              className="block px-3 py-2 rounded-lg text-sm font-semibold"
               style={{
-                color: pathname === l.href ? "#FFFFFF" : "#8C95A6",
-                background: pathname === l.href ? "#1C202C" : "transparent",
+                color: pathname === l.href ? "#0EA5E9" : "#F1F4F9",
+                background: pathname === l.href ? "rgba(59, 77, 122, 0.3)" : "transparent",
               }}
             >
               {l.label}
             </Link>
           ))}
           {!user && (
-            <div className="pt-3 border-t flex gap-2" style={{ borderColor: "#1C202C" }}>
-              <Button asChild variant="outline" size="sm" className="flex-1 rounded-full border-[#2C344A] bg-[#161B26] text-white">
+            <div className="pt-3 border-t flex gap-2" style={{ borderColor: "rgba(59, 77, 122, 0.3)" }}>
+              <Button asChild variant="outline" size="sm" className="flex-1 rounded-full border-[#3B4D7A] bg-[#151B30] text-[#F1F4F9]">
                 <Link href="/login" onClick={() => setMenuOpen(false)}>Sign In</Link>
               </Button>
-              <Button asChild size="sm" className="flex-1 rounded-full text-white"
-                style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", border: "none" }}>
+              <Button asChild size="sm" className="flex-1 rounded-full font-bold"
+                style={{ background: "#F59E0B", color: "#151B30", border: "none" }}>
                 <Link href="/register" onClick={() => setMenuOpen(false)}>Get Started</Link>
               </Button>
             </div>

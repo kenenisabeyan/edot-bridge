@@ -26,9 +26,9 @@ export default function Footer() {
     <footer
       className="w-full"
       style={{
-        backgroundColor: "#0D1016",
-        color: "#8C95A6",
-        borderTop: "1px solid #1C202C",
+        backgroundColor: "#151B30",
+        color: "#F1F4F9",
+        borderTop: "1px solid rgba(59, 77, 122, 0.4)",
       }}
     >
       <div className="container mx-auto px-6 py-14 md:py-16">
@@ -37,14 +37,14 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-2 max-w-sm">
             <Link href="/" className="inline-flex items-center gap-2.5 font-bold text-xl text-white tracking-tight">
               <span
-                className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-base font-bold shadow-sm shrink-0"
-                style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
+                className="w-8 h-8 rounded-xl flex items-center justify-center text-[#151B30] text-base font-black shadow-sm shrink-0"
+                style={{ background: "#0EA5E9" }}
               >
                 s
               </span>
               SkillBridge
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-[#8C95A6]">
+            <p className="mt-4 text-sm leading-relaxed text-[#F1F4F9]">
               Bridging the gap between knowledge and employment for learners across Africa and beyond.
             </p>
             <div className="flex items-center gap-2.5 mt-5">
@@ -56,7 +56,7 @@ export default function Footer() {
                 <a
                   key={item.name}
                   href="#"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-semibold text-[#8C95A6] bg-[#1C202C] hover:text-white hover:bg-[#252C3D] transition-colors"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white bg-[#3B4D7A] hover:text-[#151B30] hover:bg-[#0EA5E9] transition-colors"
                 >
                   {item.label}
                 </a>
@@ -73,7 +73,7 @@ export default function Footer() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-sm text-[#8C95A6] hover:text-white transition-colors"
+                      className="text-sm text-[#F1F4F9] hover:text-[#0EA5E9] transition-colors"
                     >
                       {l.label}
                     </Link>
@@ -87,9 +87,9 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 pt-8"
-          style={{ borderTop: "1px solid #1C202C" }}
+          style={{ borderTop: "1px solid rgba(59, 77, 122, 0.4)" }}
         >
-          <p className="text-xs sm:text-sm text-[#626B7F]">
+          <p className="text-xs sm:text-sm text-[#F1F4F9]">
             © {new Date().getFullYear()} SkillBridge. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
@@ -97,7 +97,7 @@ export default function Footer() {
               <a
                 key={t}
                 href="#"
-                className="text-xs sm:text-sm text-[#7E8799] hover:text-white transition-colors"
+                className="text-xs sm:text-sm text-[#F1F4F9] hover:text-[#0EA5E9] transition-colors"
               >
                 {t}
               </a>
