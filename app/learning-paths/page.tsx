@@ -1,34 +1,44 @@
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const paths = [
   { id: "frontend", title: "Frontend Developer Path", description: "Become a professional frontend developer", courses: 4, duration: "8 weeks" },
-  { id: "data", title: "Data Analyst Path", description: "Master data analysis with Python", courses: 5, duration: "10 weeks" },
-  { id: "fullstack", title: "Full Stack Path", description: "Build complete web applications", courses: 6, duration: "12 weeks" },
+  { id: "fullstack", title: "Full Stack Engineer Path", description: "Build complete web applications with modern tech", courses: 6, duration: "12 weeks" },
+  { id: "data", title: "Data Analyst & AI Path", description: "Master data analysis with Python and ML models", courses: 5, duration: "10 weeks" },
 ];
 
 export default function LearningPathsPage() {
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-2">Learning Paths</h1>
-      <p className="text-muted-foreground mb-8">Structured curriculums to take you from beginner to job‑ready.</p>
+    <div className="container mx-auto py-12 px-4 max-w-7xl">
+      <div className="mb-12">
+        <h1 className="text-4xl font-extrabold text-white mb-2">Learning Paths</h1>
+        <p className="text-lg text-[#8C95A6]">Structured curriculums to take you from beginner to job‑ready.</p>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paths.map(path => (
-          <Card key={path.id}>
-            <CardHeader>
-              <CardTitle>{path.title}</CardTitle>
-              <CardDescription>{path.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm">{path.courses} courses • {path.duration}</p>
-            </CardContent>
-            <CardFooter>
-              <Button asChild>
+          <div
+            key={path.id}
+            className="card-glow rounded-2xl p-7 flex flex-col justify-between"
+            style={{ background: "#161B26", border: "1px solid #1C202C" }}
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-white tracking-tight leading-snug">
+                {path.title}
+              </h3>
+              <p className="mt-2 text-base text-[#8C95A6]">
+                {path.description}
+              </p>
+              <div className="mt-6 text-sm font-semibold text-white">
+                {path.courses} courses • {path.duration}
+              </div>
+            </div>
+            <div className="mt-8">
+              <Button asChild className="rounded-lg px-6 py-2.5 font-semibold bg-white text-neutral-950 hover:bg-neutral-200 transition-colors shadow-sm">
                 <Link href={`/learning-paths/${path.id}`}>View Path</Link>
               </Button>
-            </CardFooter>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
     </div>

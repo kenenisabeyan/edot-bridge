@@ -32,40 +32,41 @@ export default function LoginPage() {
 
   const inputStyle = {
     width: "100%",
-    padding: "0.65rem 1rem",
-    borderRadius: "0.625rem",
-    border: "1.5px solid hsl(var(--border))",
-    background: "hsl(var(--surface))",
-    color: "hsl(var(--foreground))",
+    padding: "0.75rem 1rem",
+    borderRadius: "0.75rem",
+    border: "1px solid #2C344A",
+    background: "#0D1016",
+    color: "#FFFFFF",
     fontSize: "0.9rem",
     outline: "none",
     transition: "border-color 0.2s",
   } as React.CSSProperties;
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 animated-gradient">
+    <div className="min-h-screen flex items-center justify-center px-4 animated-gradient py-12">
       {/* Card */}
       <div
         className="w-full max-w-md rounded-3xl p-8 sm:p-10 fade-in"
         style={{
-          background: "rgba(255,255,255,.9)",
+          background: "rgba(22, 27, 38, 0.95)",
           backdropFilter: "blur(24px)",
-          boxShadow: "0 8px 40px rgba(0,0,0,.12), 0 0 0 1px hsl(var(--border))",
+          border: "1px solid #1C202C",
+          boxShadow: "0 8px 40px rgba(0,0,0,.5)",
         }}
       >
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 font-extrabold text-2xl">
+          <Link href="/" className="inline-flex items-center gap-2 font-bold text-2xl text-white">
             <span
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black"
-              style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-base font-bold shadow-sm"
+              style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
             >
-              S
+              s
             </span>
-            <span className="gradient-text">SkillBridge</span>
+            <span>SkillBridge</span>
           </Link>
-          <h1 className="mt-4 text-2xl font-bold">Welcome back</h1>
-          <p className="text-sm mt-1" style={{ color: "hsl(var(--muted))" }}>
+          <h1 className="mt-4 text-2xl font-bold text-white">Welcome back</h1>
+          <p className="text-sm mt-1 text-[#8C95A6]">
             Sign in to continue your journey
           </p>
         </div>
@@ -74,8 +75,8 @@ export default function LoginPage() {
         <button
           type="button"
           onClick={loginWithGoogle}
-          className="w-full flex items-center justify-center gap-3 py-2.5 rounded-xl text-sm font-medium transition-all hover:bg-gray-50 active:scale-[.98]"
-          style={{ border: "1.5px solid hsl(var(--border))", background: "white", cursor: "pointer" }}
+          className="w-full flex items-center justify-center gap-3 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-[#202738] active:scale-[.98] text-white"
+          style={{ border: "1px solid #2C344A", background: "#161B26", cursor: "pointer" }}
         >
           <svg width="18" height="18" viewBox="0 0 48 48">
             <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/>
@@ -134,16 +135,16 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all active:scale-[.98] disabled:opacity-60"
-            style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))", border: "none", cursor: isLoading ? "not-allowed" : "pointer" }}
+            className="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all active:scale-[.98] disabled:opacity-60 shadow-lg"
+            style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", border: "none", cursor: isLoading ? "not-allowed" : "pointer" }}
           >
             {isLoading ? "Signing in…" : "Sign In →"}
           </button>
         </form>
 
-        <p className="text-center text-sm mt-6" style={{ color: "hsl(var(--muted))" }}>
+        <p className="text-center text-sm mt-6 text-[#8C95A6]">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="font-semibold" style={{ color: "hsl(var(--primary))" }}>
+          <Link href="/register" className="font-semibold text-white hover:underline">
             Create one free
           </Link>
         </p>

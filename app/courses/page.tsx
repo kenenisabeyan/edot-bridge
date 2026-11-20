@@ -23,11 +23,14 @@ export default function CoursesPage() {
       });
   }, []);
 
-  if (loading) return <div className="p-8 text-center">Loading courses...</div>;
+  if (loading) return <div className="p-12 text-center text-[#8C95A6]">Loading courses...</div>;
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">All Courses</h1>
+    <div className="container mx-auto py-12 px-4 max-w-7xl">
+      <div className="mb-10">
+        <h1 className="text-4xl font-extrabold text-white mb-2">All Courses</h1>
+        <p className="text-lg text-[#8C95A6]">Explore courses with verified certificates and multilingual AI translation.</p>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map(course => <CourseCard key={course.id} course={course} />)}
       </div>

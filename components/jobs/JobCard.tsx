@@ -1,29 +1,34 @@
 "use client";
 import Link from "next/link";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Job } from "@/lib/mock-data/jobs";
 
 export function JobCard({ job }: { job: Job }) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{job.title}</CardTitle>
-        <p className="text-sm text-muted-foreground">{job.company} • {job.location} • {job.type}</p>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm">{job.description.slice(0, 120)}...</p>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {job.requiredSkills.map(skill => (
-            <span key={skill} className="bg-muted px-2 py-0.5 rounded text-xs">{skill}</span>
+    <div
+      className="card-glow rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+      style={{ background: "#161B26", border: "1px solid #1C202C" }}
+    >
+      <div className="flex-1">
+        <h3 className="text-xl font-bold text-white mb-1.5">{job.title}</h3>
+        <p className="text-sm text-[#8C95A6] mb-3">{job.company} • {job.location} • {job.type}</p>
+        <p className="text-sm text-slate-300 mb-4">{job.description.slice(0, 140)}...</p>
+        <div className="flex flex-wrap gap-2">
+          {job.requiredSkills.map((skill) => (
+            <span
+              key={skill}
+              className="bg-[#0D1016] text-[#8C95A6] border border-[#2C344A] px-2.5 py-1 rounded-full text-xs font-medium"
+            >
+              {skill}
+            </span>
           ))}
         </div>
-      </CardContent>
-      <CardFooter>
-        <Button asChild>
+      </div>
+      <div className="shrink-0">
+        <Button asChild className="rounded-lg px-6 py-2.5 font-semibold bg-white text-neutral-950 hover:bg-neutral-200 transition-colors shadow-sm whitespace-nowrap">
           <Link href={`/jobs/${job.id}`}>View Details</Link>
         </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
