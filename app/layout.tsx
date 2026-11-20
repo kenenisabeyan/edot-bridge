@@ -32,8 +32,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body style={{ fontFamily: "var(--font-inter, 'Inter', system-ui, sans-serif)" }}>
+    <html lang="en" className={`dark ${inter.variable}`} style={{ colorScheme: "dark" }}>
+      <body
+        style={{
+          fontFamily: "var(--font-inter, 'Inter', system-ui, sans-serif)",
+          backgroundColor: "#0D1016",
+          color: "#FFFFFF",
+        }}
+      >
         <AuthProvider>
           <Header />
           <main className="min-h-screen">{children}</main>

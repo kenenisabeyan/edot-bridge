@@ -13,16 +13,16 @@
   --danger: 0 84% 60%;
   --success: 142 72% 45%;
 
-  /* Backgrounds */
-  --background: 0 0% 100%;
-  --surface: 240 10% 98%;
-  --surface-2: 240 6% 96%;
-  --border: 240 6% 90%;
+  /* Backgrounds - Default Dark Theme matching brand */
+  --background: 223 25% 7%;        /* #0D1016 */
+  --surface: 224 22% 10%;          /* #161B26 */
+  --surface-2: 225 22% 14%;        /* #1C202C */
+  --border: 225 22% 14%;           /* #1C202C */
 
   /* Text */
-  --foreground: 224 22% 10%;
-  --muted: 220 14% 46%;
-  --subtle: 220 10% 62%;
+  --foreground: 220 20% 98%;       /* #FFFFFF */
+  --muted: 220 12% 60%;            /* #8C95A6 */
+  --subtle: 220 10% 40%;
 
   /* Effects */
   --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);

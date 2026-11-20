@@ -25,11 +25,11 @@ export default function Header() {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        background: "rgba(255,255,255,.85)",
+        background: "rgba(13, 16, 22, 0.85)",
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
-        borderBottom: "1px solid hsl(var(--border))",
-        boxShadow: "0 1px 0 hsl(var(--border))",
+        borderBottom: "1px solid #1C202C",
+        boxShadow: "0 1px 0 #1C202C",
       }}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -55,8 +55,8 @@ export default function Header() {
               href={l.href}
               className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors"
               style={{
-                color: pathname === l.href ? "hsl(var(--primary))" : "hsl(var(--muted))",
-                background: pathname === l.href ? "hsl(var(--primary) / .08)" : "transparent",
+                color: pathname === l.href ? "#FFFFFF" : "#8C95A6",
+                background: pathname === l.href ? "#1C202C" : "transparent",
               }}
             >
               {l.label}
@@ -86,7 +86,7 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Button variant="ghost" size="sm" asChild className="rounded-full hidden sm:inline-flex">
+              <Button variant="ghost" size="sm" asChild className="rounded-full hidden sm:inline-flex text-[#8C95A6] hover:text-white hover:bg-[#1C202C]">
                 <Link href="/login">Sign In</Link>
               </Button>
               <Button
@@ -103,7 +103,7 @@ export default function Header() {
           {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2 rounded-lg"
-            style={{ color: "hsl(var(--muted))" }}
+            style={{ color: "#8C95A6" }}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -122,7 +122,7 @@ export default function Header() {
       {menuOpen && (
         <div
           className="lg:hidden border-t px-4 py-4 space-y-1"
-          style={{ background: "rgba(255,255,255,.97)", borderColor: "hsl(var(--border))" }}
+          style={{ background: "rgba(13, 16, 22, 0.98)", borderColor: "#1C202C" }}
         >
           {navLinks.map((l) => (
             <Link
@@ -131,16 +131,16 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className="block px-3 py-2 rounded-lg text-sm font-medium"
               style={{
-                color: pathname === l.href ? "hsl(var(--primary))" : "hsl(var(--muted))",
-                background: pathname === l.href ? "hsl(var(--primary) / .08)" : "transparent",
+                color: pathname === l.href ? "#FFFFFF" : "#8C95A6",
+                background: pathname === l.href ? "#1C202C" : "transparent",
               }}
             >
               {l.label}
             </Link>
           ))}
           {!user && (
-            <div className="pt-3 border-t flex gap-2" style={{ borderColor: "hsl(var(--border))" }}>
-              <Button asChild variant="outline" size="sm" className="flex-1 rounded-full">
+            <div className="pt-3 border-t flex gap-2" style={{ borderColor: "#1C202C" }}>
+              <Button asChild variant="outline" size="sm" className="flex-1 rounded-full border-[#2C344A] bg-[#161B26] text-white">
                 <Link href="/login" onClick={() => setMenuOpen(false)}>Sign In</Link>
               </Button>
               <Button asChild size="sm" className="flex-1 rounded-full text-white"
