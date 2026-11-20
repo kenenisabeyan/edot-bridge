@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 interface VideoLessonProps {
-  videoUrl: string;   // YouTube or Vimeo URL
+  videoUrl: string;
   title: string;
 }
 
@@ -29,34 +29,89 @@ export function VideoLesson({ videoUrl, title }: VideoLessonProps) {
   const thumbnailId = embedUrl.split("/embed/")[1]?.split("?")[0];
 
   return (
-    <div className="my-6 aspect-video rounded-lg overflow-hidden border">
+    <div
+      style={{
+        margin: "24px 0",
+        borderRadius: 14,
+        overflow: "hidden",
+        border: "2px solid #3B4D7A",
+        backgroundColor: "#151B30",
+        aspectRatio: "16/9"
+      }}
+    >
       {!isPlaying ? (
-        <div 
-          className="relative w-full h-full bg-cover bg-center cursor-pointer flex items-center justify-center"
+        <div
           style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
             backgroundImage: thumbnailId
-              ? `url(https://img.youtube.com/vi/${thumbnailId}/0.jpg)`
-              : "url(https://via.placeholder.com/1280x720?text=Video+Preview)"
+              ? `url(https://img.youtube.com/vi/${thumbnailId}/hqdefault.jpg)`
+              : undefined,
+            backgroundColor: "#151B30",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
           }}
           onClick={() => setIsPlaying(true)}
         >
-          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-              <div className="w-0 h-0 border-t-8 border-b-8 border-l-12 border-transparent border-l-black ml-1"></div>
-            </div>
+          {/* Dark overlay */}
+          <div
+            style={{
+              position: "absolute", inset: 0,
+              backgroundColor: "rgba(21,27,48,0.55)"
+            }}
+          />
+
+          {/* Play button */}
+          <div
+            style={{
+              position: "relative", zIndex: 1,
+              width: 72, height: 72, borderRadius: "50%",
+              backgroundColor: "#F59E0B",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "transform 0.2s, background-color 0.2s",
+              boxShadow: "0 8px 24px rgba(245,158,11,0.4)"
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "#d97706"; (e.currentTarget as HTMLDivElement).style.transform = "scale(1.1)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "#F59E0B"; (e.currentTarget as HTMLDivElement).style.transform = "scale(1)"; }}
+          >
+            {/* Triangle play icon */}
+            <div
+              style={{
+                width: 0, height: 0,
+                borderTop: "11px solid transparent",
+                borderBottom: "11px solid transparent",
+                borderLeft: "18px solid #151B30",
+                marginLeft: 4
+              }}
+            />
           </div>
-          <p className="absolute bottom-4 left-4 text-white font-semibold drop-shadow-lg">
-            {title}
-          </p>
+
+          {/* Title overlay */}
+          <div
+            style={{
+              position: "absolute", bottom: 0, left: 0, right: 0,
+              padding: "12px 20px",
+              background: "linear-gradient(0deg, rgba(21,27,48,0.95) 0%, transparent 100%)"
+            }}
+          >
+            <p style={{ color: "#F1F4F9", fontWeight: 700, fontSize: 15, margin: 0 }}>
+              ▶ {title}
+            </p>
+          </div>
         </div>
       ) : (
         <iframe
           src={`${embedUrl}?autoplay=1`}
           title={title}
-          className="w-full h-full"
+          style={{ width: "100%", height: "100%", border: "none", display: "block" }}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-        ></iframe>
+        />
       )}
     </div>
   );

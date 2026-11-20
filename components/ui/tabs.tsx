@@ -49,7 +49,8 @@ export function Tabs({
 export function TabsList({ className = "", children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={`inline-flex h-10 items-center justify-center rounded-md bg-neutral-100 p-1 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 ${className}`}
+      className={`inline-flex h-11 items-center justify-center rounded-xl p-1 ${className}`}
+      style={{ backgroundColor: "#FFFFFF", border: "1.5px solid #3B4D7A" }}
       {...props}
     >
       {children}
@@ -61,7 +62,7 @@ export interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonE
   value: string;
 }
 
-export function TabsTrigger({ value, className = "", children, ...props }: TabsTriggerProps) {
+export function TabsTrigger({ value, className = "", children, style, ...props }: TabsTriggerProps) {
   const context = React.useContext(TabsContext);
   const isActive = context?.value === value;
 
@@ -69,11 +70,14 @@ export function TabsTrigger({ value, className = "", children, ...props }: TabsT
     <button
       type="button"
       onClick={() => context?.onValueChange(value)}
-      className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${
-        isActive
-          ? "bg-white text-neutral-950 shadow-sm dark:bg-neutral-950 dark:text-neutral-50"
-          : "hover:text-neutral-900 dark:hover:text-neutral-100"
-      } ${className}`}
+      className={`inline-flex items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${className}`}
+      style={{
+        backgroundColor: isActive ? "#151B30" : "transparent",
+        color: isActive ? "#FFFFFF" : "#3B4D7A",
+        border: "none",
+        cursor: "pointer",
+        ...style
+      }}
       {...props}
     >
       {children}
@@ -91,7 +95,7 @@ export function TabsContent({ value, className = "", children, ...props }: TabsC
 
   return (
     <div
-      className={`ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 ${className}`}
+      className={`focus-visible:outline-none ${className}`}
       {...props}
     >
       {children}

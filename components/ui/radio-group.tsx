@@ -33,7 +33,7 @@ export interface RadioGroupItemProps extends React.InputHTMLAttributes<HTMLInput
 }
 
 export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemProps>(
-  ({ className, value, ...props }, ref) => {
+  ({ className, value, style, ...props }, ref) => {
     const context = React.useContext(RadioGroupContext);
     const checked = context.value === value;
 
@@ -51,7 +51,13 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
         value={value}
         checked={checked}
         onChange={handleChange}
-        className={`aspect-square h-4 w-4 rounded-full border border-neutral-200 text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:text-neutral-50 dark:focus-visible:ring-neutral-300 cursor-pointer ${className || ""}`}
+        className={`aspect-square h-4 w-4 rounded-full cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 ${className || ""}`}
+        style={{
+          border: `2px solid ${checked ? "#0EA5E9" : "#3B4D7A"}`,
+          accentColor: "#0EA5E9",
+          outline: "none",
+          ...style
+        }}
         {...props}
       />
     );

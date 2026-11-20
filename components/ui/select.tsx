@@ -48,11 +48,24 @@ export function SelectTrigger({ className, children, ...props }: React.HTMLAttri
     <button
       type="button"
       onClick={() => context.setOpen?.(!context.open)}
-      className={`flex h-10 w-full items-center justify-between rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-neutral-800 dark:bg-neutral-950 dark:placeholder:text-neutral-400 dark:focus:ring-neutral-300 cursor-pointer ${className || ""}`}
+      className={`flex h-10 w-full items-center justify-between rounded-lg px-3 py-2 text-sm cursor-pointer transition-all focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 ${className || ""}`}
+      style={{
+        backgroundColor: "#F1F4F9",
+        border: `1.5px solid ${context.open ? "#0EA5E9" : "#3B4D7A"}`,
+        color: "#151B30"
+      }}
       {...props}
     >
       {children}
-      <span className="ml-2 text-xs opacity-50">▼</span>
+      <span
+        style={{
+          marginLeft: 8, fontSize: 11, color: "#3B4D7A",
+          transform: context.open ? "rotate(180deg)" : "rotate(0deg)",
+          transition: "transform 0.2s"
+        }}
+      >
+        ▼
+      </span>
     </button>
   );
 }
@@ -60,7 +73,11 @@ export function SelectTrigger({ className, children, ...props }: React.HTMLAttri
 export function SelectValue({ placeholder }: { placeholder?: string }) {
   const context = React.useContext(SelectContext);
   const displayValue = context.value && context.labels && context.labels[context.value] ? context.labels[context.value] : placeholder;
-  return <span>{displayValue}</span>;
+  return (
+    <span style={{ color: displayValue === placeholder ? "#3B4D7A" : "#151B30" }}>
+      {displayValue}
+    </span>
+  );
 }
 
 export function SelectContent({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
@@ -69,7 +86,8 @@ export function SelectContent({ className, children, ...props }: React.HTMLAttri
 
   return (
     <div
-      className={`absolute z-50 min-w-[8rem] overflow-hidden rounded-md border border-neutral-200 bg-white text-neutral-950 shadow-md animate-in fade-in-80 slide-in-from-top-1 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 w-full mt-1 ${className || ""}`}
+      className={`absolute z-50 min-w-[8rem] overflow-hidden rounded-xl shadow-lg w-full mt-1 ${className || ""}`}
+      style={{ backgroundColor: "#FFFFFF", border: "1.5px solid #3B4D7A" }}
       {...props}
     >
       <div className="p-1">{children}</div>
@@ -97,10 +115,24 @@ export function SelectItem({ className, value, children, ...props }: { value: st
   return (
     <div
       onClick={handleClick}
-      className={`relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-neutral-100 dark:hover:bg-neutral-800 ${selected ? "bg-neutral-100 dark:bg-neutral-800 font-semibold" : ""} ${className || ""}`}
+      className={`relative flex w-full cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-3 text-sm outline-none transition-colors ${className || ""}`}
+      style={{
+        backgroundColor: selected ? "#F1F4F9" : "transparent",
+        color: selected ? "#151B30" : "#151B30",
+        fontWeight: selected ? 700 : 400
+      }}
+      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = "#F1F4F9"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.backgroundColor = selected ? "#F1F4F9" : "transparent"; }}
       {...props}
     >
-      {selected && <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-xs">✓</span>}
+      {selected && (
+        <span
+          className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-xs"
+          style={{ color: "#0EA5E9" }}
+        >
+          ✓
+        </span>
+      )}
       {children}
     </div>
   );
