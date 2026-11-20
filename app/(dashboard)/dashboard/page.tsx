@@ -11,7 +11,7 @@ const statCards = [
     sub: "In progress",
     href: "/my-courses",
     cta: "Continue Learning →",
-    color: "hsl(250 100% 65%)",
+    color: "#0EA5E9",
   },
   {
     icon: "🏆",
@@ -20,7 +20,7 @@ const statCards = [
     sub: "React Fundamentals",
     href: "/my-certificates",
     cta: "View All →",
-    color: "hsl(38 100% 60%)",
+    color: "#F59E0B",
   },
   {
     icon: "💼",
@@ -29,7 +29,7 @@ const statCards = [
     sub: "Based on your skills",
     href: "/jobs",
     cta: "Explore Jobs →",
-    color: "hsl(174 100% 42%)",
+    color: "#3B4D7A",
   },
   {
     icon: "🎯",
@@ -38,7 +38,7 @@ const statCards = [
     sub: "Skill verified",
     href: "/assessments",
     cta: "Take More →",
-    color: "hsl(280 80% 60%)",
+    color: "#151B30",
   },
 ];
 
@@ -60,28 +60,23 @@ export default function DashboardPage() {
   const firstName = user?.name?.split(" ")[0] ?? "there";
 
   return (
-    <div className="max-w-6xl mx-auto space-y-10">
+    <div className="max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="flex items-start justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-bold fade-in">
-            Welcome back, <span className="gradient-text">{firstName}</span> 👋
+          <h1 className="text-3xl font-extrabold text-[#151B30] fade-in">
+            Welcome back, <span className="text-[#0EA5E9]">{firstName}</span> 👋
           </h1>
-          <p className="mt-1 fade-in-1" style={{ color: "hsl(var(--muted))" }}>
+          <p className="mt-1 text-[#3B4D7A] font-medium fade-in-1">
             Track your learning progress and career journey.
           </p>
         </div>
-        <div className="flex gap-2 fade-in-1">
-          <Link href="/career-coach"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-            style={{
-              background: "hsl(var(--primary) / .1)",
-              color: "hsl(var(--primary))",
-              border: "1px solid hsl(var(--primary) / .2)",
-            }}>
-            🤖 AI Career Coach
-          </Link>
-        </div>
+        <Link
+          href="/career-coach"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm bg-[#151B30] text-[#FFFFFF] hover:bg-[#3B4D7A]"
+        >
+          🤖 AI Career Coach
+        </Link>
       </div>
 
       {/* Stat Cards */}
@@ -89,13 +84,12 @@ export default function DashboardPage() {
         {statCards.map((s, i) => (
           <div
             key={s.label}
-            className={`card-glow rounded-2xl p-5 fade-in-${i + 1}`}
-            style={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }}
+            className={`rounded-2xl p-5 bg-[#FFFFFF] border border-[#3B4D7A]/20 shadow-sm fade-in-${i + 1} hover:shadow-md transition-shadow`}
           >
             <div className="flex items-center justify-between mb-3">
               <span className="text-2xl">{s.icon}</span>
               <span
-                className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                className="text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider"
                 style={{ background: `${s.color}18`, color: s.color }}
               >
                 {s.label}
@@ -104,12 +98,8 @@ export default function DashboardPage() {
             <div className="text-3xl font-extrabold mb-0.5" style={{ color: s.color }}>
               {"getValue" in s ? s.getValue(mockCourses) : s.value}
             </div>
-            <div className="text-xs mb-3" style={{ color: "hsl(var(--muted))" }}>{s.sub}</div>
-            <Link
-              href={s.href}
-              className="text-xs font-semibold"
-              style={{ color: s.color }}
-            >
+            <div className="text-xs text-[#3B4D7A] font-medium mb-3">{s.sub}</div>
+            <Link href={s.href} className="text-xs font-bold" style={{ color: s.color }}>
               {s.cta}
             </Link>
           </div>
@@ -117,40 +107,43 @@ export default function DashboardPage() {
       </div>
 
       {/* Learning Progress */}
-      <div
-        className="rounded-2xl p-6"
-        style={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }}
-      >
-        <h2 className="text-lg font-bold mb-5">Learning Progress</h2>
-        <div className="space-y-4">
-          {mockCourses.slice(0, 3).map((c, i) => (
-            <div key={c.id}>
-              <div className="flex justify-between text-sm mb-1.5">
-                <span className="font-medium">{c.title}</span>
-                <span style={{ color: "hsl(var(--muted))" }}>{(i + 1) * 33}%</span>
+      <div className="rounded-2xl p-6 bg-[#FFFFFF] border border-[#3B4D7A]/20 shadow-sm">
+        <h2 className="text-lg font-extrabold text-[#151B30] mb-5">Learning Progress</h2>
+        <div className="space-y-5">
+          {mockCourses.slice(0, 3).map((c, i) => {
+            const pct = (i + 1) * 33;
+            return (
+              <div key={c.id}>
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="font-semibold text-[#151B30]">{c.title}</span>
+                  <span className="font-bold" style={{ color: pct > 60 ? "#0EA5E9" : "#3B4D7A" }}>{pct}%</span>
+                </div>
+                <div className="h-2 rounded-full bg-[#F1F4F9] overflow-hidden border border-[#3B4D7A]/15">
+                  <div
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{
+                      width: `${pct}%`,
+                      background: pct > 60 ? "#0EA5E9" : "#3B4D7A",
+                    }}
+                  />
+                </div>
               </div>
-              <div className="progress-bar">
-                <div className="progress-bar-fill" style={{ width: `${(i + 1) * 33}%` }} />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activity */}
-        <div
-          className="rounded-2xl p-6"
-          style={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }}
-        >
-          <h2 className="text-lg font-bold mb-5">Recent Activity</h2>
-          <ul className="space-y-3">
+        <div className="rounded-2xl p-6 bg-[#FFFFFF] border border-[#3B4D7A]/20 shadow-sm">
+          <h2 className="text-lg font-extrabold text-[#151B30] mb-5">Recent Activity</h2>
+          <ul className="space-y-4">
             {activity.map((a, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="text-lg mt-0.5">{a.icon}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium leading-snug">{a.text}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "hsl(var(--muted))" }}>{a.time}</p>
+                  <p className="text-sm font-semibold text-[#151B30] leading-snug">{a.text}</p>
+                  <p className="text-xs text-[#3B4D7A] font-medium mt-0.5">{a.time}</p>
                 </div>
               </li>
             ))}
@@ -158,36 +151,28 @@ export default function DashboardPage() {
         </div>
 
         {/* Recommended Courses */}
-        <div
-          className="rounded-2xl p-6"
-          style={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }}
-        >
-          <h2 className="text-lg font-bold mb-5">Recommended for You</h2>
+        <div className="rounded-2xl p-6 bg-[#FFFFFF] border border-[#3B4D7A]/20 shadow-sm">
+          <h2 className="text-lg font-extrabold text-[#151B30] mb-5">Recommended for You</h2>
           <div className="space-y-3">
             {recommended.map((r, i) => (
               <Link
                 key={i}
                 href={r.href}
-                className="flex items-center gap-3 p-3 rounded-xl transition-all"
-                style={{
-                  background: "hsl(var(--surface))",
-                  border: "1px solid hsl(var(--border))",
-                  textDecoration: "none",
-                }}
-                onMouseOver={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--primary) / .4)")}
-                onMouseOut={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--border))")}
+                className="flex items-center gap-3 p-3 rounded-xl transition-all bg-[#F1F4F9] border border-[#3B4D7A]/20 hover:border-[#0EA5E9] hover:bg-[#FFFFFF] group"
               >
                 <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm"
-                  style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-[#151B30] text-sm font-black shrink-0"
+                  style={{ background: "#0EA5E9" }}
                 >
                   {i + 1}
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-sm">{r.title}</div>
-                  <span className="badge badge-primary text-[10px] mt-0.5">{r.level}</span>
+                  <div className="font-bold text-sm text-[#151B30] group-hover:text-[#0EA5E9] transition-colors">{r.title}</div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#3B4D7A] bg-[#FFFFFF] border border-[#3B4D7A]/25 px-2 py-0.5 rounded-full mt-0.5 inline-block">
+                    {r.level}
+                  </span>
                 </div>
-                <span style={{ color: "hsl(var(--muted))" }}>→</span>
+                <span className="text-[#3B4D7A] font-bold group-hover:text-[#0EA5E9] transition-colors">→</span>
               </Link>
             ))}
           </div>
