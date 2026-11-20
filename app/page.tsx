@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
+import { LiveCommunityPulse } from "@/components/home/LiveCommunityPulse";
+import { InteractiveTranslationDemo } from "@/components/home/InteractiveTranslationDemo";
+import { QuickSkillChallenge } from "@/components/home/QuickSkillChallenge";
+import { CareerRoadmapSimulator } from "@/components/home/CareerRoadmapSimulator";
 
 const features = [
   {
@@ -136,6 +140,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Live Pulse Banner ─────────────────────────────────── */}
+      <LiveCommunityPulse />
+
       {/* ── Stats ────────────────────────────────────────────── */}
       <section className="py-16 border-y" style={{ borderColor: "hsl(var(--border))" }}>
         <div className="container mx-auto px-4">
@@ -172,6 +179,20 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Interactive Translation Demo ──────────────────────── */}
+      <section className="py-20 border-t" style={{ borderColor: "#1C202C" }}>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <InteractiveTranslationDemo />
+        </div>
+      </section>
+
+      {/* ── 60-Second Skill Challenge ─────────────────────────── */}
+      <section className="py-20 border-t" style={{ borderColor: "#1C202C" }}>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <QuickSkillChallenge />
         </div>
       </section>
 
@@ -259,6 +280,13 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Career Roadmap Simulator ──────────────────────────── */}
+      <section className="py-20 border-t" style={{ borderColor: "#1C202C" }}>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <CareerRoadmapSimulator />
         </div>
       </section>
 
