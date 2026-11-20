@@ -10,26 +10,34 @@ const topics = [
 
 export default function ForumPage() {
   return (
-    <div className="container mx-auto py-8 px-4 max-w-4xl">
+    <div className="container mx-auto py-8 px-4 max-w-4xl bg-[#FFFFFF]">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Community Forum</h1>
-        <Button>New Topic (Mock)</Button>
+        <div>
+          <h1 className="text-3xl font-extrabold text-[#151B30]">Community Forum</h1>
+          <p className="text-[#3B4D7A] text-sm font-medium mt-1">Connect, discuss code, and learn together.</p>
+        </div>
+        <Button className="rounded-xl font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 border-none shadow-sm">
+          New Topic (Mock)
+        </Button>
       </div>
       <div className="space-y-4">
         {topics.map(topic => (
-          <Card key={topic.id}>
-            <CardHeader>
-              <CardTitle>
-                <Link href={`/forum/topic/${topic.id}`} className="hover:underline">
+          <div
+            key={topic.id}
+            className="rounded-2xl p-6 bg-[#F1F4F9] border border-[#3B4D7A]/20 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="font-bold text-lg text-[#151B30] hover:text-[#0EA5E9] transition-colors">
+                <Link href={`/forum/topic/${topic.id}`}>
                   {topic.title}
                 </Link>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex justify-between text-sm text-muted-foreground">
+              </h3>
+            </div>
+            <div className="flex justify-between text-xs font-semibold text-[#3B4D7A]">
               <span>{topic.replies} replies</span>
               <span>Last active {topic.lastActive}</span>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
     </div>
