@@ -50,22 +50,23 @@ export function CareerRoadmapSimulator() {
   const active = careerData[selectedRole];
 
   return (
-    <div className="rounded-3xl border border-[#1C202C] bg-[#161B26] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+    <div className="rounded-3xl border border-[#3B4D7A]/25 bg-[#F1F4F9] p-6 sm:p-8 shadow-lg relative overflow-hidden">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#3896E8]/15 text-[#38BDF8] border border-[#3896E8]/25 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF] text-[#151B30] border border-[#3B4D7A]/30 mb-2 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#0EA5E9]" />
             <span>🗺️ Personalized Career Calculator</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#151B30] tracking-tight">
             Simulate Your Dream Career Roadmap
           </h3>
-          <p className="text-xs sm:text-sm text-[#8C95A6] mt-1">
+          <p className="text-xs sm:text-sm text-[#3B4D7A] mt-1 font-medium">
             Choose your target career track to estimate completion time, salary expectations, and key skills.
           </p>
         </div>
 
         {/* Role toggle */}
-        <div className="flex p-1 rounded-xl bg-[#0D1016] border border-[#2C344A]">
+        <div className="flex p-1 rounded-xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
           {[
             { id: "frontend", label: "Frontend" },
             { id: "fullstack", label: "Full-Stack" },
@@ -74,10 +75,10 @@ export function CareerRoadmapSimulator() {
             <button
               key={item.id}
               onClick={() => setSelectedRole(item.id)}
-              className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                 selectedRole === item.id
-                  ? "bg-[#566AF6] text-white shadow-sm"
-                  : "text-[#8C95A6] hover:text-white"
+                  ? "bg-[#151B30] text-[#FFFFFF] shadow-sm"
+                  : "text-[#3B4D7A] hover:text-[#151B30] hover:bg-[#F1F4F9]"
               }`}
             >
               {item.label}
@@ -88,34 +89,34 @@ export function CareerRoadmapSimulator() {
 
       {/* Simulator stats banner */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="p-4 rounded-2xl bg-[#0D1016] border border-[#1C202C]">
-          <div className="text-xs text-[#8C95A6]">Global Salary Range</div>
-          <div className="text-lg font-bold text-white mt-1">{active.avgSalary}</div>
+        <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
+          <div className="text-xs font-semibold text-[#3B4D7A]">Global Salary Range</div>
+          <div className="text-lg font-extrabold text-[#151B30] mt-1">{active.avgSalary}</div>
         </div>
-        <div className="p-4 rounded-2xl bg-[#0D1016] border border-[#1C202C]">
-          <div className="text-xs text-[#8C95A6]">Estimated Roadmap Time</div>
-          <div className="text-lg font-bold text-[#3896E8] mt-1">{active.duration}</div>
+        <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
+          <div className="text-xs font-semibold text-[#3B4D7A]">Estimated Roadmap Time</div>
+          <div className="text-lg font-extrabold text-[#0EA5E9] mt-1">{active.duration}</div>
         </div>
-        <div className="p-4 rounded-2xl bg-[#0D1016] border border-[#1C202C]">
-          <div className="text-xs text-[#8C95A6]">Market Demand</div>
-          <div className="text-lg font-bold text-emerald-400 mt-1">{active.demand}</div>
+        <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
+          <div className="text-xs font-semibold text-[#3B4D7A]">Market Demand</div>
+          <div className="text-lg font-extrabold text-[#F59E0B] mt-1">{active.demand}</div>
         </div>
       </div>
 
       {/* Detailed overview */}
-      <div className="p-6 rounded-2xl bg-[#0D1016] border border-[#1C202C] mb-6">
-        <h4 className="text-lg font-bold text-white mb-2">{active.role} Roadmap</h4>
-        <p className="text-sm text-[#8C95A6] mb-5 leading-relaxed">{active.description}</p>
+      <div className="p-6 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 mb-6 shadow-sm">
+        <h4 className="text-lg font-extrabold text-[#151B30] mb-2">{active.role} Roadmap</h4>
+        <p className="text-sm text-[#3B4D7A] mb-5 leading-relaxed font-medium">{active.description}</p>
 
         <div>
-          <div className="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2.5">
+          <div className="text-xs font-bold text-[#151B30] uppercase tracking-wider mb-2.5">
             Core Verified Skills You Will Master
           </div>
           <div className="flex flex-wrap gap-2">
             {active.skills.map((skill) => (
               <span
                 key={skill}
-                className="bg-[#161B26] border border-[#2C344A] px-3 py-1.5 rounded-full text-xs font-semibold text-slate-200"
+                className="bg-[#F1F4F9] border border-[#3B4D7A]/25 px-3 py-1.5 rounded-full text-xs font-bold text-[#151B30]"
               >
                 ✓ {skill}
               </span>
@@ -125,14 +126,14 @@ export function CareerRoadmapSimulator() {
       </div>
 
       {/* Recommended Kickoff */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-[#566AF6]/15 via-[#3896E8]/10 to-transparent border border-[#566AF6]/30">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-white shadow-md">
         <div>
-          <div className="text-xs text-[#38BDF8] font-bold uppercase tracking-wider">
+          <div className="text-xs text-[#0EA5E9] font-bold uppercase tracking-wider">
             Recommended Starting Step
           </div>
-          <div className="text-base font-bold text-white mt-0.5">{active.firstCourse}</div>
+          <div className="text-base font-extrabold text-white mt-0.5">{active.firstCourse}</div>
         </div>
-        <Button asChild className="rounded-xl px-6 py-2.5 font-semibold bg-white text-neutral-950 hover:bg-neutral-200 transition-colors shadow-sm shrink-0">
+        <Button asChild className="rounded-xl px-6 py-2.5 font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 transition-opacity shadow-sm shrink-0 border-none">
           <Link href="/register">Start This Path Free →</Link>
         </Button>
       </div>

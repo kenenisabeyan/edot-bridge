@@ -86,30 +86,31 @@ export function QuickSkillChallenge() {
   const isCorrect = selectedOption === currentQ.correctAnswer;
 
   return (
-    <div className="rounded-3xl border border-[#1C202C] bg-[#161B26] p-6 sm:p-8 shadow-2xl">
+    <div className="rounded-3xl border border-[#3B4D7A]/25 bg-[#F1F4F9] p-6 sm:p-8 shadow-lg">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/25 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF] text-[#151B30] border border-[#3B4D7A]/30 mb-2 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
             <span>⚡ 60-Second Skill Check</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-[#151B30] tracking-tight">
             Test Your Knowledge in 60 Seconds
           </h3>
-          <p className="text-xs sm:text-sm text-[#8C95A6] mt-1">
+          <p className="text-xs sm:text-sm text-[#3B4D7A] mt-1 font-medium">
             Pick a language, test your skills, and earn instant XP toward your certification.
           </p>
         </div>
 
         {/* Gamification stats */}
-        <div className="flex items-center gap-3 bg-[#0D1016] border border-[#2C344A] px-4 py-2 rounded-2xl shrink-0">
+        <div className="flex items-center gap-3 bg-[#FFFFFF] border border-[#3B4D7A]/25 px-4 py-2 rounded-2xl shrink-0 shadow-sm">
           <div className="text-center px-2">
-            <div className="text-xs text-[#8C95A6]">Score</div>
-            <div className="text-base font-bold text-[#566AF6]">+{score} XP</div>
+            <div className="text-xs font-semibold text-[#3B4D7A]">Score</div>
+            <div className="text-base font-extrabold text-[#0EA5E9]">+{score} XP</div>
           </div>
-          <div className="w-px h-6 bg-[#1C202C]" />
+          <div className="w-px h-6 bg-[#3B4D7A]/30" />
           <div className="text-center px-2">
-            <div className="text-xs text-[#8C95A6]">Streak</div>
-            <div className="text-base font-bold text-amber-400">🔥 {streak}x</div>
+            <div className="text-xs font-semibold text-[#3B4D7A]">Streak</div>
+            <div className="text-base font-extrabold text-[#F59E0B]">🔥 {streak}x</div>
           </div>
         </div>
       </div>
@@ -120,10 +121,10 @@ export function QuickSkillChallenge() {
           <button
             key={t}
             onClick={() => resetChallenge(t)}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
               selectedTopic === t
-                ? "bg-white text-black shadow-sm"
-                : "bg-[#0D1016] text-[#8C95A6] border border-[#2C344A] hover:text-white hover:bg-[#1C202C]"
+                ? "bg-[#151B30] text-[#FFFFFF] shadow-sm"
+                : "bg-[#FFFFFF] text-[#3B4D7A] border border-[#3B4D7A]/30 hover:text-[#151B30] hover:bg-[#F1F4F9]"
             }`}
           >
             {t}
@@ -132,22 +133,22 @@ export function QuickSkillChallenge() {
       </div>
 
       {/* Question Card */}
-      <div className="bg-[#0D1016] border border-[#1C202C] rounded-2xl p-6 mb-6">
-        <h4 className="text-base sm:text-lg font-semibold text-white mb-5 leading-snug">
+      <div className="bg-[#FFFFFF] border border-[#3B4D7A]/25 rounded-2xl p-6 mb-6 shadow-sm">
+        <h4 className="text-base sm:text-lg font-bold text-[#151B30] mb-5 leading-snug">
           {currentQ.question}
         </h4>
 
         {/* Options */}
         <div className="space-y-3">
           {currentQ.options.map((opt, idx) => {
-            let btnStyle = "bg-[#161B26] border-[#2C344A] text-slate-200 hover:border-[#566AF6] hover:bg-[#1B2230]";
+            let btnStyle = "bg-[#F1F4F9] border-[#3B4D7A]/25 text-[#151B30] hover:border-[#0EA5E9] hover:bg-[#FFFFFF]";
             if (isAnswered) {
               if (idx === currentQ.correctAnswer) {
-                btnStyle = "bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold";
+                btnStyle = "bg-[#0EA5E9]/15 border-2 border-[#0EA5E9] text-[#151B30] font-bold";
               } else if (idx === selectedOption) {
-                btnStyle = "bg-rose-500/20 border-rose-500 text-rose-300";
+                btnStyle = "bg-[#151B30]/10 border-2 border-[#3B4D7A] text-[#151B30]";
               } else {
-                btnStyle = "bg-[#161B26]/50 border-[#1C202C] text-[#8C95A6] opacity-60";
+                btnStyle = "bg-[#F1F4F9]/60 border-[#3B4D7A]/15 text-[#3B4D7A] opacity-60";
               }
             }
 
@@ -156,14 +157,14 @@ export function QuickSkillChallenge() {
                 key={idx}
                 disabled={isAnswered}
                 onClick={() => handleSelect(idx)}
-                className={`w-full text-left p-3.5 sm:p-4 rounded-xl border text-sm transition-all flex items-center justify-between cursor-pointer ${btnStyle}`}
+                className={`w-full text-left p-3.5 sm:p-4 rounded-xl border text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${btnStyle}`}
               >
                 <span>{opt}</span>
                 {isAnswered && idx === currentQ.correctAnswer && (
-                  <span className="text-emerald-400 font-bold ml-2">✓ Correct (+50 XP)</span>
+                  <span className="text-[#0EA5E9] font-extrabold ml-2">✓ Correct (+50 XP)</span>
                 )}
                 {isAnswered && idx === selectedOption && idx !== currentQ.correctAnswer && (
-                  <span className="text-rose-400 font-bold ml-2">✕ Incorrect</span>
+                  <span className="text-[#3B4D7A] font-bold ml-2">✕ Incorrect</span>
                 )}
               </button>
             );
@@ -172,23 +173,23 @@ export function QuickSkillChallenge() {
 
         {/* Explanation when answered */}
         {isAnswered && (
-          <div className="mt-5 p-4 rounded-xl bg-[#161B26] border border-[#2C344A] text-xs sm:text-sm text-slate-200 animate-fadeIn">
-            <div className="font-bold mb-1 flex items-center gap-1.5">
+          <div className="mt-5 p-4 rounded-xl bg-[#F1F4F9] border border-[#3B4D7A]/30 text-xs sm:text-sm text-[#151B30]">
+            <div className="font-extrabold mb-1 flex items-center gap-1.5 text-[#0EA5E9]">
               <span>{isCorrect ? "🎉 Great job!" : "💡 Explanation:"}</span>
             </div>
-            <p className="text-[#8C95A6] leading-relaxed">{currentQ.explanation}</p>
+            <p className="text-[#3B4D7A] leading-relaxed font-medium">{currentQ.explanation}</p>
           </div>
         )}
       </div>
 
       {/* Bottom Action */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-        <p className="text-xs text-[#8C95A6]">
+        <p className="text-xs font-medium text-[#3B4D7A]">
           {isAnswered
             ? "Ready for a full verified certificate? Enroll in our structured career paths."
             : "Select the best answer above to test your skills."}
         </p>
-        <Button asChild className="rounded-xl px-6 py-2.5 font-semibold bg-white text-neutral-950 hover:bg-neutral-200 transition-colors shadow-sm shrink-0">
+        <Button asChild className="rounded-xl px-6 py-2.5 font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 transition-opacity shadow-sm shrink-0 border-none">
           <Link href="/courses">Browse Full Courses →</Link>
         </Button>
       </div>
