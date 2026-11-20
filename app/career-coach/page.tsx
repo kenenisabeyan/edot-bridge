@@ -34,26 +34,47 @@ export default function CareerCoachPage() {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-3xl">
-      <h1 className="text-3xl font-bold mb-2">AI Career Coach</h1>
-      <p className="text-muted-foreground mb-6">Ask me about career paths, skill recommendations, resume writing, and job search strategies.</p>
+    <div className="container mx-auto py-12 px-4 max-w-4xl">
+      <div className="mb-8">
+        <h1 className="text-4xl font-extrabold text-white mb-2">AI Career Coach</h1>
+        <p className="text-[#8C95A6] text-lg">Personalized AI guidance for tech career paths, resume reviews, and interview prep.</p>
+      </div>
 
-      <Card className="h-[500px] flex flex-col">
-        <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div
+        className="rounded-3xl border border-[#1C202C] bg-[#161B26] h-[600px] flex flex-col shadow-2xl overflow-hidden"
+      >
+        <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {messages.map((msg, idx) => (
             <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[80%] rounded-lg p-3 ${msg.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
+              <div
+                className={`max-w-[80%] rounded-2xl p-4 text-sm leading-relaxed ${
+                  msg.role === "user"
+                    ? "bg-[#566AF6] text-white font-medium shadow-md"
+                    : "bg-[#0D1016] border border-[#2C344A] text-slate-200"
+                }`}
+              >
                 {msg.content}
               </div>
             </div>
           ))}
-          {loading && <div className="text-center text-muted-foreground">Thinking...</div>}
-        </CardContent>
-        <div className="p-4 border-t flex gap-2">
-          <Input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()} placeholder="Ask me anything..." />
-          <Button onClick={handleSend} disabled={loading}>Send</Button>
+          {loading && <div className="text-center text-sm text-[#8C95A6] animate-pulse">AI Career Coach is thinking...</div>}
         </div>
-      </Card>
+        <div className="p-4 border-t border-[#1C202C] bg-[#0D1016]/90 backdrop-blur-sm flex gap-3">
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            placeholder="Ask your AI Career Coach anything (e.g. 'How do I become a React Developer?')..."
+          />
+          <Button
+            onClick={handleSend}
+            disabled={loading}
+            className="rounded-xl px-7 font-semibold bg-white text-neutral-950 hover:bg-neutral-200 transition-colors shrink-0"
+          >
+            Send
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

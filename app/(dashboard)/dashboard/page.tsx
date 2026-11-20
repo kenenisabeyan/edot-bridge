@@ -178,8 +178,8 @@ export default function DashboardPage() {
                 onMouseOut={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--border))")}
               >
                 <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold shrink-0"
-                  style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm"
+                  style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
                 >
                   {i + 1}
                 </div>
