@@ -23,86 +23,88 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <>
-      <style>{`
-        .footer-link { color: hsl(220 14% 55%); transition: color 0.15s; }
-        .footer-link:hover { color: white; }
-        .footer-social { background: hsl(224 22% 14%); color: hsl(220 14% 60%); transition: color 0.15s, background 0.15s; }
-        .footer-social:hover { background: hsl(250 100% 65% / .2); color: white; }
-        .footer-legal-link { color: hsl(220 14% 45%); transition: color 0.15s; }
-        .footer-legal-link:hover { color: hsl(220 14% 70%); }
-      `}</style>
-      <footer
-        style={{
-          background: "hsl(224 25% 7%)",
-          color: "hsl(220 20% 80%)",
-          borderTop: "1px solid hsl(224 18% 14%)",
-        }}
-      >
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-            {/* Brand */}
-            <div className="col-span-2 md:col-span-1">
-              <Link href="/" className="inline-flex items-center gap-2 font-extrabold text-xl text-white">
-                <span
-                  className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-sm font-black"
-                  style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
-                >
-                  S
-                </span>
-                SkillBridge
-              </Link>
-              <p className="mt-3 text-sm leading-relaxed footer-link">
-                Bridging the gap between knowledge and employment for learners across Africa and beyond.
-              </p>
-              <div className="flex gap-3 mt-5">
-                {["𝕏", "in", "gh"].map((s) => (
-                  <a
-                    key={s}
-                    href="#"
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold footer-social"
-                  >
-                    {s}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Links */}
-            {Object.entries(footerLinks).map(([section, links]) => (
-              <div key={section}>
-                <h3 className="text-sm font-semibold text-white mb-4">{section}</h3>
-                <ul className="space-y-2.5">
-                  {links.map((l) => (
-                    <li key={l.href}>
-                      <Link href={l.href} className="footer-link text-sm">
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom bar */}
-          <div
-            className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-12 pt-8"
-            style={{ borderTop: "1px solid hsl(224 18% 14%)" }}
-          >
-            <p className="text-sm footer-link">
-              © {new Date().getFullYear()} SkillBridge. All rights reserved.
+    <footer
+      className="w-full"
+      style={{
+        backgroundColor: "#0D1016",
+        color: "#8C95A6",
+        borderTop: "1px solid #1C202C",
+      }}
+    >
+      <div className="container mx-auto px-6 py-14 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
+          {/* Brand & Socials */}
+          <div className="sm:col-span-2 lg:col-span-2 max-w-sm">
+            <Link href="/" className="inline-flex items-center gap-2.5 font-bold text-xl text-white tracking-tight">
+              <span
+                className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-base font-bold shadow-sm shrink-0"
+                style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
+              >
+                s
+              </span>
+              SkillBridge
+            </Link>
+            <p className="mt-4 text-sm leading-relaxed text-[#8C95A6]">
+              Bridging the gap between knowledge and employment for learners across Africa and beyond.
             </p>
-            <div className="flex gap-5">
-              {["Terms", "Privacy", "Cookies"].map((t) => (
-                <a key={t} href="#" className="footer-legal-link text-xs">
-                  {t}
+            <div className="flex items-center gap-2.5 mt-5">
+              {[
+                { name: "x", label: "x" },
+                { name: "in", label: "in" },
+                { name: "gh", label: "gh" },
+              ].map((item) => (
+                <a
+                  key={item.name}
+                  href="#"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-semibold text-[#8C95A6] bg-[#1C202C] hover:text-white hover:bg-[#252C3D] transition-colors"
+                >
+                  {item.label}
                 </a>
               ))}
             </div>
           </div>
+
+          {/* Nav Link Columns */}
+          {Object.entries(footerLinks).map(([section, links]) => (
+            <div key={section}>
+              <h3 className="text-sm font-semibold text-white mb-4 tracking-wide">{section}</h3>
+              <ul className="space-y-3">
+                {links.map((l) => (
+                  <li key={l.label}>
+                    <Link
+                      href={l.href}
+                      className="text-sm text-[#8C95A6] hover:text-white transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-      </footer>
-    </>
+
+        {/* Bottom bar */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 pt-8"
+          style={{ borderTop: "1px solid #1C202C" }}
+        >
+          <p className="text-xs sm:text-sm text-[#626B7F]">
+            © {new Date().getFullYear()} SkillBridge. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            {["Terms", "Privacy", "Cookies"].map((t) => (
+              <a
+                key={t}
+                href="#"
+                className="text-xs sm:text-sm text-[#7E8799] hover:text-white transition-colors"
+              >
+                {t}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }

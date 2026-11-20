@@ -39,10 +39,10 @@ export default function Header() {
           className="flex items-center gap-2.5 font-extrabold text-xl tracking-tight shrink-0"
         >
           <span
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-sm font-black"
-            style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
+            className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-base font-bold shadow-sm shrink-0"
+            style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
           >
-            S
+            s
           </span>
           <span className="gradient-text">SkillBridge</span>
         </Link>
