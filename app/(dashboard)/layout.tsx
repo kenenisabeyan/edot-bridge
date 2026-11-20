@@ -27,7 +27,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 rounded-full mx-auto mb-4"
-            style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))", animation: "spin 1s linear infinite" }} />
+            style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", animation: "spin 1s linear infinite" }} />
           <p style={{ color: "hsl(var(--muted))" }}>Loading…</p>
         </div>
         <style>{`@keyframes spin { to { transform: rotate(360deg); }}`}</style>
@@ -54,12 +54,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       >
         {/* Logo */}
         <div className="h-16 flex items-center px-5 border-b" style={{ borderColor: "hsl(var(--border))" }}>
-          <Link href="/" className="flex items-center gap-2 font-extrabold text-lg">
+          <Link href="/" className="flex items-center gap-2 font-bold text-lg">
             <span
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-black"
-              style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
-            >S</span>
-            <span className="gradient-text">SkillBridge</span>
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-sm"
+              style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
+            >s</span>
+            <span className="gradient-text font-bold text-lg">SkillBridge</span>
           </Link>
         </div>
 
@@ -94,8 +94,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="p-3 border-t" style={{ borderColor: "hsl(var(--border))" }}>
           <div className="flex items-center gap-3 px-2 py-2">
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
-              style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
+              className="w-9 h-9 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm"
+              style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
             >
               {initials}
             </div>

@@ -5,10 +5,10 @@
 
 /* ─── Design Tokens ────────────────────────────────────────── */
 :root {
-  /* Core Palette */
-  --primary: 250 100% 65%;          /* vibrant indigo/violet */
-  --primary-dark: 248 90% 55%;
-  --accent: 174 100% 45%;           /* teal */
+  /* Core Palette - SkillBridge Primary Brand */
+  --primary: 232 90% 65%;          /* electric indigo/blue #566AF6 */
+  --primary-dark: 230 85% 55%;     /* #4155EE */
+  --accent: 208 81% 56%;           /* sky cyan / vibrant blue #3896E8 */
   --warning: 38 100% 60%;
   --danger: 0 84% 60%;
   --success: 142 72% 45%;
@@ -37,12 +37,12 @@
 }
 
 .dark {
-  --background: 224 25% 7%;
-  --surface: 224 22% 10%;
-  --surface-2: 224 20% 13%;
-  --border: 224 18% 18%;
+  --background: 223 25% 7%;        /* #0D1016 */
+  --surface: 224 22% 10%;          /* #161B26 */
+  --surface-2: 225 22% 14%;        /* #1C202C */
+  --border: 225 22% 14%;           /* #1C202C */
   --foreground: 220 20% 94%;
-  --muted: 220 14% 55%;
+  --muted: 220 12% 60%;            /* #8C95A6 */
   --subtle: 220 10% 40%;
 }
 
@@ -83,7 +83,7 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  background: linear-gradient(135deg, #566AF6 0%, #3896E8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -83,11 +83,11 @@ export default function Home() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
             className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-20"
-            style={{ background: "radial-gradient(circle, hsl(250 100% 65%) 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #566AF6 0%, transparent 70%)" }}
           />
           <div
             className="absolute -bottom-16 -left-24 w-[400px] h-[400px] rounded-full opacity-15"
-            style={{ background: "radial-gradient(circle, hsl(174 100% 45%) 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, #3896E8 0%, transparent 70%)" }}
           />
         </div>
 
@@ -95,9 +95,9 @@ export default function Home() {
           {/* Pill badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-8 fade-in"
             style={{
-              background: "hsl(250 100% 65% / .1)",
-              border: "1px solid hsl(250 100% 65% / .25)",
-              color: "hsl(248 90% 55%)",
+              background: "rgba(86, 106, 246, 0.1)",
+              border: "1px solid rgba(86, 106, 246, 0.25)",
+              color: "#566AF6",
             }}>
             <span className="w-2 h-2 rounded-full bg-current pulse-dot" />
             AI-Powered Learning Platform · Now in Beta
@@ -118,8 +118,8 @@ export default function Home() {
 
           <div className="mt-10 flex flex-wrap justify-center gap-4 fade-in-3">
             <Button asChild size="lg"
-              className="rounded-full px-8 text-base font-semibold shadow-lg"
-              style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))", border: "none" }}>
+              className="rounded-full px-8 text-base font-semibold shadow-lg text-white"
+              style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", border: "none" }}>
               <Link href="/register">Start Learning Free →</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full px-8 text-base font-semibold">
@@ -264,8 +264,8 @@ export default function Home() {
                 <p className="text-sm leading-relaxed italic text-muted-foreground">"{t.quote}"</p>
                 <div className="mt-5 flex items-center gap-3">
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                    style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))" }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm"
+                    style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)" }}
                   >
                     {t.avatar}
                   </div>
@@ -284,7 +284,7 @@ export default function Home() {
       <section className="py-24 relative overflow-hidden">
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(248 90% 50%) 50%, hsl(174 100% 40%))" }}
+          style={{ background: "linear-gradient(135deg, #566AF6 0%, #4B78F1 50%, #3896E8 100%)" }}
         />
         <div className="absolute inset-0 opacity-20"
           style={{ backgroundImage: "radial-gradient(circle at 30% 50%, white 1px, transparent 1px), radial-gradient(circle at 70% 80%, white 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
@@ -297,7 +297,7 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg"
-              className="rounded-full px-10 text-base font-semibold bg-white text-indigo-700 hover:bg-white/90 shadow-xl">
+              className="rounded-full px-10 text-base font-semibold bg-white text-[#566AF6] hover:bg-white/95 shadow-xl">
               <Link href="/register">Join SkillBridge — Free</Link>
             </Button>
             <Button asChild size="lg" variant="outline"

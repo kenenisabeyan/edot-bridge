@@ -92,8 +92,8 @@ export default function Header() {
               <Button
                 size="sm"
                 asChild
-                className="rounded-full px-5 font-semibold"
-                style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))", border: "none" }}
+                className="rounded-full px-5 font-semibold text-white shadow-sm"
+                style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", border: "none" }}
               >
                 <Link href="/register">Get Started</Link>
               </Button>
@@ -143,8 +143,8 @@ export default function Header() {
               <Button asChild variant="outline" size="sm" className="flex-1 rounded-full">
                 <Link href="/login" onClick={() => setMenuOpen(false)}>Sign In</Link>
               </Button>
-              <Button asChild size="sm" className="flex-1 rounded-full"
-                style={{ background: "linear-gradient(135deg, hsl(250 100% 65%), hsl(174 100% 45%))", border: "none" }}>
+              <Button asChild size="sm" className="flex-1 rounded-full text-white"
+                style={{ background: "linear-gradient(135deg, #566AF6 0%, #3896E8 100%)", border: "none" }}>
                 <Link href="/register" onClick={() => setMenuOpen(false)}>Get Started</Link>
               </Button>
             </div>
