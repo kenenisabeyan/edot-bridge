@@ -86,46 +86,81 @@ export function QuickSkillChallenge() {
   const isCorrect = selectedOption === currentQ.correctAnswer;
 
   return (
-    <div className="rounded-3xl border border-[#3B4D7A]/25 bg-[#F1F4F9] p-6 sm:p-8 shadow-lg">
+    <div
+      style={{
+        backgroundColor: "#192038",
+        border: "1.5px solid #3B4D7A",
+        borderRadius: 24,
+        padding: "32px 32px",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.2)"
+      }}
+    >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF] text-[#151B30] border border-[#3B4D7A]/30 mb-2 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
-            <span>⚡ 60-Second Skill Check</span>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              backgroundColor: "rgba(245,158,11,0.12)",
+              border: "1px solid #F59E0B",
+              borderRadius: 999,
+              padding: "4px 14px",
+              marginBottom: 10
+            }}
+          >
+            <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#F59E0B" }} />
+            <span style={{ color: "#F59E0B", fontSize: 12, fontWeight: 800 }}>⚡ 60-Second Skill Check</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#151B30] tracking-tight">
+          <h3 style={{ color: "#FFFFFF", fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>
             Test Your Knowledge in 60 Seconds
           </h3>
-          <p className="text-xs sm:text-sm text-[#3B4D7A] mt-1 font-medium">
+          <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
             Pick a language, test your skills, and earn instant XP toward your certification.
           </p>
         </div>
 
         {/* Gamification stats */}
-        <div className="flex items-center gap-3 bg-[#FFFFFF] border border-[#3B4D7A]/25 px-4 py-2 rounded-2xl shrink-0 shadow-sm">
-          <div className="text-center px-2">
-            <div className="text-xs font-semibold text-[#3B4D7A]">Score</div>
-            <div className="text-base font-extrabold text-[#0EA5E9]">+{score} XP</div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            backgroundColor: "#151B30",
+            border: "1px solid #3B4D7A",
+            padding: "10px 18px",
+            borderRadius: 14
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Score</div>
+            <div style={{ fontSize: 16, fontWeight: 900, color: "#0EA5E9" }}>+{score} XP</div>
           </div>
-          <div className="w-px h-6 bg-[#3B4D7A]/30" />
-          <div className="text-center px-2">
-            <div className="text-xs font-semibold text-[#3B4D7A]">Streak</div>
-            <div className="text-base font-extrabold text-[#F59E0B]">🔥 {streak}x</div>
+          <div style={{ width: 1, height: 24, backgroundColor: "#3B4D7A" }} />
+          <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Streak</div>
+            <div style={{ fontSize: 16, fontWeight: 900, color: "#F59E0B" }}>🔥 {streak}x</div>
           </div>
         </div>
       </div>
 
       {/* Topic Switcher */}
-      <div className="flex gap-2 mb-6">
+      <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
         {(["React", "JavaScript", "Python"] as const).map((t) => (
           <button
             key={t}
             onClick={() => resetChallenge(t)}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              selectedTopic === t
-                ? "bg-[#151B30] text-[#FFFFFF] shadow-sm"
-                : "bg-[#FFFFFF] text-[#3B4D7A] border border-[#3B4D7A]/30 hover:text-[#151B30] hover:bg-[#F1F4F9]"
-            }`}
+            style={{
+              padding: "8px 18px",
+              borderRadius: 10,
+              fontSize: 13,
+              fontWeight: 800,
+              cursor: "pointer",
+              transition: "all 0.15s",
+              backgroundColor: selectedTopic === t ? "#0EA5E9" : "#151B30",
+              color: selectedTopic === t ? "#151B30" : "#F1F4F9",
+              border: `1.5px solid ${selectedTopic === t ? "#0EA5E9" : "#3B4D7A"}`
+            }}
           >
             {t}
           </button>
@@ -133,22 +168,39 @@ export function QuickSkillChallenge() {
       </div>
 
       {/* Question Card */}
-      <div className="bg-[#FFFFFF] border border-[#3B4D7A]/25 rounded-2xl p-6 mb-6 shadow-sm">
-        <h4 className="text-base sm:text-lg font-bold text-[#151B30] mb-5 leading-snug">
+      <div
+        style={{
+          backgroundColor: "#151B30",
+          border: "1.5px solid #3B4D7A",
+          borderRadius: 18,
+          padding: 24,
+          marginBottom: 24
+        }}
+      >
+        <h4 style={{ color: "#FFFFFF", fontSize: 17, fontWeight: 800, margin: "0 0 20px" }}>
           {currentQ.question}
         </h4>
 
         {/* Options */}
-        <div className="space-y-3">
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {currentQ.options.map((opt, idx) => {
-            let btnStyle = "bg-[#F1F4F9] border-[#3B4D7A]/25 text-[#151B30] hover:border-[#0EA5E9] hover:bg-[#FFFFFF]";
+            let bg = "#192038";
+            let border = "#3B4D7A";
+            let text = "#F1F4F9";
+
             if (isAnswered) {
               if (idx === currentQ.correctAnswer) {
-                btnStyle = "bg-[#0EA5E9]/15 border-2 border-[#0EA5E9] text-[#151B30] font-bold";
+                bg = "rgba(14,165,233,0.15)";
+                border = "#0EA5E9";
+                text = "#0EA5E9";
               } else if (idx === selectedOption) {
-                btnStyle = "bg-[#151B30]/10 border-2 border-[#3B4D7A] text-[#151B30]";
+                bg = "rgba(59,77,122,0.3)";
+                border = "#3B4D7A";
+                text = "#F1F4F9";
               } else {
-                btnStyle = "bg-[#F1F4F9]/60 border-[#3B4D7A]/15 text-[#3B4D7A] opacity-60";
+                bg = "#151B30";
+                border = "rgba(59,77,122,0.3)";
+                text = "rgba(241,244,249,0.5)";
               }
             }
 
@@ -157,14 +209,29 @@ export function QuickSkillChallenge() {
                 key={idx}
                 disabled={isAnswered}
                 onClick={() => handleSelect(idx)}
-                className={`w-full text-left p-3.5 sm:p-4 rounded-xl border text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${btnStyle}`}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  padding: "14px 18px",
+                  borderRadius: 12,
+                  border: `1.5px solid ${border}`,
+                  backgroundColor: bg,
+                  color: text,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: isAnswered ? "default" : "pointer",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  transition: "all 0.15s"
+                }}
               >
                 <span>{opt}</span>
                 {isAnswered && idx === currentQ.correctAnswer && (
-                  <span className="text-[#0EA5E9] font-extrabold ml-2">✓ Correct (+50 XP)</span>
+                  <span style={{ color: "#0EA5E9", fontWeight: 800, fontSize: 13 }}>✓ Correct (+50 XP)</span>
                 )}
                 {isAnswered && idx === selectedOption && idx !== currentQ.correctAnswer && (
-                  <span className="text-[#3B4D7A] font-bold ml-2">✕ Incorrect</span>
+                  <span style={{ color: "#F59E0B", fontWeight: 800, fontSize: 13 }}>✕ Incorrect</span>
                 )}
               </button>
             );
@@ -173,25 +240,46 @@ export function QuickSkillChallenge() {
 
         {/* Explanation when answered */}
         {isAnswered && (
-          <div className="mt-5 p-4 rounded-xl bg-[#F1F4F9] border border-[#3B4D7A]/30 text-xs sm:text-sm text-[#151B30]">
-            <div className="font-extrabold mb-1 flex items-center gap-1.5 text-[#0EA5E9]">
-              <span>{isCorrect ? "🎉 Great job!" : "💡 Explanation:"}</span>
+          <div
+            style={{
+              marginTop: 18,
+              padding: "14px 18px",
+              borderRadius: 12,
+              backgroundColor: "#192038",
+              border: "1px solid #3B4D7A"
+            }}
+          >
+            <div style={{ color: "#0EA5E9", fontWeight: 800, fontSize: 13, marginBottom: 4 }}>
+              {isCorrect ? "🎉 Excellent!" : "💡 Explanation:"}
             </div>
-            <p className="text-[#3B4D7A] leading-relaxed font-medium">{currentQ.explanation}</p>
+            <p style={{ color: "#F1F4F9", fontSize: 13, margin: 0, opacity: 0.9 }}>
+              {currentQ.explanation}
+            </p>
           </div>
         )}
       </div>
 
       {/* Bottom Action */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-        <p className="text-xs font-medium text-[#3B4D7A]">
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
+        <p style={{ color: "#F1F4F9", fontSize: 13, margin: 0, opacity: 0.8 }}>
           {isAnswered
             ? "Ready for a full verified certificate? Enroll in our structured career paths."
             : "Select the best answer above to test your skills."}
         </p>
-        <Button asChild className="rounded-xl px-6 py-2.5 font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 transition-opacity shadow-sm shrink-0 border-none">
-          <Link href="/courses">Browse Full Courses →</Link>
-        </Button>
+        <Link
+          href="/courses"
+          style={{
+            backgroundColor: "#F59E0B",
+            color: "#151B30",
+            borderRadius: 10,
+            padding: "10px 22px",
+            fontSize: 13,
+            fontWeight: 800,
+            textDecoration: "none"
+          }}
+        >
+          Browse Full Courses →
+        </Link>
       </div>
     </div>
   );

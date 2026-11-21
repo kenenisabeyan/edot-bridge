@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { LiveCommunityPulse } from "@/components/home/LiveCommunityPulse";
 import { InteractiveTranslationDemo } from "@/components/home/InteractiveTranslationDemo";
 import { QuickSkillChallenge } from "@/components/home/QuickSkillChallenge";
@@ -79,12 +78,12 @@ export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   return (
-    <div style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", color: "#F1F4F9" }}>
       {/* ── Hero Section ─────────────────────────────────────── */}
       <section style={{ position: "relative", backgroundColor: "#151B30", padding: "80px 24px 96px", overflow: "hidden" }}>
         {/* Subtle radial accents */}
-        <div style={{ position: "absolute", top: -100, right: -100, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(14,165,233,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: -80, left: -80, width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: -100, right: -100, width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: -80, left: -80, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
 
         <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 10 }}>
           {/* Pill badge */}
@@ -93,8 +92,8 @@ export default function Home() {
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              backgroundColor: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.18)",
+              backgroundColor: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(59,77,122,0.6)",
               borderRadius: 999,
               padding: "6px 18px",
               marginBottom: 24
@@ -127,7 +126,7 @@ export default function Home() {
                 fontSize: 16,
                 fontWeight: 900,
                 textDecoration: "none",
-                boxShadow: "0 4px 20px rgba(245,158,11,0.4)"
+                boxShadow: "0 4px 20px rgba(245,158,11,0.35)"
               }}
             >
               Start Learning Free →
@@ -135,7 +134,7 @@ export default function Home() {
             <Link
               href="/courses"
               style={{
-                backgroundColor: "rgba(255,255,255,0.08)",
+                backgroundColor: "rgba(255,255,255,0.06)",
                 border: "1.5px solid #3B4D7A",
                 color: "#FFFFFF",
                 borderRadius: 14,
@@ -162,7 +161,7 @@ export default function Home() {
       <LiveCommunityPulse />
 
       {/* ── Platform Impact Stats ─────────────────────────────── */}
-      <section style={{ backgroundColor: "#F1F4F9", borderBottom: "1.5px solid #3B4D7A", padding: "48px 24px" }}>
+      <section style={{ backgroundColor: "#192038", borderTop: "1.5px solid #3B4D7A", borderBottom: "1.5px solid #3B4D7A", padding: "48px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24, textAlign: "center" }}>
           {[
             { value: "10,000+", label: "Active Learners", sub: "across 30 countries" },
@@ -171,13 +170,13 @@ export default function Home() {
             { value: "300+", label: "Hired Graduates", sub: "in 2026 alone" },
           ].map(stat => (
             <div key={stat.label}>
-              <p style={{ color: "#151B30", fontSize: 36, fontWeight: 900, margin: "0 0 4px" }}>
+              <p style={{ color: "#FFFFFF", fontSize: 36, fontWeight: 900, margin: "0 0 4px" }}>
                 {stat.value}
               </p>
-              <p style={{ color: "#151B30", fontSize: 15, fontWeight: 800, margin: "0 0 2px" }}>
+              <p style={{ color: "#0EA5E9", fontSize: 15, fontWeight: 800, margin: "0 0 2px" }}>
                 {stat.label}
               </p>
-              <p style={{ color: "#3B4D7A", fontSize: 12, margin: 0, fontWeight: 600 }}>
+              <p style={{ color: "#F1F4F9", fontSize: 12, margin: 0, opacity: 0.7 }}>
                 {stat.sub}
               </p>
             </div>
@@ -186,28 +185,28 @@ export default function Home() {
       </section>
 
       {/* ── Interactive Translation Engine Showcase ───────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "80px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", padding: "80px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <InteractiveTranslationDemo />
         </div>
       </section>
 
       {/* ── Quick Skill Challenge ─────────────────────────────── */}
-      <section style={{ backgroundColor: "#F1F4F9", borderTop: "1.5px solid #3B4D7A", borderBottom: "1.5px solid #3B4D7A", padding: "80px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "80px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <QuickSkillChallenge />
         </div>
       </section>
 
       {/* ── Core Value Pillars ─────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "88px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div style={{ width: 44, height: 4, backgroundColor: "#0EA5E9", margin: "0 auto 16px", borderRadius: 999 }} />
-            <h2 style={{ color: "#151B30", fontSize: 34, fontWeight: 900, margin: "0 0 12px" }}>
+            <h2 style={{ color: "#FFFFFF", fontSize: 34, fontWeight: 900, margin: "0 0 12px" }}>
               Everything Built for Your Employment
             </h2>
-            <p style={{ color: "#3B4D7A", fontSize: 16, margin: 0, maxWidth: 600, marginInline: "auto" }}>
+            <p style={{ color: "#F1F4F9", fontSize: 16, margin: 0, maxWidth: 600, marginInline: "auto", opacity: 0.8 }}>
               SkillBridge goes beyond video tutorials. We provide the complete verification and hiring infrastructure.
             </p>
           </div>
@@ -217,18 +216,18 @@ export default function Home() {
               <div
                 key={f.title}
                 style={{
-                  backgroundColor: "#F1F4F9",
+                  backgroundColor: "#192038",
                   borderRadius: 18,
                   padding: "32px 28px",
                   border: "1.5px solid #3B4D7A",
-                  boxShadow: "0 4px 16px rgba(21,27,48,0.04)"
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
                 }}
               >
                 <div style={{ fontSize: 36, marginBottom: 16 }}>{f.icon}</div>
-                <h3 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
+                <h3 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
                   {f.title}
                 </h3>
-                <p style={{ color: "#3B4D7A", fontSize: 14, lineHeight: 1.6, margin: 0 }}>
+                <p style={{ color: "#F1F4F9", fontSize: 14, lineHeight: 1.6, margin: 0, opacity: 0.85 }}>
                   {f.desc}
                 </p>
               </div>
@@ -238,21 +237,21 @@ export default function Home() {
       </section>
 
       {/* ── Career Roadmap Simulator ──────────────────────────── */}
-      <section style={{ backgroundColor: "#F1F4F9", borderTop: "1.5px solid #3B4D7A", borderBottom: "1.5px solid #3B4D7A", padding: "80px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "80px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <CareerRoadmapSimulator />
         </div>
       </section>
 
       {/* ── How It Works ─────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "88px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div style={{ width: 44, height: 4, backgroundColor: "#0EA5E9", margin: "0 auto 16px", borderRadius: 999 }} />
-            <h2 style={{ color: "#151B30", fontSize: 34, fontWeight: 900, margin: "0 0 12px" }}>
+            <h2 style={{ color: "#FFFFFF", fontSize: 34, fontWeight: 900, margin: "0 0 12px" }}>
               5 Steps from Zero to Hired
             </h2>
-            <p style={{ color: "#3B4D7A", fontSize: 16, margin: 0 }}>
+            <p style={{ color: "#F1F4F9", fontSize: 16, margin: 0, opacity: 0.8 }}>
               The proven roadmap to entering the global tech economy.
             </p>
           </div>
@@ -262,7 +261,7 @@ export default function Home() {
               <div
                 key={s.step}
                 style={{
-                  backgroundColor: "#F1F4F9",
+                  backgroundColor: "#192038",
                   borderRadius: 16,
                   padding: "24px 20px",
                   border: "1.5px solid #3B4D7A",
@@ -276,6 +275,7 @@ export default function Home() {
                     borderRadius: 12,
                     backgroundColor: "#151B30",
                     color: "#0EA5E9",
+                    border: "1.5px solid #0EA5E9",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -286,10 +286,10 @@ export default function Home() {
                 >
                   {s.step}
                 </div>
-                <h4 style={{ color: "#151B30", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>
+                <h4 style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>
                   {s.title}
                 </h4>
-                <p style={{ color: "#3B4D7A", fontSize: 12, lineHeight: 1.5, margin: 0 }}>
+                <p style={{ color: "#F1F4F9", fontSize: 12, lineHeight: 1.5, margin: 0, opacity: 0.8 }}>
                   {s.desc}
                 </p>
               </div>
@@ -299,22 +299,22 @@ export default function Home() {
       </section>
 
       {/* ── Comparison Table: SkillBridge vs Traditional ─────── */}
-      <section style={{ backgroundColor: "#F1F4F9", borderTop: "1.5px solid #3B4D7A", borderBottom: "1.5px solid #3B4D7A", padding: "88px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
         <div style={{ maxWidth: 960, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: "#151B30", fontSize: 32, fontWeight: 900, margin: "0 0 10px" }}>
+            <h2 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 900, margin: "0 0 10px" }}>
               Why SkillBridge Beats Traditional Bootcamps
             </h2>
-            <p style={{ color: "#3B4D7A", fontSize: 15, margin: 0 }}>
+            <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.8 }}>
               Compare how SkillBridge delivers true career outcomes without financial burden.
             </p>
           </div>
 
-          <div style={{ backgroundColor: "#FFFFFF", borderRadius: 20, border: "1.5px solid #3B4D7A", overflow: "hidden", boxShadow: "0 8px 30px rgba(21,27,48,0.06)" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.4fr 1.2fr", backgroundColor: "#151B30", padding: "16px 24px" }}>
-              <span style={{ color: "#FFFFFF", fontSize: 14, fontWeight: 800 }}>Dimension</span>
+          <div style={{ backgroundColor: "#192038", borderRadius: 20, border: "1.5px solid #3B4D7A", overflow: "hidden", boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.4fr 1.2fr", backgroundColor: "#151B30", padding: "18px 24px", borderBottom: "1.5px solid #3B4D7A" }}>
+              <span style={{ color: "#F1F4F9", fontSize: 14, fontWeight: 800 }}>Dimension</span>
               <span style={{ color: "#0EA5E9", fontSize: 14, fontWeight: 900 }}>⚡ SkillBridge Platform</span>
-              <span style={{ color: "#F1F4F9", fontSize: 14, fontWeight: 700, opacity: 0.7 }}>Traditional Bootcamps</span>
+              <span style={{ color: "#F1F4F9", fontSize: 14, fontWeight: 700, opacity: 0.6 }}>Traditional Bootcamps</span>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -325,13 +325,13 @@ export default function Home() {
                     display: "grid",
                     gridTemplateColumns: "1.2fr 1.4fr 1.2fr",
                     padding: "16px 24px",
-                    borderBottom: idx === comparisonData.length - 1 ? "none" : "1px solid rgba(59,77,122,0.15)",
-                    backgroundColor: idx % 2 === 0 ? "#FFFFFF" : "#F1F4F9"
+                    borderBottom: idx === comparisonData.length - 1 ? "none" : "1px solid rgba(59,77,122,0.25)",
+                    backgroundColor: idx % 2 === 0 ? "#192038" : "#151B30"
                   }}
                 >
-                  <span style={{ color: "#151B30", fontSize: 13, fontWeight: 700 }}>{row.feature}</span>
-                  <span style={{ color: "#151B30", fontSize: 13, fontWeight: 800 }}>✓ {row.skillbridge}</span>
-                  <span style={{ color: "#3B4D7A", fontSize: 13, fontWeight: 500 }}>{row.bootcamps}</span>
+                  <span style={{ color: "#FFFFFF", fontSize: 13, fontWeight: 700 }}>{row.feature}</span>
+                  <span style={{ color: "#0EA5E9", fontSize: 13, fontWeight: 800 }}>✓ {row.skillbridge}</span>
+                  <span style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 500, opacity: 0.6 }}>{row.bootcamps}</span>
                 </div>
               ))}
             </div>
@@ -340,13 +340,13 @@ export default function Home() {
       </section>
 
       {/* ── FAQ Section ────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "88px 24px" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
         <div style={{ maxWidth: 840, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: "#151B30", fontSize: 32, fontWeight: 900, margin: "0 0 10px" }}>
+            <h2 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 900, margin: "0 0 10px" }}>
               Frequently Asked Questions
             </h2>
-            <p style={{ color: "#3B4D7A", fontSize: 15, margin: 0 }}>
+            <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.8 }}>
               Got questions? We've got answers.
             </p>
           </div>
@@ -358,7 +358,7 @@ export default function Home() {
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: "#F1F4F9",
+                    backgroundColor: "#192038",
                     borderRadius: 14,
                     border: "1.5px solid #3B4D7A",
                     overflow: "hidden"
@@ -378,7 +378,7 @@ export default function Home() {
                       cursor: "pointer"
                     }}
                   >
-                    <span style={{ color: "#151B30", fontSize: 15, fontWeight: 800 }}>
+                    <span style={{ color: "#FFFFFF", fontSize: 15, fontWeight: 800 }}>
                       {faq.q}
                     </span>
                     <span style={{ color: "#0EA5E9", fontSize: 18, fontWeight: 900, transform: isOpen ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
@@ -386,7 +386,7 @@ export default function Home() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div style={{ padding: "0 22px 18px", color: "#3B4D7A", fontSize: 14, lineHeight: 1.6 }}>
+                    <div style={{ padding: "0 22px 18px", color: "#F1F4F9", fontSize: 14, lineHeight: 1.6, opacity: 0.9 }}>
                       {faq.a}
                     </div>
                   )}
@@ -398,7 +398,7 @@ export default function Home() {
       </section>
 
       {/* ── Final Call to Action ──────────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", padding: "88px 24px", textAlign: "center" }}>
+      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid #3B4D7A", padding: "88px 24px", textAlign: "center" }}>
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
           <h2 style={{ color: "#FFFFFF", fontSize: "clamp(32px, 4vw, 44px)", fontWeight: 900, margin: "0 0 16px" }}>
             Ready to Bridge Your Skills to Employment?
@@ -425,7 +425,7 @@ export default function Home() {
             <Link
               href="/career-coach"
               style={{
-                backgroundColor: "rgba(255,255,255,0.08)",
+                backgroundColor: "rgba(255,255,255,0.06)",
                 border: "1.5px solid #3B4D7A",
                 color: "#FFFFFF",
                 borderRadius: 14,

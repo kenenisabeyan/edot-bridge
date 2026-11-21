@@ -36,8 +36,8 @@ export default function RootLayout({
       <body
         style={{
           fontFamily: "var(--font-inter, 'Inter', system-ui, sans-serif)",
-          backgroundColor: "#FFFFFF",
-          color: "#151B30",
+          backgroundColor: "#151B30",
+          color: "#F1F4F9",
         }}
       >
         <AuthProvider>

@@ -19,14 +19,14 @@
   --color-vibrant-cyan: #0EA5E9;
 
   /* Theme Mapping */
-  --background: 0 0% 100%;             /* #FFFFFF */
-  --foreground: 226 39% 14%;           /* #151B30 */
-  --surface: 216 38% 96%;              /* #F1F4F9 */
-  --surface-2: 0 0% 100%;              /* #FFFFFF */
+  --background: 226 39% 14%;           /* #151B30 */
+  --foreground: 216 38% 96%;           /* #F1F4F9 */
+  --surface: 224 35% 20%;              /* Elevated Navy */
+  --surface-2: 222 35% 26%;            /* Slate Navy */
   --border: 222 35% 36%;               /* #3B4D7A */
   --muted: 222 35% 36%;                /* #3B4D7A */
-  --primary: 226 39% 14%;              /* #151B30 */
-  --accent: 199 89% 48%;               /* #0EA5E9 */
+  --primary: 199 89% 48%;              /* #0EA5E9 */
+  --accent: 38 92% 50%;                /* #F59E0B */
 
   --radius: 0.75rem;
   --radius-sm: 0.5rem;

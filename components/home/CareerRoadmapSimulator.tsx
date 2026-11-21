@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 interface CareerPathData {
   role: string;
@@ -46,27 +45,45 @@ const careerData: Record<string, CareerPathData> = {
 
 export function CareerRoadmapSimulator() {
   const [selectedRole, setSelectedRole] = useState<string>("frontend");
-
   const active = careerData[selectedRole];
 
   return (
-    <div className="rounded-3xl border border-[#3B4D7A]/25 bg-[#F1F4F9] p-6 sm:p-8 shadow-lg relative overflow-hidden">
+    <div
+      style={{
+        backgroundColor: "#192038",
+        border: "1.5px solid #3B4D7A",
+        borderRadius: 24,
+        padding: "32px 32px",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.2)"
+      }}
+    >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#FFFFFF] text-[#151B30] border border-[#3B4D7A]/30 mb-2 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#0EA5E9]" />
-            <span>🗺️ Personalized Career Calculator</span>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              backgroundColor: "rgba(14,165,233,0.12)",
+              border: "1px solid #0EA5E9",
+              borderRadius: 999,
+              padding: "4px 14px",
+              marginBottom: 10
+            }}
+          >
+            <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#0EA5E9" }} />
+            <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800 }}>🗺️ Career Calculator</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#151B30] tracking-tight">
+          <h3 style={{ color: "#FFFFFF", fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>
             Simulate Your Dream Career Roadmap
           </h3>
-          <p className="text-xs sm:text-sm text-[#3B4D7A] mt-1 font-medium">
+          <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
             Choose your target career track to estimate completion time, salary expectations, and key skills.
           </p>
         </div>
 
         {/* Role toggle */}
-        <div className="flex p-1 rounded-xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
+        <div style={{ display: "flex", gap: 6, backgroundColor: "#151B30", border: "1px solid #3B4D7A", borderRadius: 12, padding: 4 }}>
           {[
             { id: "frontend", label: "Frontend" },
             { id: "fullstack", label: "Full-Stack" },
@@ -75,11 +92,17 @@ export function CareerRoadmapSimulator() {
             <button
               key={item.id}
               onClick={() => setSelectedRole(item.id)}
-              className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                selectedRole === item.id
-                  ? "bg-[#151B30] text-[#FFFFFF] shadow-sm"
-                  : "text-[#3B4D7A] hover:text-[#151B30] hover:bg-[#F1F4F9]"
-              }`}
+              style={{
+                padding: "8px 16px",
+                borderRadius: 8,
+                fontSize: 13,
+                fontWeight: 800,
+                cursor: "pointer",
+                border: "none",
+                backgroundColor: selectedRole === item.id ? "#0EA5E9" : "transparent",
+                color: selectedRole === item.id ? "#151B30" : "#F1F4F9",
+                transition: "all 0.15s"
+              }}
             >
               {item.label}
             </button>
@@ -88,35 +111,47 @@ export function CareerRoadmapSimulator() {
       </div>
 
       {/* Simulator stats banner */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
-          <div className="text-xs font-semibold text-[#3B4D7A]">Global Salary Range</div>
-          <div className="text-lg font-extrabold text-[#151B30] mt-1">{active.avgSalary}</div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 20 }}>
+        <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 16, padding: "18px 20px" }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Global Salary Range</div>
+          <div style={{ fontSize: 20, fontWeight: 900, color: "#FFFFFF", marginTop: 4 }}>{active.avgSalary}</div>
         </div>
-        <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
-          <div className="text-xs font-semibold text-[#3B4D7A]">Estimated Roadmap Time</div>
-          <div className="text-lg font-extrabold text-[#0EA5E9] mt-1">{active.duration}</div>
+        <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 16, padding: "18px 20px" }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Estimated Roadmap Time</div>
+          <div style={{ fontSize: 20, fontWeight: 900, color: "#0EA5E9", marginTop: 4 }}>{active.duration}</div>
         </div>
-        <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 shadow-sm">
-          <div className="text-xs font-semibold text-[#3B4D7A]">Market Demand</div>
-          <div className="text-lg font-extrabold text-[#F59E0B] mt-1">{active.demand}</div>
+        <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 16, padding: "18px 20px" }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Market Demand</div>
+          <div style={{ fontSize: 18, fontWeight: 900, color: "#F59E0B", marginTop: 4 }}>{active.demand}</div>
         </div>
       </div>
 
       {/* Detailed overview */}
-      <div className="p-6 rounded-2xl bg-[#FFFFFF] border border-[#3B4D7A]/25 mb-6 shadow-sm">
-        <h4 className="text-lg font-extrabold text-[#151B30] mb-2">{active.role} Roadmap</h4>
-        <p className="text-sm text-[#3B4D7A] mb-5 leading-relaxed font-medium">{active.description}</p>
+      <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 18, padding: 24, marginBottom: 20 }}>
+        <h4 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
+          {active.role} Roadmap
+        </h4>
+        <p style={{ color: "#F1F4F9", fontSize: 14, margin: "0 0 18px", opacity: 0.85, lineHeight: 1.6 }}>
+          {active.description}
+        </p>
 
         <div>
-          <div className="text-xs font-bold text-[#151B30] uppercase tracking-wider mb-2.5">
+          <div style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 10 }}>
             Core Verified Skills You Will Master
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             {active.skills.map((skill) => (
               <span
                 key={skill}
-                className="bg-[#F1F4F9] border border-[#3B4D7A]/25 px-3 py-1.5 rounded-full text-xs font-bold text-[#151B30]"
+                style={{
+                  backgroundColor: "#192038",
+                  border: "1px solid #3B4D7A",
+                  borderRadius: 999,
+                  padding: "6px 14px",
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "#FFFFFF"
+                }}
               >
                 ✓ {skill}
               </span>
@@ -126,16 +161,41 @@ export function CareerRoadmapSimulator() {
       </div>
 
       {/* Recommended Kickoff */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-white shadow-md">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 16,
+          backgroundColor: "#151B30",
+          border: "1.5px solid #3B4D7A",
+          borderRadius: 16,
+          padding: "18px 24px"
+        }}
+      >
         <div>
-          <div className="text-xs text-[#0EA5E9] font-bold uppercase tracking-wider">
+          <div style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800, textTransform: "uppercase" }}>
             Recommended Starting Step
           </div>
-          <div className="text-base font-extrabold text-white mt-0.5">{active.firstCourse}</div>
+          <div style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 800, marginTop: 2 }}>
+            {active.firstCourse}
+          </div>
         </div>
-        <Button asChild className="rounded-xl px-6 py-2.5 font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 transition-opacity shadow-sm shrink-0 border-none">
-          <Link href="/register">Start This Path Free →</Link>
-        </Button>
+        <Link
+          href="/register"
+          style={{
+            backgroundColor: "#F59E0B",
+            color: "#151B30",
+            borderRadius: 10,
+            padding: "10px 22px",
+            fontSize: 13,
+            fontWeight: 800,
+            textDecoration: "none"
+          }}
+        >
+          Start This Path Free →
+        </Link>
       </div>
     </div>
   );

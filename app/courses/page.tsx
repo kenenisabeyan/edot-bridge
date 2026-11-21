@@ -23,16 +23,32 @@ export default function CoursesPage() {
       });
   }, []);
 
-  if (loading) return <div className="p-12 text-center text-[#3B4D7A] font-semibold">Loading courses...</div>;
+  if (loading) {
+    return (
+      <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "48px 24px", textAlign: "center" }}>
+        <p style={{ color: "#0EA5E9", fontSize: 16, fontWeight: 800 }}>Loading world-class courses...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto py-12 px-4 max-w-7xl bg-[#FFFFFF]">
-      <div className="mb-10">
-        <h1 className="text-4xl font-extrabold text-[#151B30] mb-2">All Courses</h1>
-        <p className="text-lg text-[#3B4D7A] font-medium">Explore courses with verified certificates and multilingual AI translation.</p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {courses.map(course => <CourseCard key={course.id} course={course} />)}
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "48px 24px 80px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: "rgba(14,165,233,0.12)", border: "1px solid #0EA5E9", borderRadius: 999, padding: "4px 14px", marginBottom: 12 }}>
+            <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800 }}>📚 Multilingual Tech Curriculum</span>
+          </div>
+          <h1 style={{ color: "#FFFFFF", fontSize: 36, fontWeight: 900, margin: "0 0 10px" }}>
+            Explore All Courses
+          </h1>
+          <p style={{ color: "#F1F4F9", fontSize: 16, margin: 0, opacity: 0.85, maxWidth: 640 }}>
+            Master frontend, full-stack, and AI engineering with verified milestone certificates and real-time translation into African languages.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
+          {courses.map(course => <CourseCard key={course.id} course={course} />)}
+        </div>
       </div>
     </div>
   );
