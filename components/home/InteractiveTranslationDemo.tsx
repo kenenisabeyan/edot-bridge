@@ -36,7 +36,7 @@ const snippets: Record<LanguageKey, TranslationSnippet> = {
     keyTakeaway: "Haalli (state) odeeffannoo yeroo yeroon jijjiiramu qabata.",
   },
   am: {
-    label: "አማርኛ (Amharic)",
+    label: "አማርኛ",
     flag: "🇪🇹",
     lessonTitle: "የReact ስቴት (State) እና ሁክስ ግንዛቤ",
     audioDuration: "0:50",
@@ -68,43 +68,24 @@ export function InteractiveTranslationDemo() {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#192038",
-        border: "1.5px solid #3B4D7A",
-        borderRadius: 24,
-        padding: "32px 32px",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.2)"
-      }}
-    >
+    <div className="master-card rounded-3xl p-6 sm:p-10 shadow-2xl">
       {/* Header bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
         <div>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              backgroundColor: "rgba(14,165,233,0.12)",
-              border: "1px solid #0EA5E9",
-              borderRadius: 999,
-              padding: "4px 14px",
-              marginBottom: 10
-            }}
-          >
-            <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#0EA5E9" }} />
-            <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800 }}>AI Multilingual Engine</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0EA5E9]/10 border border-[#0EA5E9]/30 text-[#0EA5E9] text-xs font-black uppercase tracking-wider mb-3">
+            <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
+            <span>AI Multilingual Engine Showcase</span>
           </div>
-          <h3 style={{ color: "#FFFFFF", fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>
-            Interactive Lesson Translation Demo
+          <h3 className="text-2xl sm:text-3xl font-black text-white mb-1.5">
+            Interactive Curriculum Translation Demo
           </h3>
-          <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
-            Switch language to see code comments, explanations, and audio narration translate live.
+          <p className="text-sm text-[#F1F4F9]/80 font-medium">
+            Switch language to see code comments, explanations, and audio narration translate instantly.
           </p>
         </div>
 
         {/* Language selector tabs */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, backgroundColor: "#151B30", border: "1px solid #3B4D7A", borderRadius: 12, padding: 4 }}>
+        <div className="flex flex-wrap gap-1.5 p-1.5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
           {(Object.keys(snippets) as LanguageKey[]).map((key) => {
             const item = snippets[key];
             const isActive = selectedLang === key;
@@ -115,19 +96,14 @@ export function InteractiveTranslationDemo() {
                   setSelectedLang(key);
                   setIsPlaying(false);
                 }}
-                style={{
-                  padding: "6px 14px",
-                  borderRadius: 8,
-                  fontSize: 12,
-                  fontWeight: 800,
-                  cursor: "pointer",
-                  border: "none",
-                  backgroundColor: isActive ? "#0EA5E9" : "transparent",
-                  color: isActive ? "#151B30" : "#F1F4F9",
-                  transition: "all 0.15s"
-                }}
+                className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer ${
+                  isActive
+                    ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
+                    : "text-[#F1F4F9]/75 hover:text-white hover:bg-[#192038]"
+                }`}
               >
-                <span>{item.flag} {item.label}</span>
+                <span>{item.flag}</span>
+                <span>{item.label}</span>
               </button>
             );
           })}
@@ -135,137 +111,107 @@ export function InteractiveTranslationDemo() {
       </div>
 
       {/* Code & Audio Player Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Code Editor Preview */}
-        <div
-          style={{
-            backgroundColor: "#151B30",
-            border: "1.5px solid #3B4D7A",
-            borderRadius: 18,
-            padding: 20,
-            fontFamily: "monospace",
-            fontSize: 13,
-            overflowX: "auto"
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid rgba(59,77,122,0.4)", paddingBottom: 10, marginBottom: 14 }}>
-            <div style={{ display: "flex", gap: 6 }}>
-              <span style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#3B4D7A" }} />
-              <span style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#3B4D7A" }} />
-              <span style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#3B4D7A" }} />
-              <span style={{ color: "#F1F4F9", fontSize: 12, marginLeft: 8, fontFamily: "sans-serif" }}>CounterComponent.tsx</span>
+        <div className="lg:col-span-6 bg-[#151B30] border border-[#3B4D7A] rounded-2xl p-5 font-mono text-xs overflow-x-auto shadow-inner flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#3B4D7A]/50">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+                <span className="text-xs font-sans font-bold text-white ml-2">
+                  CounterComponent.tsx
+                </span>
+              </div>
+              <span className="px-2 py-0.5 rounded-full bg-[#0EA5E9]/20 text-[#0EA5E9] text-[10px] font-black">
+                React 19
+              </span>
             </div>
-            <span style={{ backgroundColor: "#0EA5E9", color: "#151B30", padding: "2px 8px", borderRadius: 999, fontSize: 10, fontWeight: 800 }}>
-              React 19
-            </span>
+
+            <pre className="font-mono-code text-xs sm:text-sm text-[#F1F4F9] leading-relaxed">
+              <code>
+                <span className="text-[#0EA5E9]">{activeSnippet.codeComment}</span>{"\n"}
+                <span className="text-[#F59E0B]">const</span> [count, setCount] = <span className="text-[#F59E0B]">useState</span>(0);{"\n\n"}
+                <span className="text-[#3B4D7A]">// Native event handler</span>{"\n"}
+                <span className="text-[#0EA5E9]">function</span> <span className="text-white">increment</span>() &#123;{"\n"}
+                {"  "}setCount((prev) =&gt; prev + 1);{"\n"}
+                &#125;{"\n\n"}
+                <span className="text-[#0EA5E9]">return</span> ({"\n"}
+                {"  "}&lt;<span className="text-[#0EA5E9]">button</span> onClick=&#123;increment&#125;&gt;{"\n"}
+                {"    "}Learned: &#123;count&#125; times{"\n"}
+                {"  "}&lt;/<span className="text-[#0EA5E9]">button</span>&gt;{"\n"}
+                );
+              </code>
+            </pre>
           </div>
 
-          <pre style={{ color: "#F1F4F9", lineHeight: 1.7, margin: 0 }}>
-            <code>
-              <span style={{ color: "#3B4D7A", fontStyle: "italic" }}>{activeSnippet.codeComment}</span>
-              {"\n"}
-              <span style={{ color: "#0EA5E9", fontWeight: 800 }}>const</span> [count, setCount] ={" "}
-              <span style={{ color: "#F59E0B" }}>useState</span>(0);
-              {"\n\n"}
-              <span style={{ color: "#3B4D7A", fontStyle: "italic" }}>// Handle click event</span>
-              {"\n"}
-              <span style={{ color: "#0EA5E9", fontWeight: 800 }}>function</span>{" "}
-              <span style={{ color: "#FFFFFF" }}>increment</span>() &#123;
-              {"\n"}  setCount((prev) =&gt; prev + 1);
-              {"\n"}&#125;
-              {"\n\n"}
-              <span style={{ color: "#0EA5E9", fontWeight: 800 }}>return</span> (
-              {"\n"}  &lt;<span style={{ color: "#0EA5E9" }}>button</span> onClick=&#123;increment&#125;&gt;
-              {"\n"}    Learned: &#123;count&#125; times
-              {"\n"}  &lt;/<span style={{ color: "#0EA5E9" }}>button</span>&gt;
-              {"\n"});
-            </code>
-          </pre>
+          <div className="mt-4 pt-3 border-t border-[#3B4D7A]/40 flex items-center justify-between text-[11px] text-[#F1F4F9]/60">
+            <span>Synchronized Language Layer</span>
+            <span className="text-[#10B981] font-bold">100% Native Audio Sync</span>
+          </div>
         </div>
 
         {/* Translation Explanation & Audio Narrator */}
-        <div
-          style={{
-            backgroundColor: "#151B30",
-            border: "1.5px solid #3B4D7A",
-            borderRadius: 18,
-            padding: 24,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between"
-          }}
-        >
+        <div className="lg:col-span-6 bg-[#151B30] border border-[#3B4D7A] rounded-2xl p-6 flex flex-col justify-between shadow-inner">
           <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-              <span style={{ color: "#F1F4F9", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", opacity: 0.7 }}>
-                Translated Lesson
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xs font-black uppercase tracking-wider text-[#0EA5E9]">
+                AI Real-Time Explanation
               </span>
-              <span style={{ backgroundColor: "rgba(14,165,233,0.15)", color: "#0EA5E9", border: "1px solid #0EA5E9", padding: "2px 8px", borderRadius: 999, fontSize: 11, fontWeight: 800 }}>
-                100% Accurate
+              <span className="text-xs font-bold text-[#F1F4F9]/60">
+                Duration: {activeSnippet.audioDuration}
               </span>
             </div>
 
-            <h4 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 10px" }}>
+            <h4 className="text-lg font-extrabold text-white mb-3">
               {activeSnippet.lessonTitle}
             </h4>
 
-            <p style={{ color: "#F1F4F9", fontSize: 14, lineHeight: 1.6, margin: "0 0 16px", opacity: 0.85 }}>
+            <p className="text-sm text-[#F1F4F9]/90 leading-relaxed font-medium mb-5 bg-[#192038] p-4 rounded-xl border border-[#3B4D7A]/40">
               {activeSnippet.explanation}
             </p>
 
-            <div style={{ backgroundColor: "#192038", border: "1px solid #3B4D7A", borderRadius: 12, padding: "12px 14px" }}>
-              <span style={{ color: "#0EA5E9", fontWeight: 800, marginRight: 6 }}>💡 Key Takeaway:</span>
-              <span style={{ color: "#F1F4F9", fontSize: 13 }}>{activeSnippet.keyTakeaway}</span>
+            <div className="p-3.5 rounded-xl bg-[#0EA5E9]/10 border border-[#0EA5E9]/30 mb-6">
+              <p className="text-xs font-black text-[#0EA5E9] uppercase tracking-wider mb-1">
+                💡 Key Concept
+              </p>
+              <p className="text-xs font-semibold text-white">
+                {activeSnippet.keyTakeaway}
+              </p>
             </div>
           </div>
 
-          {/* Interactive Voice Audio Player */}
-          <div style={{ marginTop: 24, borderTop: "1px solid rgba(59,77,122,0.4)", paddingTop: 16 }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-              <span style={{ color: "#F1F4F9", fontSize: 12, fontWeight: 700 }}>
-                🎙️ AI Voiceover ({activeSnippet.label})
-              </span>
-              <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800, fontFamily: "monospace" }}>
-                {activeSnippet.audioDuration}
-              </span>
-            </div>
-
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {/* Audio Player Bar */}
+          <div className="p-4 rounded-xl bg-[#192038] border border-[#3B4D7A] flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
               <button
                 onClick={handlePlay}
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  backgroundColor: "#F59E0B",
-                  color: "#151B30",
-                  border: "none",
-                  fontWeight: 800,
-                  fontSize: 14,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0
-                }}
+                className="w-10 h-10 rounded-xl bg-[#F59E0B] text-[#151B30] font-black text-sm flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer shadow-md shrink-0"
               >
-                {isPlaying ? "❚❚" : "▶"}
+                {isPlaying ? "⏸" : "▶"}
               </button>
-
-              <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 4, height: 32, padding: "0 12px", backgroundColor: "#192038", borderRadius: 10, border: "1px solid #3B4D7A" }}>
-                {[40, 75, 55, 90, 30, 80, 60, 100, 45, 85, 50, 70, 95, 35, 65].map((h, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      flex: 1,
-                      borderRadius: 999,
-                      backgroundColor: isPlaying ? "#0EA5E9" : "#3B4D7A",
-                      height: isPlaying ? `${Math.max(25, (h * (i % 2 === 0 ? 1 : 0.7)))}%` : "30%",
-                      transition: "all 0.3s ease"
-                    }}
-                  />
-                ))}
+              <div>
+                <p className="text-xs font-extrabold text-white">
+                  {isPlaying ? "Playing AI Voiceover..." : "Listen in Native Voice"}
+                </p>
+                <p className="text-[10px] text-[#F1F4F9]/60">
+                  {activeSnippet.label} • {activeSnippet.audioDuration} min
+                </p>
               </div>
+            </div>
+
+            {/* Visualizer bars */}
+            <div className="flex items-center gap-1">
+              {[40, 75, 55, 90, 60, 85, 45, 95].map((h, i) => (
+                <span
+                  key={i}
+                  style={{ height: isPlaying ? `${h}%` : "30%" }}
+                  className={`w-1 rounded-full transition-all duration-200 ${
+                    isPlaying ? "bg-[#0EA5E9]" : "bg-[#3B4D7A]"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

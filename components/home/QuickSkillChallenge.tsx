@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 interface Question {
   id: number;
   topic: "React" | "Python" | "JavaScript";
   question: string;
-  codeSnippet?: string;
   options: string[];
   correctAnswer: number;
   explanation: string;
@@ -86,121 +84,66 @@ export function QuickSkillChallenge() {
   const isCorrect = selectedOption === currentQ.correctAnswer;
 
   return (
-    <div
-      style={{
-        backgroundColor: "#192038",
-        border: "1.5px solid #3B4D7A",
-        borderRadius: 24,
-        padding: "32px 32px",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.2)"
-      }}
-    >
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div className="master-card rounded-3xl p-6 sm:p-10 shadow-2xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
         <div>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              backgroundColor: "rgba(245,158,11,0.12)",
-              border: "1px solid #F59E0B",
-              borderRadius: 999,
-              padding: "4px 14px",
-              marginBottom: 10
-            }}
-          >
-            <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#F59E0B" }} />
-            <span style={{ color: "#F59E0B", fontSize: 12, fontWeight: 800 }}>⚡ 60-Second Skill Check</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-black uppercase tracking-wider mb-3">
+            <span>⚡ Interactive Assessment Simulator</span>
           </div>
-          <h3 style={{ color: "#FFFFFF", fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>
-            Test Your Knowledge in 60 Seconds
+          <h3 className="text-2xl sm:text-3xl font-black text-white mb-1.5">
+            Quick 60-Second Skill Challenge
           </h3>
-          <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
-            Pick a language, test your skills, and earn instant XP toward your certification.
+          <p className="text-sm text-[#F1F4F9]/80 font-medium">
+            Test your knowledge, earn bonus XP, and experience our proctored assessment engine.
           </p>
         </div>
 
-        {/* Gamification stats */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-            backgroundColor: "#151B30",
-            border: "1px solid #3B4D7A",
-            padding: "10px 18px",
-            borderRadius: 14
-          }}
-        >
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Score</div>
-            <div style={{ fontSize: 16, fontWeight: 900, color: "#0EA5E9" }}>+{score} XP</div>
+        {/* Gamification badges */}
+        <div className="flex items-center gap-3">
+          <div className="px-4 py-2 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+            <span className="block text-[10px] font-black uppercase tracking-wider text-[#F1F4F9]/60">Total XP</span>
+            <span className="text-base font-black text-[#F59E0B]">+{score} XP</span>
           </div>
-          <div style={{ width: 1, height: 24, backgroundColor: "#3B4D7A" }} />
-          <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Streak</div>
-            <div style={{ fontSize: 16, fontWeight: 900, color: "#F59E0B" }}>🔥 {streak}x</div>
+          <div className="px-4 py-2 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+            <span className="block text-[10px] font-black uppercase tracking-wider text-[#F1F4F9]/60">Streak</span>
+            <span className="text-base font-black text-[#0EA5E9]">🔥 {streak}x</span>
           </div>
         </div>
       </div>
 
-      {/* Topic Switcher */}
-      <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-        {(["React", "JavaScript", "Python"] as const).map((t) => (
+      {/* Topic selector */}
+      <div className="flex gap-2 mb-6">
+        {(["React", "JavaScript", "Python"] as const).map((topic) => (
           <button
-            key={t}
-            onClick={() => resetChallenge(t)}
-            style={{
-              padding: "8px 18px",
-              borderRadius: 10,
-              fontSize: 13,
-              fontWeight: 800,
-              cursor: "pointer",
-              transition: "all 0.15s",
-              backgroundColor: selectedTopic === t ? "#0EA5E9" : "#151B30",
-              color: selectedTopic === t ? "#151B30" : "#F1F4F9",
-              border: `1.5px solid ${selectedTopic === t ? "#0EA5E9" : "#3B4D7A"}`
-            }}
+            key={topic}
+            onClick={() => resetChallenge(topic)}
+            className={`px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
+              selectedTopic === topic
+                ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
+                : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+            }`}
           >
-            {t}
+            {topic}
           </button>
         ))}
       </div>
 
       {/* Question Card */}
-      <div
-        style={{
-          backgroundColor: "#151B30",
-          border: "1.5px solid #3B4D7A",
-          borderRadius: 18,
-          padding: 24,
-          marginBottom: 24
-        }}
-      >
-        <h4 style={{ color: "#FFFFFF", fontSize: 17, fontWeight: 800, margin: "0 0 20px" }}>
+      <div className="p-6 sm:p-7 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner mb-6">
+        <p className="text-base sm:text-lg font-bold text-white mb-6">
           {currentQ.question}
-        </h4>
+        </p>
 
-        {/* Options */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {currentQ.options.map((opt, idx) => {
-            let bg = "#192038";
-            let border = "#3B4D7A";
-            let text = "#F1F4F9";
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+          {currentQ.options.map((option, idx) => {
+            let btnStyle = "bg-[#192038] border-[#3B4D7A] text-[#F1F4F9] hover:border-[#0EA5E9]";
             if (isAnswered) {
               if (idx === currentQ.correctAnswer) {
-                bg = "rgba(14,165,233,0.15)";
-                border = "#0EA5E9";
-                text = "#0EA5E9";
+                btnStyle = "bg-[#10B981]/20 border-[#10B981] text-[#10B981] font-black";
               } else if (idx === selectedOption) {
-                bg = "rgba(59,77,122,0.3)";
-                border = "#3B4D7A";
-                text = "#F1F4F9";
+                btnStyle = "bg-[#EF4444]/20 border-[#EF4444] text-[#EF4444]";
               } else {
-                bg = "#151B30";
-                border = "rgba(59,77,122,0.3)";
-                text = "rgba(241,244,249,0.5)";
+                btnStyle = "bg-[#192038]/50 border-[#3B4D7A]/40 text-[#F1F4F9]/40";
               }
             }
 
@@ -209,76 +152,43 @@ export function QuickSkillChallenge() {
                 key={idx}
                 disabled={isAnswered}
                 onClick={() => handleSelect(idx)}
-                style={{
-                  width: "100%",
-                  textAlign: "left",
-                  padding: "14px 18px",
-                  borderRadius: 12,
-                  border: `1.5px solid ${border}`,
-                  backgroundColor: bg,
-                  color: text,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  cursor: isAnswered ? "default" : "pointer",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  transition: "all 0.15s"
-                }}
+                className={`p-4 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-start gap-3 cursor-pointer ${btnStyle}`}
               >
-                <span>{opt}</span>
-                {isAnswered && idx === currentQ.correctAnswer && (
-                  <span style={{ color: "#0EA5E9", fontWeight: 800, fontSize: 13 }}>✓ Correct (+50 XP)</span>
-                )}
-                {isAnswered && idx === selectedOption && idx !== currentQ.correctAnswer && (
-                  <span style={{ color: "#F59E0B", fontWeight: 800, fontSize: 13 }}>✕ Incorrect</span>
-                )}
+                <span className="w-5 h-5 rounded-full bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
+                  {String.fromCharCode(65 + idx)}
+                </span>
+                <span>{option}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Explanation when answered */}
+        {/* Result Explanation */}
         {isAnswered && (
           <div
-            style={{
-              marginTop: 18,
-              padding: "14px 18px",
-              borderRadius: 12,
-              backgroundColor: "#192038",
-              border: "1px solid #3B4D7A"
-            }}
+            className={`p-4 rounded-xl border text-xs sm:text-sm font-medium ${
+              isCorrect
+                ? "bg-[#10B981]/10 border-[#10B981]/40 text-[#10B981]"
+                : "bg-[#EF4444]/10 border-[#EF4444]/40 text-[#EF4444]"
+            }`}
           >
-            <div style={{ color: "#0EA5E9", fontWeight: 800, fontSize: 13, marginBottom: 4 }}>
-              {isCorrect ? "🎉 Excellent!" : "💡 Explanation:"}
-            </div>
-            <p style={{ color: "#F1F4F9", fontSize: 13, margin: 0, opacity: 0.9 }}>
-              {currentQ.explanation}
+            <p className="font-bold mb-1">
+              {isCorrect ? "🎉 Correct! +50 XP" : "❌ Incorrect, but keep learning!"}
             </p>
+            <p className="text-[#F1F4F9]/90">{currentQ.explanation}</p>
           </div>
         )}
       </div>
 
-      {/* Bottom Action */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
-        <p style={{ color: "#F1F4F9", fontSize: 13, margin: 0, opacity: 0.8 }}>
-          {isAnswered
-            ? "Ready for a full verified certificate? Enroll in our structured career paths."
-            : "Select the best answer above to test your skills."}
-        </p>
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+        <span className="text-xs text-[#F1F4F9]/60">
+          Want full proctored certification? Earn tamper-proof credentials today.
+        </span>
         <Link
-          href="/courses"
-          style={{
-            backgroundColor: "#F59E0B",
-            color: "#151B30",
-            borderRadius: 10,
-            padding: "10px 22px",
-            fontSize: 13,
-            fontWeight: 800,
-            textDecoration: "none"
-          }}
+          href="/assessments"
+          className="btn-amber-cta px-6 py-2.5 rounded-xl text-xs font-black text-center"
         >
-          Browse Full Courses →
+          Take Full Certification Assessment →
         </Link>
       </div>
     </div>

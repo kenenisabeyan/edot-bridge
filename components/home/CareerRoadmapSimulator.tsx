@@ -16,7 +16,7 @@ interface CareerPathData {
 const careerData: Record<string, CareerPathData> = {
   frontend: {
     role: "Frontend Developer",
-    avgSalary: "$40,000 - $75,000",
+    avgSalary: "$40,000 - $75,000 / yr",
     duration: "8 weeks (10 hrs/week)",
     demand: "🔥 High (850+ open remote roles)",
     skills: ["HTML5 / CSS3", "TypeScript", "React 19", "Next.js", "Tailwind CSS"],
@@ -25,7 +25,7 @@ const careerData: Record<string, CareerPathData> = {
   },
   fullstack: {
     role: "Full-Stack Engineer",
-    avgSalary: "$55,000 - $95,000",
+    avgSalary: "$55,000 - $95,000 / yr",
     duration: "12 weeks (12 hrs/week)",
     demand: "🚀 Critical (1,200+ open roles)",
     skills: ["Next.js App Router", "Node.js / Express", "PostgreSQL / Prisma", "Auth & Security", "REST & GraphQL"],
@@ -34,7 +34,7 @@ const careerData: Record<string, CareerPathData> = {
   },
   ai: {
     role: "AI & Data Engineer",
-    avgSalary: "$60,000 - $110,000",
+    avgSalary: "$60,000 - $110,000 / yr",
     duration: "10 weeks (10 hrs/week)",
     demand: "🌟 Explosive (500% YoY growth)",
     skills: ["Python", "Pandas & NumPy", "OpenAI SDK", "Vector DBs", "Prompt Engineering"],
@@ -48,42 +48,22 @@ export function CareerRoadmapSimulator() {
   const active = careerData[selectedRole];
 
   return (
-    <div
-      style={{
-        backgroundColor: "#192038",
-        border: "1.5px solid #3B4D7A",
-        borderRadius: 24,
-        padding: "32px 32px",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.2)"
-      }}
-    >
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div className="master-card rounded-3xl p-6 sm:p-10 shadow-2xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
         <div>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              backgroundColor: "rgba(14,165,233,0.12)",
-              border: "1px solid #0EA5E9",
-              borderRadius: 999,
-              padding: "4px 14px",
-              marginBottom: 10
-            }}
-          >
-            <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#0EA5E9" }} />
-            <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800 }}>🗺️ Career Calculator</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0EA5E9]/10 border border-[#0EA5E9]/30 text-[#0EA5E9] text-xs font-black uppercase tracking-wider mb-3">
+            <span>🗺️ Career & Compensation Calculator</span>
           </div>
-          <h3 style={{ color: "#FFFFFF", fontSize: 24, fontWeight: 800, margin: "0 0 4px" }}>
+          <h3 className="text-2xl sm:text-3xl font-black text-white mb-1.5">
             Simulate Your Dream Career Roadmap
           </h3>
-          <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
-            Choose your target career track to estimate completion time, salary expectations, and key skills.
+          <p className="text-sm text-[#F1F4F9]/80 font-medium">
+            Choose your target track to estimate completion time, market salary expectations, and key technologies.
           </p>
         </div>
 
         {/* Role toggle */}
-        <div style={{ display: "flex", gap: 6, backgroundColor: "#151B30", border: "1px solid #3B4D7A", borderRadius: 12, padding: 4 }}>
+        <div className="flex gap-1.5 p-1.5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
           {[
             { id: "frontend", label: "Frontend" },
             { id: "fullstack", label: "Full-Stack" },
@@ -92,17 +72,11 @@ export function CareerRoadmapSimulator() {
             <button
               key={item.id}
               onClick={() => setSelectedRole(item.id)}
-              style={{
-                padding: "8px 16px",
-                borderRadius: 8,
-                fontSize: 13,
-                fontWeight: 800,
-                cursor: "pointer",
-                border: "none",
-                backgroundColor: selectedRole === item.id ? "#0EA5E9" : "transparent",
-                color: selectedRole === item.id ? "#151B30" : "#F1F4F9",
-                transition: "all 0.15s"
-              }}
+              className={`px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
+                selectedRole === item.id
+                  ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
+                  : "text-[#F1F4F9]/80 hover:text-white"
+              }`}
             >
               {item.label}
             </button>
@@ -110,91 +84,90 @@ export function CareerRoadmapSimulator() {
         </div>
       </div>
 
-      {/* Simulator stats banner */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 20 }}>
-        <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 16, padding: "18px 20px" }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Global Salary Range</div>
-          <div style={{ fontSize: 20, fontWeight: 900, color: "#FFFFFF", marginTop: 4 }}>{active.avgSalary}</div>
-        </div>
-        <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 16, padding: "18px 20px" }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Estimated Roadmap Time</div>
-          <div style={{ fontSize: 20, fontWeight: 900, color: "#0EA5E9", marginTop: 4 }}>{active.duration}</div>
-        </div>
-        <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 16, padding: "18px 20px" }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#F1F4F9", opacity: 0.7 }}>Market Demand</div>
-          <div style={{ fontSize: 18, fontWeight: 900, color: "#F59E0B", marginTop: 4 }}>{active.demand}</div>
-        </div>
-      </div>
-
-      {/* Detailed overview */}
-      <div style={{ backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 18, padding: 24, marginBottom: 20 }}>
-        <h4 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
-          {active.role} Roadmap
-        </h4>
-        <p style={{ color: "#F1F4F9", fontSize: 14, margin: "0 0 18px", opacity: 0.85, lineHeight: 1.6 }}>
-          {active.description}
-        </p>
-
-        <div>
-          <div style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 10 }}>
-            Core Verified Skills You Will Master
-          </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {active.skills.map((skill) => (
-              <span
-                key={skill}
-                style={{
-                  backgroundColor: "#192038",
-                  border: "1px solid #3B4D7A",
-                  borderRadius: 999,
-                  padding: "6px 14px",
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#FFFFFF"
-                }}
-              >
-                ✓ {skill}
+      {/* Detail Showcase */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+        {/* Left summary */}
+        <div className="lg:col-span-7 bg-[#151B30] border border-[#3B4D7A] rounded-2xl p-6 flex flex-col justify-between shadow-inner">
+          <div>
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#3B4D7A]/40">
+              <span className="text-xs font-black uppercase tracking-wider text-[#0EA5E9]">
+                Career Projection
               </span>
-            ))}
+              <span className="text-xs font-bold text-[#F59E0B]">{active.demand}</span>
+            </div>
+
+            <h4 className="text-2xl font-black text-white mb-2">{active.role}</h4>
+            <p className="text-sm text-[#F1F4F9]/80 leading-relaxed font-medium mb-6">
+              {active.description}
+            </p>
+
+            <p className="text-xs font-black uppercase tracking-wider text-[#0EA5E9] mb-3">
+              Required Core Technologies
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {active.skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 rounded-xl bg-[#192038] border border-[#3B4D7A] text-xs font-bold text-white shadow-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-4 rounded-xl bg-[#192038] border border-[#3B4D7A] flex items-center justify-between">
+            <div>
+              <p className="text-[11px] text-[#F1F4F9]/60 font-semibold uppercase">Recommended Starting Course</p>
+              <p className="text-sm font-extrabold text-white">{active.firstCourse}</p>
+            </div>
+            <Link
+              href="/courses"
+              className="px-3 py-1.5 rounded-lg bg-[#0EA5E9] text-[#151B30] text-xs font-black hover:opacity-90"
+            >
+              Enroll Free →
+            </Link>
+          </div>
+        </div>
+
+        {/* Right Metric Cards */}
+        <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="p-6 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
+            <span className="block text-xs font-black uppercase tracking-wider text-[#F1F4F9]/60 mb-1">
+              Estimated Global Remote Salary
+            </span>
+            <p className="text-3xl font-black text-[#F59E0B] mb-1">{active.avgSalary}</p>
+            <p className="text-xs text-[#F1F4F9]/70">Based on verified 2026 hired graduates</p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
+            <span className="block text-xs font-black uppercase tracking-wider text-[#F1F4F9]/60 mb-1">
+              Learning Time to First Job
+            </span>
+            <p className="text-2xl font-black text-white mb-1">{active.duration}</p>
+            <p className="text-xs text-[#F1F4F9]/70">Includes assessments, projects & coaching</p>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-[#0EA5E9]/10 border border-[#0EA5E9]/30">
+            <p className="text-xs font-black text-[#0EA5E9] uppercase tracking-wider mb-1">
+              🛡️ Guaranteed Placement Pathway
+            </p>
+            <p className="text-xs text-white leading-relaxed">
+              Achieve 90%+ on this path's proctored assessments to unlock direct recruiter intro calls without resume filtering.
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Recommended Kickoff */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 16,
-          backgroundColor: "#151B30",
-          border: "1.5px solid #3B4D7A",
-          borderRadius: 16,
-          padding: "18px 24px"
-        }}
-      >
-        <div>
-          <div style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800, textTransform: "uppercase" }}>
-            Recommended Starting Step
-          </div>
-          <div style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 800, marginTop: 2 }}>
-            {active.firstCourse}
-          </div>
-        </div>
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+        <span className="text-xs text-[#F1F4F9]/60">
+          Want a customized roadmap generated specifically for your background?
+        </span>
         <Link
-          href="/register"
-          style={{
-            backgroundColor: "#F59E0B",
-            color: "#151B30",
-            borderRadius: 10,
-            padding: "10px 22px",
-            fontSize: 13,
-            fontWeight: 800,
-            textDecoration: "none"
-          }}
+          href="/career-coach"
+          className="btn-cyan-outline px-6 py-2.5 rounded-xl text-xs font-black text-center"
         >
-          Start This Path Free →
+          Consult AI Career Coach 24/7 →
         </Link>
       </div>
     </div>
