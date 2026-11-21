@@ -68,9 +68,12 @@ export function InteractiveTranslationDemo() {
   };
 
   return (
-    <div className="master-card rounded-3xl p-6 sm:p-10 shadow-2xl">
+    <div className="luxury-box p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+      {/* Corner ambient light halo */}
+      <div className="absolute -top-24 -right-24 w-52 h-52 rounded-full bg-[#0EA5E9]/15 blur-3xl pointer-events-none" />
+
       {/* Header bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 relative z-10">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0EA5E9]/10 border border-[#0EA5E9]/30 text-[#0EA5E9] text-xs font-black uppercase tracking-wider mb-3">
             <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
@@ -85,7 +88,7 @@ export function InteractiveTranslationDemo() {
         </div>
 
         {/* Language selector tabs */}
-        <div className="flex flex-wrap gap-1.5 p-1.5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
+        <div className="nested-box flex flex-wrap gap-1.5 p-1.5 shadow-inner">
           {(Object.keys(snippets) as LanguageKey[]).map((key) => {
             const item = snippets[key];
             const isActive = selectedLang === key;
@@ -98,8 +101,8 @@ export function InteractiveTranslationDemo() {
                 }}
                 className={`px-3.5 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 cursor-pointer ${
                   isActive
-                    ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
-                    : "text-[#F1F4F9]/75 hover:text-white hover:bg-[#192038]"
+                    ? "bg-[#0EA5E9] text-[#151B30] shadow-[0_0_15px_rgba(14,165,233,0.35)]"
+                    : "text-[#F1F4F9]/75 hover:text-white"
                 }`}
               >
                 <span>{item.flag}</span>
@@ -111,9 +114,9 @@ export function InteractiveTranslationDemo() {
       </div>
 
       {/* Code & Audio Player Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Code Editor Preview */}
-        <div className="lg:col-span-6 bg-[#151B30] border border-[#3B4D7A] rounded-2xl p-5 font-mono text-xs overflow-x-auto shadow-inner flex flex-col justify-between">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+        {/* Code Editor Preview Box */}
+        <div className="lg:col-span-6 nested-box p-6 font-mono text-xs overflow-x-auto shadow-inner flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#3B4D7A]/50">
               <div className="flex items-center gap-2">
@@ -152,8 +155,8 @@ export function InteractiveTranslationDemo() {
           </div>
         </div>
 
-        {/* Translation Explanation & Audio Narrator */}
-        <div className="lg:col-span-6 bg-[#151B30] border border-[#3B4D7A] rounded-2xl p-6 flex flex-col justify-between shadow-inner">
+        {/* Translation Explanation & Audio Narrator Box */}
+        <div className="lg:col-span-6 nested-box p-6 flex flex-col justify-between shadow-inner">
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-black uppercase tracking-wider text-[#0EA5E9]">
@@ -168,7 +171,7 @@ export function InteractiveTranslationDemo() {
               {activeSnippet.lessonTitle}
             </h4>
 
-            <p className="text-sm text-[#F1F4F9]/90 leading-relaxed font-medium mb-5 bg-[#192038] p-4 rounded-xl border border-[#3B4D7A]/40">
+            <p className="text-sm text-[#F1F4F9]/90 leading-relaxed font-medium mb-5 bg-[#151B30] p-4 rounded-xl border border-[#3B4D7A]/40 shadow-inner">
               {activeSnippet.explanation}
             </p>
 
@@ -183,7 +186,7 @@ export function InteractiveTranslationDemo() {
           </div>
 
           {/* Audio Player Bar */}
-          <div className="p-4 rounded-xl bg-[#192038] border border-[#3B4D7A] flex items-center justify-between gap-4">
+          <div className="p-4 rounded-xl bg-[#151B30] border border-[#3B4D7A] flex items-center justify-between gap-4 shadow-inner">
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePlay}

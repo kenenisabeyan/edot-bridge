@@ -72,13 +72,13 @@ export default function JobsPage() {
 
             {/* Quick Metrics */}
             <div className="flex items-center gap-3">
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
-                <span className="block text-2xl font-black text-[#F59E0B]">{jobs.length}</span>
+              <div className="luxury-box p-5 text-center min-w-[110px]">
+                <span className="block text-3xl font-black text-[#F59E0B]">{jobs.length}</span>
                 <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Active Roles</span>
               </div>
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
-                <span className="block text-2xl font-black text-[#0EA5E9]">100%</span>
-                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Verified Companies</span>
+              <div className="luxury-box p-5 text-center min-w-[110px]">
+                <span className="block text-3xl font-black text-[#0EA5E9]">100%</span>
+                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Verified</span>
               </div>
             </div>
           </div>
@@ -87,8 +87,8 @@ export default function JobsPage() {
 
       {/* Main Container */}
       <div className="container mx-auto max-w-6xl px-4 py-12">
-        {/* Search & Filter Toolbar */}
-        <div className="master-card rounded-2xl p-6 mb-10 shadow-lg space-y-5">
+        {/* Search & Filter Toolbar Box */}
+        <div className="luxury-box p-7 mb-10 shadow-2xl space-y-6">
           {/* Search bar + sort */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="relative w-full sm:flex-1">
@@ -100,7 +100,7 @@ export default function JobsPage() {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search by job title, company name, or tech stack..."
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] transition-all"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] shadow-inner transition-all"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function JobsPage() {
               <select
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value as any)}
-                className="px-3.5 py-2.5 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-xs font-bold text-white focus:outline-none focus:border-[#0EA5E9] cursor-pointer"
+                className="px-3.5 py-2.5 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 text-xs font-bold text-white focus:outline-none focus:border-[#0EA5E9] cursor-pointer"
               >
                 <option value="newest">📅 Newest First</option>
                 <option value="salary">💰 Highest Salary</option>
@@ -117,17 +117,17 @@ export default function JobsPage() {
             </div>
           </div>
 
-          {/* Job Type Pills */}
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#3B4D7A]/40">
+          {/* Job Type Pills Box */}
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-[#3B4D7A]/35">
             <span className="text-xs font-bold text-[#F1F4F9]/60 mr-1">Work Type:</span>
             {jobTypes.map((type) => (
               <button
                 key={type}
                 onClick={() => setSelectedType(type)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   selectedType === type
-                    ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-sm"
-                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                    ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-[0_0_15px_rgba(14,165,233,0.35)]"
+                    : "bg-[#151B30] border border-[#3B4D7A]/60 text-[#F1F4F9]/80 hover:text-white"
                 }`}
               >
                 {type}
@@ -135,17 +135,17 @@ export default function JobsPage() {
             ))}
           </div>
 
-          {/* Skill Filter Pills */}
+          {/* Skill Filter Pills Box */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold text-[#F1F4F9]/60 mr-1">Skill Filter:</span>
             {availableFilterSkills.map((skill) => (
               <button
                 key={skill}
                 onClick={() => setSelectedSkill(skill)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   selectedSkill === skill
-                    ? "bg-[#F59E0B] text-[#151B30] font-black shadow-sm"
-                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                    ? "bg-[#F59E0B] text-[#151B30] font-black shadow-[0_0_15px_rgba(245,158,11,0.35)]"
+                    : "bg-[#151B30] border border-[#3B4D7A]/60 text-[#F1F4F9]/80 hover:text-white"
                 }`}
               >
                 {skill}
@@ -169,12 +169,12 @@ export default function JobsPage() {
 
         {/* Jobs List */}
         {filteredJobs.length === 0 ? (
-          <div className="p-16 text-center master-card rounded-2xl">
+          <div className="p-16 text-center luxury-box">
             <p className="text-lg font-bold text-white mb-2">No jobs match your selected criteria.</p>
             <p className="text-sm text-[#F1F4F9]/70 mb-4">Try relaxing your search terms or selecting 'All' skills.</p>
             <button
               onClick={() => { setSearch(""); setSelectedType("All"); setSelectedSkill("All"); }}
-              className="px-4 py-2 rounded-xl bg-[#0EA5E9] text-[#151B30] text-xs font-black"
+              className="btn-amber-cta px-5 py-2.5 rounded-xl text-xs font-black"
             >
               Reset Filters
             </button>

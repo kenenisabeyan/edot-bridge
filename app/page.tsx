@@ -225,7 +225,7 @@ export default function Home() {
           </div>
 
           {/* ── Centerpiece: Interactive Platform Sandbox Preview Box ── */}
-          <div className="glass-window relative mx-auto max-w-5xl rounded-3xl p-3 sm:p-5 text-left">
+          <div className="glass-window relative mx-auto max-w-5xl p-3 sm:p-5 text-left">
             {/* Terminal Top Bar */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#3B4D7A]/40 bg-[#151B30]/90 rounded-t-2xl mb-4">
               <div className="flex items-center gap-2">
@@ -371,7 +371,7 @@ export default function Home() {
       {/* ── 3. Live Community Pulse Ticker ─────────────────────── */}
       <LiveCommunityPulse />
 
-      {/* ── 4. Platform Impact Statistics Box Grid ─────────────── */}
+      {/* ── 4. Platform Impact Statistics Luxury Jewel Boxes ──── */}
       <section className="py-20 px-4 bg-[#151B30]">
         <div className="container mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {[
@@ -382,11 +382,11 @@ export default function Home() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="master-card rounded-3xl p-7 relative overflow-hidden group shadow-xl"
+              className="luxury-box p-7 group"
             >
-              {/* Subtle radial corner glow */}
+              {/* Corner ambient glow orb */}
               <div
-                className="absolute -top-10 -right-10 w-28 h-28 rounded-full pointer-events-none opacity-20 blur-xl"
+                className="absolute -top-12 -right-12 w-28 h-28 rounded-full pointer-events-none opacity-20 blur-xl group-hover:opacity-35 transition-opacity"
                 style={{ backgroundColor: stat.color }}
               />
               <p className="text-4xl sm:text-5xl font-black mb-1.5 tracking-tight" style={{ color: stat.color }}>
@@ -419,15 +419,21 @@ export default function Home() {
             {bentoFeatures.map((b) => (
               <div
                 key={b.title}
-                className={`${b.span} master-card rounded-3xl p-8 flex flex-col justify-between`}
+                className={`${b.span} ${b.accent === "#F59E0B" ? "luxury-box-amber" : "luxury-box"} p-8 sm:p-9 flex flex-col justify-between group`}
               >
-                <div>
+                {/* Corner ambient light halo */}
+                <div
+                  className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-15 group-hover:opacity-30 group-hover:scale-125 transition-all duration-500"
+                  style={{ backgroundColor: b.accent }}
+                />
+
+                <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
-                    <span className="w-14 h-14 rounded-2xl bg-[#151B30] border border-[#3B4D7A]/60 flex items-center justify-center text-3xl shadow-inner">
+                    <span className="w-14 h-14 rounded-2xl bg-[#151B30] border border-[#3B4D7A]/60 flex items-center justify-center text-3xl shadow-inner group-hover:scale-105 transition-transform">
                       {b.icon}
                     </span>
                     <span
-                      className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider"
+                      className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-sm"
                       style={{
                         backgroundColor: `${b.accent}15`,
                         color: b.accent,
@@ -441,7 +447,7 @@ export default function Home() {
                   <p className="text-xs font-black uppercase tracking-widest text-[#0EA5E9] mb-2">
                     {b.badge}
                   </p>
-                  <h3 className="text-2xl font-extrabold text-white mb-3 leading-snug">
+                  <h3 className="text-2xl font-extrabold text-white mb-3 leading-snug group-hover:text-white">
                     {b.title}
                   </h3>
                   <p className="text-sm text-[#F1F4F9]/80 leading-relaxed font-medium">
@@ -449,10 +455,11 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="pt-6 mt-8 border-t border-[#3B4D7A]/30 flex items-center justify-between text-xs">
+                <div className="relative z-10 pt-6 mt-8 border-t border-[#3B4D7A]/30 flex items-center justify-between text-xs">
                   <span className="font-bold text-[#F1F4F9]/60">SkillBridge Verified Engine</span>
-                  <span className="text-[#0EA5E9] font-black group-hover:translate-x-1 transition-transform">
-                    Learn more →
+                  <span className="text-[#0EA5E9] font-black group-hover:translate-x-1.5 transition-transform flex items-center gap-1">
+                    <span>Learn more</span>
+                    <span>→</span>
                   </span>
                 </div>
               </div>
@@ -498,10 +505,10 @@ export default function Home() {
             {steps.map((s) => (
               <div
                 key={s.step}
-                className="master-card rounded-2xl p-6 text-center flex flex-col justify-between"
+                className="luxury-box p-6 text-center flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#151B30] border-2 border-[#0EA5E9] text-[#0EA5E9] font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+                  <div className="w-12 h-12 rounded-xl bg-[#151B30] border-2 border-[#0EA5E9] text-[#0EA5E9] font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(14,165,233,0.3)] group-hover:scale-105 transition-transform">
                     {s.step}
                   </div>
                   <h4 className="text-base font-extrabold text-white mb-2">{s.title}</h4>
@@ -525,7 +532,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="master-card rounded-3xl overflow-hidden shadow-2xl">
+          <div className="luxury-box overflow-hidden shadow-2xl">
             <div className="grid grid-cols-12 bg-[#192038]/90 p-4 sm:p-5 border-b border-[#3B4D7A]/50 text-xs sm:text-sm font-extrabold">
               <span className="col-span-4 text-[#F1F4F9]/70 uppercase tracking-wider">Dimension</span>
               <span className="col-span-4 text-[#0EA5E9] flex items-center gap-1.5 font-black">
@@ -564,7 +571,7 @@ export default function Home() {
             {faqs.map((faq, idx) => (
               <div
                 key={faq.q}
-                className="master-card rounded-2xl overflow-hidden transition-all"
+                className="luxury-box overflow-hidden transition-all"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}

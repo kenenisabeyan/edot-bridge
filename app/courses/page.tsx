@@ -65,15 +65,15 @@ export default function CoursesPage() {
               </p>
             </div>
 
-            {/* Quick stats pill */}
+            {/* Quick stats pill boxes */}
             <div className="flex items-center gap-3">
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
-                <span className="block text-2xl font-black text-[#F59E0B]">{courses.length || 6}</span>
-                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Core Courses</span>
+              <div className="luxury-box p-5 text-center min-w-[110px]">
+                <span className="block text-3xl font-black text-[#F59E0B]">{courses.length || 6}</span>
+                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Courses</span>
               </div>
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
-                <span className="block text-2xl font-black text-[#0EA5E9]">50+</span>
-                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">AI Languages</span>
+              <div className="luxury-box p-5 text-center min-w-[110px]">
+                <span className="block text-3xl font-black text-[#0EA5E9]">50+</span>
+                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Languages</span>
               </div>
             </div>
           </div>
@@ -82,8 +82,8 @@ export default function CoursesPage() {
 
       {/* Main Content Area */}
       <div className="container mx-auto max-w-6xl px-4 py-12">
-        {/* Search & Category Filter Bar */}
-        <div className="master-card rounded-2xl p-5 mb-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* Search & Category Filter Box */}
+        <div className="luxury-box p-6 mb-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Search box */}
           <div className="relative w-full md:w-96">
             <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#F1F4F9]/50">
@@ -94,20 +94,20 @@ export default function CoursesPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search courses, skills, frameworks..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] transition-all"
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] shadow-inner transition-all"
             />
           </div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap gap-1.5 w-full md:w-auto">
+          <div className="nested-box p-1.5 flex flex-wrap gap-1.5 w-full md:w-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
-                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                    ? "bg-[#0EA5E9] text-[#151B30] shadow-[0_0_15px_rgba(14,165,233,0.35)]"
+                    : "text-[#F1F4F9]/80 hover:text-white"
                 }`}
               >
                 {cat}
@@ -123,12 +123,12 @@ export default function CoursesPage() {
             <p className="text-sm font-bold text-[#0EA5E9]">Loading verified curriculum...</p>
           </div>
         ) : filteredCourses.length === 0 ? (
-          <div className="p-16 text-center master-card rounded-2xl">
+          <div className="p-16 text-center luxury-box">
             <p className="text-lg font-bold text-white mb-2">No courses match your search.</p>
             <p className="text-sm text-[#F1F4F9]/70 mb-4">Try clearing filters or search for another technology.</p>
             <button
               onClick={() => { setSearch(""); setSelectedCategory("All"); }}
-              className="px-4 py-2 rounded-xl bg-[#0EA5E9] text-[#151B30] text-xs font-black"
+              className="btn-amber-cta px-5 py-2.5 rounded-xl text-xs font-black"
             >
               Reset Filters
             </button>
