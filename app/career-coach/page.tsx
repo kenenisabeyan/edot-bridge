@@ -192,9 +192,9 @@ What specific skill or role would you like to master first?`,
   };
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh", padding: "0 0 64px" }}>
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "0 0 64px" }}>
       {/* Header Banner */}
-      <div style={{ backgroundColor: "#151B30", padding: "44px 24px 36px" }}>
+      <div style={{ backgroundColor: "#151B30", borderBottom: "1.5px solid rgba(59,77,122,0.4)", padding: "44px 24px 36px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -271,13 +271,13 @@ What specific skill or role would you like to master first?`,
               key={idx}
               onClick={() => handleSend(item.prompt)}
               style={{
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#192038",
                 borderRadius: 14,
                 padding: "16px 18px",
-                border: "1px solid #3B4D7A",
+                border: "1.5px solid #3B4D7A",
                 cursor: "pointer",
                 transition: "all 0.2s",
-                boxShadow: "0 2px 8px rgba(21,27,48,0.04)"
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = "#0EA5E9";
@@ -288,10 +288,10 @@ What specific skill or role would you like to master first?`,
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <h4 style={{ color: "#151B30", fontSize: 14, fontWeight: 800, margin: "0 0 4px" }}>
+              <h4 style={{ color: "#FFFFFF", fontSize: 14, fontWeight: 800, margin: "0 0 4px" }}>
                 {item.title}
               </h4>
-              <p style={{ color: "#3B4D7A", fontSize: 12, margin: 0, lineHeight: 1.4 }}>
+              <p style={{ color: "#F1F4F9", fontSize: 12, margin: 0, lineHeight: 1.4, opacity: 0.8 }}>
                 {item.desc}
               </p>
             </div>
@@ -301,11 +301,11 @@ What specific skill or role would you like to master first?`,
         {/* Chat Window */}
         <div
           style={{
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "#192038",
             borderRadius: 20,
             border: "1.5px solid #3B4D7A",
             overflow: "hidden",
-            boxShadow: "0 8px 30px rgba(21,27,48,0.06)",
+            boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
             display: "flex",
             flexDirection: "column",
             height: 600
@@ -324,12 +324,12 @@ What specific skill or role would you like to master first?`,
                 <div
                   style={{
                     maxWidth: "82%",
-                    backgroundColor: msg.role === "user" ? "#151B30" : "#F1F4F9",
-                    color: msg.role === "user" ? "#FFFFFF" : "#151B30",
+                    backgroundColor: msg.role === "user" ? "#0EA5E9" : "#151B30",
+                    color: msg.role === "user" ? "#151B30" : "#F1F4F9",
                     borderRadius: 16,
                     padding: "16px 20px",
-                    border: msg.role === "user" ? "none" : "1px solid #3B4D7A",
-                    boxShadow: "0 2px 8px rgba(21,27,48,0.04)"
+                    border: msg.role === "user" ? "none" : "1.5px solid #3B4D7A",
+                    boxShadow: "0 2px 10px rgba(0,0,0,0.15)"
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
@@ -337,7 +337,7 @@ What specific skill or role would you like to master first?`,
                       style={{
                         fontSize: 12,
                         fontWeight: 800,
-                        color: msg.role === "user" ? "#0EA5E9" : "#3B4D7A"
+                        color: msg.role === "user" ? "#151B30" : "#0EA5E9"
                       }}
                     >
                       {msg.role === "user" ? "You" : "🤖 SkillBridge Coach"}
@@ -345,8 +345,8 @@ What specific skill or role would you like to master first?`,
                     <span
                       style={{
                         fontSize: 11,
-                        color: msg.role === "user" ? "rgba(255,255,255,0.6)" : "#3B4D7A",
-                        opacity: 0.8
+                        color: msg.role === "user" ? "#151B30" : "#F1F4F9",
+                        opacity: 0.7
                       }}
                     >
                       {msg.timestamp}
@@ -364,9 +364,9 @@ What specific skill or role would you like to master first?`,
                           key={i}
                           href={act.href}
                           style={{
-                            backgroundColor: "#FFFFFF",
+                            backgroundColor: "#192038",
                             border: "1.5px solid #0EA5E9",
-                            color: "#151B30",
+                            color: "#0EA5E9",
                             borderRadius: 8,
                             padding: "6px 14px",
                             fontSize: 12,
@@ -390,7 +390,7 @@ What specific skill or role would you like to master first?`,
               <div style={{ display: "flex", justifyContent: "flex-start" }}>
                 <div
                   style={{
-                    backgroundColor: "#F1F4F9",
+                    backgroundColor: "#151B30",
                     border: "1px solid #3B4D7A",
                     borderRadius: 16,
                     padding: "14px 20px",
@@ -400,7 +400,7 @@ What specific skill or role would you like to master first?`,
                   }}
                 >
                   <span style={{ fontSize: 16 }}>⚡</span>
-                  <span style={{ color: "#151B30", fontSize: 13, fontWeight: 700 }}>
+                  <span style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700 }}>
                     AI Coach is formulating your tailored guidance...
                   </span>
                 </div>
@@ -413,7 +413,7 @@ What specific skill or role would you like to master first?`,
           <div
             style={{
               padding: "16px 20px",
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "#151B30",
               borderTop: "1.5px solid #3B4D7A",
               display: "flex",
               gap: 12,
@@ -428,10 +428,10 @@ What specific skill or role would you like to master first?`,
               style={{
                 flex: 1,
                 padding: "14px 18px",
-                backgroundColor: "#F1F4F9",
+                backgroundColor: "#192038",
                 border: "1.5px solid #3B4D7A",
                 borderRadius: 12,
-                color: "#151B30",
+                color: "#FFFFFF",
                 fontSize: 14,
                 outline: "none"
               }}

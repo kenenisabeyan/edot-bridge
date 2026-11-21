@@ -60,7 +60,7 @@ export default function ResumeBuilderPage() {
   const strengthPercentage = Math.round((strengthScore / 7) * 100);
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh", padding: "0 0 64px" }}>
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "0 0 64px" }}>
       {/* Print CSS styles injected */}
       <style jsx global>{`
         @media print {
@@ -83,7 +83,7 @@ export default function ResumeBuilderPage() {
       `}</style>
 
       {/* Header bar */}
-      <div className="no-print" style={{ backgroundColor: "#151B30", padding: "40px 24px 32px" }}>
+      <div className="no-print" style={{ backgroundColor: "#151B30", borderBottom: "1.5px solid rgba(59,77,122,0.4)", padding: "40px 24px 32px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
             <div>
@@ -142,61 +142,61 @@ export default function ResumeBuilderPage() {
           <div className="no-print" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             <div
               style={{
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#192038",
                 borderRadius: 16,
                 padding: "28px 24px",
                 border: "1.5px solid #3B4D7A",
-                boxShadow: "0 4px 16px rgba(21,27,48,0.04)"
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
               }}
             >
-              <h2 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: "0 0 20px" }}>
+              <h2 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 20px" }}>
                 1. Personal Details
               </h2>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Full Name</label>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Full Name</label>
                   <input
                     value={form.name}
                     onChange={e => setForm({ ...form, name: e.target.value })}
-                    style={{ width: "100%", padding: "10px 14px", backgroundColor: "#F1F4F9", border: "1px solid #3B4D7A", borderRadius: 10, color: "#151B30", fontSize: 14, outline: "none" }}
+                    style={{ width: "100%", padding: "10px 14px", backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 10, color: "#FFFFFF", fontSize: 14, outline: "none" }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Target Job Title</label>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Target Job Title</label>
                   <input
                     value={form.title}
                     onChange={e => setForm({ ...form, title: e.target.value })}
-                    style={{ width: "100%", padding: "10px 14px", backgroundColor: "#F1F4F9", border: "1px solid #3B4D7A", borderRadius: 10, color: "#151B30", fontSize: 14, outline: "none" }}
+                    style={{ width: "100%", padding: "10px 14px", backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 10, color: "#FFFFFF", fontSize: 14, outline: "none" }}
                   />
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>
-                    <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Email</label>
+                    <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Email</label>
                     <input
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
-                      style={{ width: "100%", padding: "10px 14px", backgroundColor: "#F1F4F9", border: "1px solid #3B4D7A", borderRadius: 10, color: "#151B30", fontSize: 14, outline: "none" }}
+                      style={{ width: "100%", padding: "10px 14px", backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 10, color: "#FFFFFF", fontSize: 14, outline: "none" }}
                     />
                   </div>
                   <div>
-                    <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Phone</label>
+                    <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Phone</label>
                     <input
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
-                      style={{ width: "100%", padding: "10px 14px", backgroundColor: "#F1F4F9", border: "1px solid #3B4D7A", borderRadius: 10, color: "#151B30", fontSize: 14, outline: "none" }}
+                      style={{ width: "100%", padding: "10px 14px", backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 10, color: "#FFFFFF", fontSize: 14, outline: "none" }}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Location</label>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>Location</label>
                   <input
                     value={form.location}
                     onChange={e => setForm({ ...form, location: e.target.value })}
-                    style={{ width: "100%", padding: "10px 14px", backgroundColor: "#F1F4F9", border: "1px solid #3B4D7A", borderRadius: 10, color: "#151B30", fontSize: 14, outline: "none" }}
+                    style={{ width: "100%", padding: "10px 14px", backgroundColor: "#151B30", border: "1.5px solid #3B4D7A", borderRadius: 10, color: "#FFFFFF", fontSize: 14, outline: "none" }}
                   />
                 </div>
               </div>
@@ -205,15 +205,15 @@ export default function ResumeBuilderPage() {
             {/* AI Summary Suggestions */}
             <div
               style={{
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#192038",
                 borderRadius: 16,
                 padding: "28px 24px",
                 border: "1.5px solid #3B4D7A",
-                boxShadow: "0 4px 16px rgba(21,27,48,0.04)"
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-                <h2 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: 0 }}>
+                <h2 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: 0 }}>
                   2. Professional Summary
                 </h2>
                 <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 700 }}>
@@ -228,9 +228,9 @@ export default function ResumeBuilderPage() {
                     type="button"
                     onClick={() => setSummaryAI(idx)}
                     style={{
-                      backgroundColor: "#F1F4F9",
+                      backgroundColor: "#151B30",
                       border: "1px solid #3B4D7A",
-                      color: "#151B30",
+                      color: "#0EA5E9",
                       borderRadius: 8,
                       padding: "4px 10px",
                       fontSize: 12,
@@ -250,10 +250,10 @@ export default function ResumeBuilderPage() {
                 style={{
                   width: "100%",
                   padding: "12px 14px",
-                  backgroundColor: "#F1F4F9",
-                  border: "1px solid #3B4D7A",
+                  backgroundColor: "#151B30",
+                  border: "1.5px solid #3B4D7A",
                   borderRadius: 10,
-                  color: "#151B30",
+                  color: "#FFFFFF",
                   fontSize: 14,
                   outline: "none",
                   resize: "vertical",
@@ -265,18 +265,18 @@ export default function ResumeBuilderPage() {
             {/* Skills manager */}
             <div
               style={{
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#192038",
                 borderRadius: 16,
                 padding: "28px 24px",
                 border: "1.5px solid #3B4D7A",
-                boxShadow: "0 4px 16px rgba(21,27,48,0.04)"
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
               }}
             >
-              <h2 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: "0 0 14px" }}>
+              <h2 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 14px" }}>
                 3. Skills & Technologies
               </h2>
 
-              <p style={{ color: "#3B4D7A", fontSize: 12, fontWeight: 600, margin: "0 0 10px" }}>
+              <p style={{ color: "#F1F4F9", fontSize: 12, fontWeight: 600, margin: "0 0 10px", opacity: 0.75 }}>
                 Click to add relevant skills:
               </p>
 
@@ -289,8 +289,8 @@ export default function ResumeBuilderPage() {
                       type="button"
                       onClick={() => isSelected ? removeSkill(skill) : addSkill(skill)}
                       style={{
-                        backgroundColor: isSelected ? "#0EA5E9" : "#F1F4F9",
-                        color: "#151B30",
+                        backgroundColor: isSelected ? "#0EA5E9" : "#151B30",
+                        color: isSelected ? "#151B30" : "#F1F4F9",
                         border: "1px solid #3B4D7A",
                         borderRadius: 999,
                         padding: "5px 14px",
@@ -312,6 +312,7 @@ export default function ResumeBuilderPage() {
                     style={{
                       backgroundColor: "#151B30",
                       color: "#FFFFFF",
+                      border: "1px solid #3B4D7A",
                       borderRadius: 999,
                       padding: "4px 12px",
                       fontSize: 12,
@@ -344,20 +345,20 @@ export default function ResumeBuilderPage() {
             {/* Experience & Education */}
             <div
               style={{
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#192038",
                 borderRadius: 16,
                 padding: "28px 24px",
                 border: "1.5px solid #3B4D7A",
-                boxShadow: "0 4px 16px rgba(21,27,48,0.04)"
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
               }}
             >
-              <h2 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: "0 0 16px" }}>
+              <h2 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 16px" }}>
                 4. Experience & Education
               </h2>
 
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>
                     Work Experience
                   </label>
                   <textarea
@@ -367,10 +368,10 @@ export default function ResumeBuilderPage() {
                     style={{
                       width: "100%",
                       padding: "12px 14px",
-                      backgroundColor: "#F1F4F9",
-                      border: "1px solid #3B4D7A",
+                      backgroundColor: "#151B30",
+                      border: "1.5px solid #3B4D7A",
                       borderRadius: 10,
-                      color: "#151B30",
+                      color: "#FFFFFF",
                       fontSize: 13,
                       outline: "none",
                       resize: "vertical",
@@ -380,7 +381,7 @@ export default function ResumeBuilderPage() {
                 </div>
 
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>
                     Education & Certifications
                   </label>
                   <textarea
@@ -390,10 +391,10 @@ export default function ResumeBuilderPage() {
                     style={{
                       width: "100%",
                       padding: "12px 14px",
-                      backgroundColor: "#F1F4F9",
-                      border: "1px solid #3B4D7A",
+                      backgroundColor: "#151B30",
+                      border: "1.5px solid #3B4D7A",
                       borderRadius: 10,
-                      color: "#151B30",
+                      color: "#FFFFFF",
                       fontSize: 13,
                       outline: "none",
                       resize: "vertical",
