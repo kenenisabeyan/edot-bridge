@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { LiveCommunityPulse } from "@/components/home/LiveCommunityPulse";
@@ -6,332 +7,533 @@ import { InteractiveTranslationDemo } from "@/components/home/InteractiveTransla
 import { QuickSkillChallenge } from "@/components/home/QuickSkillChallenge";
 import { CareerRoadmapSimulator } from "@/components/home/CareerRoadmapSimulator";
 
-const features = [
+type DemoLang = "om" | "am" | "sw" | "en";
+
+interface DemoData {
+  title: string;
+  explanation: string;
+  codeSnippet: string;
+  codeComment: string;
+}
+
+const heroDemos: Record<DemoLang, DemoData> = {
+  om: {
+    title: "Haala (State) fi Hooks React",
+    explanation: "State jijjiirama yeroo maraa kompoonantii keessatti to'ata. Hooks fayyadamuun koodii qulqullina qabu barreessuuf gargaara.",
+    codeComment: "// Haala haaromsuu fi gabaasa argachuu",
+    codeSnippet: `const [score, setScore] = useState(98);\nconst [verified, setVerified] = useState(true);\n\nfunction submitVerification() {\n  publishCredential("SB-2026-OM");\n}`,
+  },
+  am: {
+    title: "የReact ስቴት እና ሁክስ ግንዛቤ",
+    explanation: "ስቴት (State) በኮምፖነንት ውስጥ ያለውን ተለዋዋጭ መረጃ በቅጽበት ይቆጣጠራል። ሁክስ ፈጣንና ዘመናዊ መተግበሪያ ለመገንባት ያግዛሉ።",
+    codeComment: "// ተለዋዋጭ ውሂብን መከታተያና ማረጋገጫ",
+    codeSnippet: `const [score, setScore] = useState(98);\nconst [verified, setVerified] = useState(true);\n\nfunction submitVerification() {\n  publishCredential("SB-2026-AM");\n}`,
+  },
+  sw: {
+    title: "Mfumo wa State na Hooks za React",
+    explanation: "State inadhibiti data inayobadilika kwenye programu yako papo hapo. Hooks hurahisisha utendaji kazi wa kisasa.",
+    codeComment: "// Rekodi hali na thibitisha cheti",
+    codeSnippet: `const [score, setScore] = useState(98);\nconst [verified, setVerified] = useState(true);\n\nfunction submitVerification() {\n  publishCredential("SB-2026-SW");\n}`,
+  },
+  en: {
+    title: "React State Architecture & Hooks",
+    explanation: "State manages reactive component data in real time. Hooks empower developers to build robust, scalable applications.",
+    codeComment: "// Track reactive state & publish verification",
+    codeSnippet: `const [score, setScore] = useState(98);\nconst [verified, setVerified] = useState(true);\n\nfunction submitVerification() {\n  publishCredential("SB-2026-EN");\n}`,
+  },
+};
+
+const bentoFeatures = [
   {
+    span: "lg:col-span-2",
+    badge: "Multilingual Intelligence",
+    title: "AI Real-Time Translation in 50+ African Languages",
+    desc: "Break English barriers forever. Learn full-stack engineering, cloud architecture, and data science in Afaan Oromoo, Amharic, Somali, Swahili, and Yoruba with synchronized native voiceovers.",
+    accent: "#0EA5E9",
+    metric: "50+ Languages Supported",
     icon: "🌍",
-    title: "AI Multilingual Engine",
-    desc: "Learn in your native tongue. Our AI translates lessons, code comments, and audio into Amharic, Afaan Oromo, Somali, and Swahili.",
   },
   {
-    icon: "🏆",
-    title: "Cryptographic Certificates",
-    desc: "Earn tamper-proof credentials with unique verification IDs directly verified and trusted by 200+ partner companies.",
+    span: "lg:col-span-1",
+    badge: "Cryptographic Credentials",
+    title: "Tamper-Proof Certificates",
+    desc: "Every certificate has an immutable public verification ID and direct score breakdown trusted by 200+ global recruiters.",
+    accent: "#F59E0B",
+    metric: "100% Verifiable",
+    icon: "🛡️",
   },
   {
+    span: "lg:col-span-1",
+    badge: "Zero-Install Sandbox",
+    title: "In-Browser Code Playground",
+    desc: "Run React 19, TypeScript, Python, and SQL directly inside your browser. No local terminal setup or high-end laptop needed.",
+    accent: "#0EA5E9",
+    metric: "< 150ms Execution",
+    icon: "⚡",
+  },
+  {
+    span: "lg:col-span-2",
+    badge: "Direct Hiring Pipeline",
+    title: "Skip the Resume Black Hole",
+    desc: "Top assessment performers get directly shortlisted on recruiter dashboards at Safaricom, Ethio Telecom, and international remote startups.",
+    accent: "#F59E0B",
+    metric: "88% Interview Rate",
     icon: "💼",
-    title: "Direct Hiring Pipeline",
-    desc: "Verified assessment scores fast-track your applications directly into recruiter shortlists without resume filters.",
   },
   {
-    icon: "📁",
-    title: "Live Portfolio Builder",
-    desc: "Showcase real projects, certificate scores, and code samples with an instantly shareable public portfolio URL.",
-  },
-  {
+    span: "lg:col-span-2",
+    badge: "24/7 AI Career Copilot",
+    title: "Autonomous Career & Mock Interview Coach",
+    desc: "Get instant portfolio reviews, personalized curriculum suggestions, realistic FAANG-style technical interview simulations, and compensation negotiation coaching.",
+    accent: "#0EA5E9",
+    metric: "24/7 AI Guidance",
     icon: "🤖",
-    title: "AI Career Coach",
-    desc: "Personalized roadmaps, technical interview mock questions, and real-time compensation insights powered by AI.",
   },
   {
-    icon: "🎯",
-    title: "Proctored Assessments",
-    desc: "Prove technical mastery with timed, rigorous assessments that evaluate real-world problem solving.",
+    span: "lg:col-span-1",
+    badge: "Instant Showcase",
+    title: "Live Developer Portfolio",
+    desc: "One-click shareable public profile featuring your verified assessment scores, live project links, and code samples.",
+    accent: "#F59E0B",
+    metric: "1-Click Public URL",
+    icon: "✨",
   },
 ];
 
 const steps = [
-  { step: "01", title: "Learn in Your Language", desc: "Access interactive curriculum with real-time translation and voiceover." },
-  { step: "02", title: "Practice in Sandbox", desc: "Write, test, and debug real React and JavaScript code in the browser." },
-  { step: "03", title: "Verify with Assessments", desc: "Pass timed skill exams to prove authentic knowledge." },
-  { step: "04", title: "Publish Portfolio", desc: "Generate a verified candidate profile with verified score report." },
-  { step: "05", title: "Get Hired Faster", desc: "Match directly with top tech companies hiring verified talent." },
+  { step: "01", title: "Learn in Native Tongue", desc: "Interactive modules translated in real-time with AI audio explanations." },
+  { step: "02", title: "Practice in Sandbox", desc: "Build hands-on code projects with instant automated test feedback." },
+  { step: "03", title: "Pass Proctored Exams", desc: "Validate authentic skills on timed, rigorous technical assessments." },
+  { step: "04", title: "Publish Digital Credentials", desc: "Generate a cryptographic portfolio that employers can verify in 1 click." },
+  { step: "05", title: "Direct Recruiter Shortlist", desc: "Match directly with high-paying local and international remote jobs." },
 ];
 
 const comparisonData = [
-  { feature: "Language Accessibility", skillbridge: "Native East African Languages + English", bootcamps: "English Only" },
-  { feature: "Tuition Cost", skillbridge: "100% Free Core Curriculum", bootcamps: "$3,000 - $12,000 USD" },
-  { feature: "Verification", skillbridge: "Cryptographic Certificate ID + Score Report", bootcamps: "Unverified PDF Diploma" },
-  { feature: "Learning Pace", skillbridge: "Self-Paced with AI Coach 24/7", bootcamps: "Rigid Full-Time Schedules" },
-  { feature: "Job Placement", skillbridge: "Direct Verified Matching Pipeline", bootcamps: "Cold Job Applications" },
+  { feature: "Language Accessibility", skillbridge: "Native African Languages + English", bootcamps: "Strictly English Only" },
+  { feature: "Tuition Cost", skillbridge: "100% Free Core Curriculum", bootcamps: "$3,000 - $12,000 USD Upfront" },
+  { feature: "Skill Verification", skillbridge: "Cryptographic Certificate ID + Score Breakdown", bootcamps: "Unverified PDF Certificate" },
+  { feature: "Pacing & Support", skillbridge: "Self-Paced with 24/7 AI Career Coach", bootcamps: "Rigid Full-Time Cohorts" },
+  { feature: "Job Placement", skillbridge: "Direct Talent Pipeline to 200+ Partners", bootcamps: "Cold Applications with Generic Resume" },
 ];
 
 const faqs = [
   {
     q: "Is SkillBridge really free for learners?",
-    a: "Yes! All core courses, hands-on playgrounds, and community features are completely free to start. Verified assessments issue official digital credentials at zero cost."
+    a: "Yes! All core curriculum, interactive playgrounds, translation engines, and community tools are completely free. You can earn verified credentials and apply for jobs without paying anything."
   },
   {
-    q: "How does the AI Translation work?",
-    a: "Our AI translation layer translates lesson texts, technical terms, code comments, and audio explanations into Afaan Oromo, Amharic, Somali, and Swahili in real time."
+    q: "How does the real-time AI Translation work?",
+    a: "Our fine-tuned multilingual educational model translates technical terminology, code comments, and explanatory text in real time into Afaan Oromoo, Amharic, Somali, Swahili, and more, preserving exact conceptual meaning."
   },
   {
-    q: "Are the certificates recognized by employers?",
-    a: "Absolutely. Each certificate includes a unique verification code that employers can check on our public portal to verify the candidate's exact assessment score."
+    q: "Are the certificates recognized by real employers?",
+    a: "Yes. Each certificate includes an immutable credential ID (e.g., SB-2026-XXXX) that employers verify on our public registry to review exact assessment scores and question-level breakdown."
   },
   {
-    q: "Can I use the resume builder to apply for international remote jobs?",
-    a: "Yes! The resume builder formats your profile according to modern international ATS standards, with one-click print and PDF export."
+    q: "Can I use SkillBridge on a low-spec phone or laptop?",
+    a: "Yes! The entire code playground runs on cloud worker nodes. All you need is a browser, with offline caching for low-bandwidth connections."
   }
 ];
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [activeLang, setActiveLang] = useState<DemoLang>("om");
+  const [codeRan, setCodeRan] = useState(false);
+
+  const currentDemo = heroDemos[activeLang];
+
+  const runCodeDemo = () => {
+    setCodeRan(true);
+    setTimeout(() => setCodeRan(false), 4000);
+  };
 
   return (
-    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", color: "#F1F4F9" }}>
-      {/* ── Hero Section ─────────────────────────────────────── */}
-      <section style={{ position: "relative", backgroundColor: "#151B30", padding: "80px 24px 96px", overflow: "hidden" }}>
-        {/* Subtle radial accents */}
-        <div style={{ position: "absolute", top: -100, right: -100, width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: -80, left: -80, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
+    <div className="bg-[#151B30] min-h-screen text-[#F1F4F9]">
+      {/* ── 1. Hero Section ───────────────────────────────────── */}
+      <section className="relative pt-20 pb-28 px-4 overflow-hidden bg-tech-grid">
+        {/* Atmospheric ambient lighting */}
+        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(14,165,233,0.18),transparent_70%)] pointer-events-none" />
+        <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(245,158,11,0.10),transparent_70%)] pointer-events-none" />
 
-        <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 10 }}>
-          {/* Pill badge */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              backgroundColor: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(59,77,122,0.6)",
-              borderRadius: 999,
-              padding: "6px 18px",
-              marginBottom: 24
-            }}
-          >
-            <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#0EA5E9", display: "inline-block" }} />
-            <span style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700 }}>
-              AI-Powered Multilingual EdTech Platform • Next-Gen Career Bridge
+        <div className="container mx-auto max-w-6xl relative z-10 text-center">
+          {/* Shimmer Announcement Pill */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#192038] border border-[#3B4D7A] hover:border-[#0EA5E9] shadow-[0_0_20px_rgba(14,165,233,0.15)] mb-8 transition-all cursor-pointer">
+            <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
+            <span className="text-xs font-bold text-[#F1F4F9]">
+              SkillBridge 2.0 Engine is Live
+            </span>
+            <span className="text-xs text-[#0EA5E9] font-black">
+              • Afaan Oromoo & Amharic Native AI →
             </span>
           </div>
 
-          <h1 style={{ color: "#FFFFFF", fontSize: "clamp(36px, 6vw, 68px)", fontWeight: 900, lineHeight: 1.1, margin: "0 auto 24px", maxWidth: 900, letterSpacing: "-0.02em" }}>
+          {/* Master Typography Headline */}
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-white max-w-5xl mx-auto mb-6">
             Learn in Your Language. <br />
-            <span style={{ color: "#0EA5E9" }}>Certify Your Skills.</span> <br />
-            <span style={{ color: "#F59E0B" }}>Get Hired Directly.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] via-[#38BDF8] to-white">
+              Certify Real Mastery.
+            </span> <br />
+            <span className="text-[#F59E0B]">
+              Get Hired Directly.
+            </span>
           </h1>
 
-          <p style={{ color: "#F1F4F9", fontSize: "clamp(16px, 2vw, 20px)", lineHeight: 1.6, maxWidth: 720, margin: "0 auto 36px", opacity: 0.85 }}>
-            SkillBridge closes the opportunity gap. Access world-class courses translated in real time, build proven projects, earn verified credentials, and match with leading employers.
+          {/* Subheading */}
+          <p className="text-base sm:text-xl text-[#F1F4F9]/85 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
+            The world's first AI-powered multilingual EdTech ecosystem. Access industry curriculum translated in real time, build proven projects in your browser, earn cryptographic certificates, and match directly with top hiring companies.
           </p>
 
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}>
+          {/* Action CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link
               href="/register"
-              style={{
-                backgroundColor: "#F59E0B",
-                color: "#151B30",
-                borderRadius: 14,
-                padding: "16px 36px",
-                fontSize: 16,
-                fontWeight: 900,
-                textDecoration: "none",
-                boxShadow: "0 4px 20px rgba(245,158,11,0.35)"
-              }}
+              className="btn-amber-cta w-full sm:w-auto px-8 py-4 rounded-xl text-base font-extrabold flex items-center justify-center gap-2 shadow-lg"
             >
-              Start Learning Free →
+              <span>Start Learning Free</span>
+              <span className="text-lg">→</span>
             </Link>
+
             <Link
               href="/courses"
-              style={{
-                backgroundColor: "rgba(255,255,255,0.06)",
-                border: "1.5px solid #3B4D7A",
-                color: "#FFFFFF",
-                borderRadius: 14,
-                padding: "16px 32px",
-                fontSize: 16,
-                fontWeight: 800,
-                textDecoration: "none"
-              }}
+              className="btn-cyan-outline w-full sm:w-auto px-7 py-4 rounded-xl text-base font-bold flex items-center justify-center gap-2"
             >
-              Explore 500+ Courses
+              <span>Explore 500+ Courses</span>
+              <span className="text-xs px-2 py-0.5 rounded-full bg-[#0EA5E9]/20 text-[#0EA5E9] font-black">
+                FREE
+              </span>
             </Link>
           </div>
 
-          {/* Trust badges */}
-          <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap", fontSize: 13, fontWeight: 700, color: "#F1F4F9", opacity: 0.8 }}>
-            <span>✓ No credit card required</span>
-            <span>✓ Amharic & Afaan Oromo AI Voice</span>
-            <span>✓ Verified by 200+ Employers</span>
+          {/* Trust Guarantees */}
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm font-semibold text-[#F1F4F9]/75 mb-16">
+            <div className="flex items-center gap-2">
+              <span className="text-[#0EA5E9]">✓</span>
+              <span>100% Free Core Curriculum</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#0EA5E9]">✓</span>
+              <span>Afaan Oromoo, Amharic & Swahili</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#0EA5E9]">✓</span>
+              <span>Cryptographic Public Credential</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#0EA5E9]">✓</span>
+              <span>Direct Employer Shortlist</span>
+            </div>
+          </div>
+
+          {/* ── Centerpiece: Interactive Platform Sandbox Preview ── */}
+          <div className="relative mx-auto max-w-5xl rounded-2xl bg-gradient-to-b from-[#1E2640] to-[#151B30] border border-[#3B4D7A] p-2 sm:p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),0_0_35px_rgba(14,165,233,0.15)] text-left">
+            {/* Terminal Top Bar */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[#3B4D7A]/50 bg-[#151B30]/80 rounded-t-xl mb-3">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#EF4444]" />
+                <span className="w-3 h-3 rounded-full bg-[#F59E0B]" />
+                <span className="w-3 h-3 rounded-full bg-[#10B981]" />
+                <span className="text-xs font-mono text-[#F1F4F9]/60 ml-3 hidden sm:inline">
+                  skillbridge-studio // interactive-sandbox-v2
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping" />
+                  East Africa Cloud Node: 14ms
+                </span>
+              </div>
+            </div>
+
+            {/* Split Screen Studio */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-2 sm:p-4 bg-[#151B30] rounded-xl border border-[#3B4D7A]/40">
+              {/* Left Column: Code Editor */}
+              <div className="lg:col-span-7 flex flex-col justify-between bg-[#192038] rounded-xl border border-[#3B4D7A]/50 p-4">
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#3B4D7A]/40 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#0EA5E9] font-mono font-bold">App.tsx</span>
+                      <span className="text-[#F1F4F9]/40">•</span>
+                      <span className="text-[#F1F4F9]/60 font-mono">React 19 + TypeScript</span>
+                    </div>
+                    <button
+                      onClick={runCodeDemo}
+                      className="px-3 py-1 rounded-lg bg-[#0EA5E9] text-[#151B30] font-black text-xs hover:opacity-90 transition-opacity flex items-center gap-1.5 cursor-pointer shadow-sm"
+                    >
+                      <span>▶</span>
+                      <span>Run Sandbox</span>
+                    </button>
+                  </div>
+
+                  <pre className="font-mono-code text-xs sm:text-sm text-[#F1F4F9] leading-relaxed overflow-x-auto py-2">
+                    <span className="text-[#0EA5E9]">{currentDemo.codeComment}</span>{"\n"}
+                    <span className="text-[#F59E0B]">import</span> {"{ useState }"} <span className="text-[#F59E0B]">from</span> <span className="text-[#10B981]">"react"</span>;{"\n\n"}
+                    {currentDemo.codeSnippet}
+                  </pre>
+                </div>
+
+                {/* Output console */}
+                <div className="mt-4 pt-3 border-t border-[#3B4D7A]/40">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#F1F4F9]/60 mb-1.5">
+                    <span>TERMINAL OUTPUT</span>
+                    <span>Status: OK</span>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-[#151B30] border border-[#3B4D7A]/40 font-mono text-xs text-[#10B981] flex items-center justify-between">
+                    <span>
+                      {codeRan
+                        ? "✓ Verified test suites passed: 4/4 assertions (12ms) • +50 XP"
+                        : "✓ Ready. Click 'Run Sandbox' to execute verified tests."}
+                    </span>
+                    {codeRan && <span className="text-[#F59E0B] font-bold">🏆 SCORE: 100%</span>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: AI Multilingual Translation Inspector */}
+              <div className="lg:col-span-5 flex flex-col justify-between bg-[#192038] rounded-xl border border-[#3B4D7A]/50 p-4">
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#3B4D7A]/40">
+                    <span className="text-xs font-bold text-[#0EA5E9] uppercase tracking-wider">
+                      AI Multilingual Layer
+                    </span>
+                    <span className="text-[11px] text-[#F1F4F9]/60 font-mono">Real-time sync</span>
+                  </div>
+
+                  {/* Language switch buttons */}
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    {[
+                      { id: "om", label: "🇪🇹 Afaan Oromoo" },
+                      { id: "am", label: "🇪🇹 አማርኛ" },
+                      { id: "sw", label: "🇰🇪 Kiswahili" },
+                      { id: "en", label: "🇬🇧 English" },
+                    ].map((lang) => (
+                      <button
+                        key={lang.id}
+                        onClick={() => setActiveLang(lang.id as DemoLang)}
+                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all text-left flex items-center justify-between ${
+                          activeLang === lang.id
+                            ? "bg-[#0EA5E9] text-[#151B30] shadow-sm font-black"
+                            : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                        }`}
+                      >
+                        <span>{lang.label}</span>
+                        {activeLang === lang.id && <span className="text-xs">✓</span>}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Active Translation Preview */}
+                  <div className="p-3.5 rounded-xl bg-[#151B30] border border-[#3B4D7A]/50 mb-3">
+                    <h4 className="text-sm font-extrabold text-white mb-1.5">
+                      {currentDemo.title}
+                    </h4>
+                    <p className="text-xs text-[#F1F4F9]/85 leading-relaxed">
+                      {currentDemo.explanation}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Verified Credential Pill */}
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[#151B30] border border-[#3B4D7A]/50 text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">🛡️</span>
+                    <div>
+                      <p className="font-bold text-white text-[11px]">Credential ID</p>
+                      <p className="font-mono text-[10px] text-[#0EA5E9]">SB-PRO-2026-9821</p>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] text-[10px] font-black">
+                    VERIFIED
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Community Live Pulse Ticker ────────────────────────── */}
+      {/* ── 2. Hiring & Institution Partners ──────────────────── */}
+      <section className="py-12 px-4 border-y border-[#3B4D7A]/40 bg-[#192038]">
+        <div className="container mx-auto max-w-6xl text-center">
+          <p className="text-xs font-black uppercase tracking-widest text-[#0EA5E9] mb-6">
+            Trusted By Engineering Teams, Telcos & Startups Across Emerging Markets
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-80 text-sm sm:text-base font-extrabold text-white">
+            <span className="hover:text-[#0EA5E9] transition-colors">⚡ Safaricom</span>
+            <span className="hover:text-[#0EA5E9] transition-colors">🌐 Ethio Telecom</span>
+            <span className="hover:text-[#0EA5E9] transition-colors">☁️ Google Cloud Partner</span>
+            <span className="hover:text-[#0EA5E9] transition-colors">🚀 Gebeya</span>
+            <span className="hover:text-[#0EA5E9] transition-colors">💳 Flutterwave</span>
+            <span className="hover:text-[#0EA5E9] transition-colors">🌍 ALX Network</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. Live Community Pulse Ticker ─────────────────────── */}
       <LiveCommunityPulse />
 
-      {/* ── Platform Impact Stats ─────────────────────────────── */}
-      <section style={{ backgroundColor: "#192038", borderTop: "1.5px solid #3B4D7A", borderBottom: "1.5px solid #3B4D7A", padding: "48px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24, textAlign: "center" }}>
+      {/* ── 4. Platform Impact Statistics ──────────────────────── */}
+      <section className="py-16 px-4 bg-[#151B30]">
+        <div className="container mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {[
-            { value: "10,000+", label: "Active Learners", sub: "across 30 countries" },
-            { value: "500+", label: "Interactive Courses", sub: "industry-aligned" },
-            { value: "1,200+", label: "Verified Certificates", sub: "cryptographically issued" },
-            { value: "300+", label: "Hired Graduates", sub: "in 2026 alone" },
-          ].map(stat => (
-            <div key={stat.label}>
-              <p style={{ color: "#FFFFFF", fontSize: 36, fontWeight: 900, margin: "0 0 4px" }}>
+            { value: "10,000+", label: "Active Learners", sub: "in 30+ countries", color: "#0EA5E9" },
+            { value: "500+", label: "Interactive Courses", sub: "industry-standard", color: "#F59E0B" },
+            { value: "1,200+", label: "Verified Certificates", sub: "cryptographic ID", color: "#FFFFFF" },
+            { value: "300+", label: "Graduates Hired", sub: "in 2026 alone", color: "#0EA5E9" },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="p-6 rounded-2xl bg-[#192038] border border-[#3B4D7A] shadow-md hover:border-[#0EA5E9] transition-all"
+            >
+              <p className="text-4xl font-black mb-1" style={{ color: stat.color }}>
                 {stat.value}
               </p>
-              <p style={{ color: "#0EA5E9", fontSize: 15, fontWeight: 800, margin: "0 0 2px" }}>
-                {stat.label}
-              </p>
-              <p style={{ color: "#F1F4F9", fontSize: 12, margin: 0, opacity: 0.7 }}>
-                {stat.sub}
-              </p>
+              <p className="text-sm font-extrabold text-white mb-0.5">{stat.label}</p>
+              <p className="text-xs text-[#F1F4F9]/60">{stat.sub}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Interactive Translation Engine Showcase ───────────── */}
-      <section style={{ backgroundColor: "#151B30", padding: "80px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      {/* ── 5. Master Bento Grid: Platform Pillars ────────────── */}
+      <section className="py-24 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#192038] border border-[#3B4D7A] text-[#0EA5E9] mb-4">
+              <span>✦</span>
+              <span>Next-Generation Architecture</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4">
+              Everything Built for Your Employment
+            </h2>
+            <p className="text-base sm:text-lg text-[#F1F4F9]/80 font-medium">
+              SkillBridge goes far beyond passive video tutorials. We provide the complete verification and hiring infrastructure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {bentoFeatures.map((b) => (
+              <div
+                key={b.title}
+                className={`${b.span} master-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="w-12 h-12 rounded-2xl bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center text-2xl shadow-inner">
+                      {b.icon}
+                    </span>
+                    <span
+                      className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider"
+                      style={{
+                        backgroundColor: `${b.accent}15`,
+                        color: b.accent,
+                        border: `1px solid ${b.accent}40`,
+                      }}
+                    >
+                      {b.metric}
+                    </span>
+                  </div>
+
+                  <p className="text-xs font-black uppercase tracking-widest text-[#0EA5E9] mb-2">
+                    {b.badge}
+                  </p>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3">
+                    {b.title}
+                  </h3>
+                  <p className="text-sm text-[#F1F4F9]/80 leading-relaxed font-medium">
+                    {b.desc}
+                  </p>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-[#3B4D7A]/30 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#F1F4F9]/60">SkillBridge Verified Engine</span>
+                  <span className="text-sm text-[#0EA5E9] font-black">Learn more →</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Interactive Translation Demo Section ───────────── */}
+      <section className="py-20 px-4 bg-[#192038] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-6xl">
           <InteractiveTranslationDemo />
         </div>
       </section>
 
-      {/* ── Quick Skill Challenge ─────────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "80px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      {/* ── 7. Quick Skill Challenge ───────────────────────────── */}
+      <section className="py-20 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-6xl">
           <QuickSkillChallenge />
         </div>
       </section>
 
-      {/* ── Core Value Pillars ─────────────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <div style={{ width: 44, height: 4, backgroundColor: "#0EA5E9", margin: "0 auto 16px", borderRadius: 999 }} />
-            <h2 style={{ color: "#FFFFFF", fontSize: 34, fontWeight: 900, margin: "0 0 12px" }}>
-              Everything Built for Your Employment
-            </h2>
-            <p style={{ color: "#F1F4F9", fontSize: 16, margin: 0, maxWidth: 600, marginInline: "auto", opacity: 0.8 }}>
-              SkillBridge goes beyond video tutorials. We provide the complete verification and hiring infrastructure.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {features.map(f => (
-              <div
-                key={f.title}
-                style={{
-                  backgroundColor: "#192038",
-                  borderRadius: 18,
-                  padding: "32px 28px",
-                  border: "1.5px solid #3B4D7A",
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
-                }}
-              >
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{f.icon}</div>
-                <h3 style={{ color: "#FFFFFF", fontSize: 18, fontWeight: 800, margin: "0 0 8px" }}>
-                  {f.title}
-                </h3>
-                <p style={{ color: "#F1F4F9", fontSize: 14, lineHeight: 1.6, margin: 0, opacity: 0.85 }}>
-                  {f.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Career Roadmap Simulator ──────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "80px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      {/* ── 8. Career Roadmap Simulator ────────────────────────── */}
+      <section className="py-20 px-4 bg-[#192038] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-6xl">
           <CareerRoadmapSimulator />
         </div>
       </section>
 
-      {/* ── How It Works ─────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <div style={{ width: 44, height: 4, backgroundColor: "#0EA5E9", margin: "0 auto 16px", borderRadius: 999 }} />
-            <h2 style={{ color: "#FFFFFF", fontSize: 34, fontWeight: 900, margin: "0 0 12px" }}>
+      {/* ── 9. How It Works (5 Steps) ─────────────────────────── */}
+      <section className="py-24 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-3">
               5 Steps from Zero to Hired
             </h2>
-            <p style={{ color: "#F1F4F9", fontSize: 16, margin: 0, opacity: 0.8 }}>
-              The proven roadmap to entering the global tech economy.
+            <p className="text-base text-[#F1F4F9]/80 font-medium">
+              The battle-tested pipeline to entering the high-paying tech economy.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 16 }}>
-            {steps.map(s => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {steps.map((s) => (
               <div
                 key={s.step}
-                style={{
-                  backgroundColor: "#192038",
-                  borderRadius: 16,
-                  padding: "24px 20px",
-                  border: "1.5px solid #3B4D7A",
-                  textAlign: "center"
-                }}
+                className="p-6 rounded-2xl bg-[#192038] border border-[#3B4D7A] hover:border-[#0EA5E9] transition-all text-center flex flex-col justify-between"
               >
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 12,
-                    backgroundColor: "#151B30",
-                    color: "#0EA5E9",
-                    border: "1.5px solid #0EA5E9",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 18,
-                    fontWeight: 900,
-                    margin: "0 auto 16px"
-                  }}
-                >
-                  {s.step}
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-[#151B30] border-2 border-[#0EA5E9] text-[#0EA5E9] font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-md">
+                    {s.step}
+                  </div>
+                  <h4 className="text-base font-extrabold text-white mb-2">{s.title}</h4>
+                  <p className="text-xs text-[#F1F4F9]/75 leading-relaxed">{s.desc}</p>
                 </div>
-                <h4 style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 800, margin: "0 0 6px" }}>
-                  {s.title}
-                </h4>
-                <p style={{ color: "#F1F4F9", fontSize: 12, lineHeight: 1.5, margin: 0, opacity: 0.8 }}>
-                  {s.desc}
-                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Comparison Table: SkillBridge vs Traditional ─────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
-        <div style={{ maxWidth: 960, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 900, margin: "0 0 10px" }}>
+      {/* ── 10. Comparison Table: SkillBridge vs Traditional ───── */}
+      <section className="py-24 px-4 bg-[#192038] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-3">
               Why SkillBridge Beats Traditional Bootcamps
             </h2>
-            <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.8 }}>
-              Compare how SkillBridge delivers true career outcomes without financial burden.
+            <p className="text-base text-[#F1F4F9]/80 font-medium">
+              Compare how SkillBridge delivers certified outcomes without financial debt.
             </p>
           </div>
 
-          <div style={{ backgroundColor: "#192038", borderRadius: 20, border: "1.5px solid #3B4D7A", overflow: "hidden", boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.4fr 1.2fr", backgroundColor: "#151B30", padding: "18px 24px", borderBottom: "1.5px solid #3B4D7A" }}>
-              <span style={{ color: "#F1F4F9", fontSize: 14, fontWeight: 800 }}>Dimension</span>
-              <span style={{ color: "#0EA5E9", fontSize: 14, fontWeight: 900 }}>⚡ SkillBridge Platform</span>
-              <span style={{ color: "#F1F4F9", fontSize: 14, fontWeight: 700, opacity: 0.6 }}>Traditional Bootcamps</span>
+          <div className="rounded-2xl bg-[#151B30] border border-[#3B4D7A] overflow-hidden shadow-2xl">
+            <div className="grid grid-cols-12 bg-[#192038] p-4 sm:p-5 border-b border-[#3B4D7A] text-xs sm:text-sm font-extrabold">
+              <span className="col-span-4 text-[#F1F4F9]/70 uppercase tracking-wider">Dimension</span>
+              <span className="col-span-4 text-[#0EA5E9] flex items-center gap-1.5 font-black">
+                <span>⚡</span>
+                <span>SkillBridge 2.0</span>
+              </span>
+              <span className="col-span-4 text-[#F1F4F9]/50 uppercase tracking-wider">Traditional Bootcamps</span>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              {comparisonData.map((row, idx) => (
-                <div
-                  key={row.feature}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1.2fr 1.4fr 1.2fr",
-                    padding: "16px 24px",
-                    borderBottom: idx === comparisonData.length - 1 ? "none" : "1px solid rgba(59,77,122,0.25)",
-                    backgroundColor: idx % 2 === 0 ? "#192038" : "#151B30"
-                  }}
-                >
-                  <span style={{ color: "#FFFFFF", fontSize: 13, fontWeight: 700 }}>{row.feature}</span>
-                  <span style={{ color: "#0EA5E9", fontSize: 13, fontWeight: 800 }}>✓ {row.skillbridge}</span>
-                  <span style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 500, opacity: 0.6 }}>{row.bootcamps}</span>
+            <div className="divide-y divide-[#3B4D7A]/40">
+              {comparisonData.map((row) => (
+                <div key={row.feature} className="grid grid-cols-12 p-4 sm:p-5 items-center text-xs sm:text-sm">
+                  <span className="col-span-4 font-bold text-white">{row.feature}</span>
+                  <span className="col-span-4 font-extrabold text-[#F59E0B]">{row.skillbridge}</span>
+                  <span className="col-span-4 text-[#F1F4F9]/60">{row.bootcamps}</span>
                 </div>
               ))}
             </div>
@@ -339,103 +541,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FAQ Section ────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid rgba(59,77,122,0.4)", padding: "88px 24px" }}>
-        <div style={{ maxWidth: 840, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <h2 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 900, margin: "0 0 10px" }}>
+      {/* ── 11. FAQ Accordion ──────────────────────────────────── */}
+      <section className="py-24 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
               Frequently Asked Questions
             </h2>
-            <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.8 }}>
-              Got questions? We've got answers.
+            <p className="text-base text-[#F1F4F9]/80">
+              Everything you need to know about learning, certifying, and hiring on SkillBridge.
             </p>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {faqs.map((faq, idx) => {
-              const isOpen = activeFaq === idx;
-              return (
-                <div
-                  key={idx}
-                  style={{
-                    backgroundColor: "#192038",
-                    borderRadius: 14,
-                    border: "1.5px solid #3B4D7A",
-                    overflow: "hidden"
-                  }}
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <div
+                key={faq.q}
+                className="rounded-2xl bg-[#192038] border border-[#3B4D7A] overflow-hidden transition-all"
+              >
+                <button
+                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-extrabold text-white text-base hover:text-[#0EA5E9] transition-colors cursor-pointer"
                 >
-                  <button
-                    onClick={() => setActiveFaq(isOpen ? null : idx)}
-                    style={{
-                      width: "100%",
-                      textAlign: "left",
-                      padding: "18px 22px",
-                      background: "none",
-                      border: "none",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      cursor: "pointer"
-                    }}
-                  >
-                    <span style={{ color: "#FFFFFF", fontSize: 15, fontWeight: 800 }}>
-                      {faq.q}
-                    </span>
-                    <span style={{ color: "#0EA5E9", fontSize: 18, fontWeight: 900, transform: isOpen ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.2s" }}>
-                      +
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div style={{ padding: "0 22px 18px", color: "#F1F4F9", fontSize: 14, lineHeight: 1.6, opacity: 0.9 }}>
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                  <span>{faq.q}</span>
+                  <span className="text-[#0EA5E9] font-black text-lg">
+                    {activeFaq === idx ? "−" : "+"}
+                  </span>
+                </button>
+                {activeFaq === idx && (
+                  <div className="px-5 pb-6 pt-1 text-sm text-[#F1F4F9]/80 leading-relaxed border-t border-[#3B4D7A]/30">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Final Call to Action ──────────────────────────────── */}
-      <section style={{ backgroundColor: "#151B30", borderTop: "1.5px solid #3B4D7A", padding: "88px 24px", textAlign: "center" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <h2 style={{ color: "#FFFFFF", fontSize: "clamp(32px, 4vw, 44px)", fontWeight: 900, margin: "0 0 16px" }}>
-            Ready to Bridge Your Skills to Employment?
+      {/* ── 12. Final Master CTA ──────────────────────────────── */}
+      <section className="py-24 px-4 bg-gradient-to-b from-[#192038] to-[#151B30] border-t border-[#3B4D7A]/50 text-center relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[radial-gradient(ellipse,rgba(245,158,11,0.12),transparent_70%)] pointer-events-none" />
+
+        <div className="container mx-auto max-w-3xl relative z-10">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] mb-6 uppercase tracking-wider">
+            Ready to accelerate your life?
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-6 tracking-tight">
+            Start Learning in Your Mother Tongue Today.
           </h2>
-          <p style={{ color: "#F1F4F9", fontSize: 17, margin: "0 auto 36px", opacity: 0.85, maxWidth: 600 }}>
-            Join 10,000+ ambitious learners mastering tech in their language and connecting with verified hiring managers.
+          <p className="text-base sm:text-lg text-[#F1F4F9]/80 mb-10 leading-relaxed">
+            Join over 10,000 learners mastering modern software engineering, AI, and cloud technology. Free forever.
           </p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/register"
-              style={{
-                backgroundColor: "#F59E0B",
-                color: "#151B30",
-                borderRadius: 14,
-                padding: "16px 36px",
-                fontSize: 16,
-                fontWeight: 900,
-                textDecoration: "none",
-                boxShadow: "0 4px 20px rgba(245,158,11,0.4)"
-              }}
+              className="btn-amber-cta w-full sm:w-auto px-10 py-4 rounded-xl text-base font-extrabold shadow-xl"
             >
-              Create Free Account 🚀
+              Create Free Account →
             </Link>
             <Link
-              href="/career-coach"
-              style={{
-                backgroundColor: "rgba(255,255,255,0.06)",
-                border: "1.5px solid #3B4D7A",
-                color: "#FFFFFF",
-                borderRadius: 14,
-                padding: "16px 28px",
-                fontSize: 16,
-                fontWeight: 800,
-                textDecoration: "none"
-              }}
+              href="/jobs"
+              className="btn-cyan-outline w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold"
             >
-              Talk to AI Career Coach 🤖
+              Browse Open Jobs
             </Link>
           </div>
         </div>
