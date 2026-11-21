@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 interface Topic {
   id: number;
@@ -61,91 +60,61 @@ export default function ForumPage() {
   });
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh", padding: "0 0 72px" }}>
-      {/* Hero Header */}
-      <div style={{ backgroundColor: "#151B30", padding: "48px 24px 38px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+    <div className="bg-[#151B30] min-h-screen text-[#F1F4F9]">
+      {/* Header Banner */}
+      <section className="bg-gradient-to-b from-[#192038] to-[#151B30] border-b border-[#3B4D7A]/40 py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "4px 14px", marginBottom: 12 }}>
-                <span style={{ color: "#0EA5E9", fontSize: 13, fontWeight: 800 }}>💬 Developer Community</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#151B30] border border-[#3B4D7A] text-[#0EA5E9] text-xs font-black uppercase tracking-wider mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
+                <span>Developer Community</span>
               </div>
-              <h1 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 800, margin: "0 0 8px" }}>
-                SkillBridge Peer Discussions
+              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-3">
+                Peer Discussions & Code Reviews.
               </h1>
-              <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.85, maxWidth: 600 }}>
-                Ask code questions, share capstone projects, discuss tech interviews, and learn together with fellow developers across East Africa.
+              <p className="text-sm sm:text-base text-[#F1F4F9]/80 max-w-xl font-medium leading-relaxed">
+                Ask technical questions, share open-source projects, discuss interview strategies, and connect with engineers across Africa.
               </p>
             </div>
 
             <button
               onClick={() => setIsModalOpen(true)}
-              style={{
-                backgroundColor: "#F59E0B",
-                color: "#151B30",
-                border: "none",
-                borderRadius: 12,
-                padding: "14px 24px",
-                fontWeight: 800,
-                fontSize: 14,
-                cursor: "pointer",
-                boxShadow: "0 4px 14px rgba(245,158,11,0.3)"
-              }}
+              className="btn-amber-cta px-6 py-3.5 rounded-xl text-xs font-black shadow-lg self-start sm:self-auto cursor-pointer"
             >
               ➕ Start Discussion
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div style={{ maxWidth: 1000, margin: "0 auto", padding: "28px 24px 0" }}>
+      {/* Main Container */}
+      <div className="container mx-auto max-w-5xl px-4 py-12">
         {/* Search & Category Filter */}
-        <div
-          style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: 16,
-            padding: "20px 24px",
-            border: "1.5px solid #3B4D7A",
-            boxShadow: "0 4px 16px rgba(21,27,48,0.04)",
-            marginBottom: 24,
-            display: "flex",
-            flexDirection: "column",
-            gap: 16
-          }}
-        >
-          <input
-            type="text"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search discussions by topic title or author..."
-            style={{
-              width: "100%",
-              padding: "12px 16px",
-              backgroundColor: "#F1F4F9",
-              border: "1.5px solid #3B4D7A",
-              borderRadius: 10,
-              color: "#151B30",
-              fontSize: 14,
-              outline: "none"
-            }}
-          />
+        <div className="master-card rounded-2xl p-6 mb-8 shadow-lg space-y-4">
+          <div className="relative">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#F1F4F9]/50">
+              🔍
+            </span>
+            <input
+              type="text"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search discussions by topic title or author..."
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] transition-all"
+            />
+          </div>
 
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            {categories.map(cat => (
+          <div className="flex flex-wrap gap-2 pt-1">
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                style={{
-                  backgroundColor: selectedCategory === cat ? "#151B30" : "#F1F4F9",
-                  color: selectedCategory === cat ? "#FFFFFF" : "#151B30",
-                  border: "1px solid #3B4D7A",
-                  borderRadius: 999,
-                  padding: "6px 16px",
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  transition: "all 0.15s"
-                }}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  selectedCategory === cat
+                    ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-sm"
+                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                }`}
               >
                 {cat}
               </button>
@@ -154,95 +123,46 @@ export default function ForumPage() {
         </div>
 
         {/* Topics List */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {filteredTopics.map(topic => (
+        <div className="space-y-4">
+          {filteredTopics.map((topic) => (
             <div
               key={topic.id}
-              style={{
-                backgroundColor: "#FFFFFF",
-                borderRadius: 16,
-                padding: "20px 24px",
-                border: "1.5px solid #3B4D7A",
-                boxShadow: "0 2px 8px rgba(21,27,48,0.04)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: 16
-              }}
+              className="master-card rounded-2xl p-5 sm:p-6 flex items-center justify-between gap-4 transition-all group"
             >
-              <div style={{ display: "flex", alignItems: "center", gap: 16, flex: 1, minWidth: 280 }}>
+              <div className="flex items-center gap-4 flex-1 min-w-[260px]">
                 {/* Upvote Button */}
                 <button
                   onClick={() => handleUpvote(topic.id)}
-                  style={{
-                    backgroundColor: "#F1F4F9",
-                    border: "1.5px solid #3B4D7A",
-                    borderRadius: 10,
-                    padding: "8px 12px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    cursor: "pointer",
-                    minWidth: 46
-                  }}
+                  className="w-12 h-14 rounded-xl bg-[#151B30] border border-[#3B4D7A] hover:border-[#0EA5E9] flex flex-col items-center justify-center cursor-pointer transition-all shrink-0"
                 >
-                  <span style={{ color: "#0EA5E9", fontSize: 14, fontWeight: 900 }}>▲</span>
-                  <span style={{ color: "#151B30", fontSize: 13, fontWeight: 800 }}>{topic.upvotes}</span>
+                  <span className="text-[#0EA5E9] text-xs font-black">▲</span>
+                  <span className="text-white text-xs font-black">{topic.upvotes}</span>
                 </button>
 
                 <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                    <span
-                      style={{
-                        backgroundColor: "#F1F4F9",
-                        border: "1px solid #3B4D7A",
-                        color: "#3B4D7A",
-                        borderRadius: 6,
-                        padding: "2px 8px",
-                        fontSize: 11,
-                        fontWeight: 700
-                      }}
-                    >
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="px-2 py-0.5 rounded-md bg-[#151B30] border border-[#3B4D7A] text-[#0EA5E9] text-[10px] font-black uppercase">
                       {topic.category}
                     </span>
-                    <span style={{ color: "#3B4D7A", fontSize: 12 }}>
-                      by <strong style={{ color: "#151B30" }}>{topic.author}</strong>
+                    <span className="text-xs text-[#F1F4F9]/60">
+                      by <strong className="text-white font-bold">{topic.author}</strong>
                     </span>
                   </div>
 
-                  <h3 style={{ color: "#151B30", fontSize: 16, fontWeight: 800, margin: "0 0 4px" }}>
-                    <Link
-                      href={`/forum/topic/${topic.id}`}
-                      style={{ color: "#151B30", textDecoration: "none" }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "#0EA5E9")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "#151B30")}
-                    >
+                  <h3 className="text-base font-extrabold text-white group-hover:text-[#0EA5E9] transition-colors leading-snug">
+                    <Link href={`/forum/topic/${topic.id}`}>
                       {topic.title}
                     </Link>
                   </h3>
-                  <p style={{ color: "#3B4D7A", fontSize: 12, margin: 0, fontWeight: 600 }}>
+                  <p className="text-[11px] text-[#F1F4F9]/50 mt-1 font-medium">
                     Active {topic.lastActive}
                   </p>
                 </div>
               </div>
 
               {/* Replies Badge */}
-              <div style={{ textAlign: "right" }}>
-                <span
-                  style={{
-                    backgroundColor: "#F1F4F9",
-                    border: "1px solid #3B4D7A",
-                    color: "#151B30",
-                    borderRadius: 10,
-                    padding: "6px 14px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6
-                  }}
-                >
+              <div className="text-right shrink-0">
+                <span className="px-3 py-1.5 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-xs font-bold text-white whitespace-nowrap">
                   💬 {topic.replies} replies
                 </span>
               </div>
@@ -250,29 +170,11 @@ export default function ForumPage() {
           ))}
 
           {filteredTopics.length === 0 && (
-            <div
-              style={{
-                backgroundColor: "#FFFFFF",
-                borderRadius: 16,
-                padding: "48px 24px",
-                textAlign: "center",
-                border: "1.5px solid #3B4D7A"
-              }}
-            >
-              <p style={{ color: "#151B30", fontSize: 16, fontWeight: 700 }}>No discussions match your filter.</p>
+            <div className="p-16 text-center master-card rounded-2xl">
+              <p className="text-base font-bold text-white mb-2">No discussions match your filter.</p>
               <button
                 onClick={() => { setSelectedCategory("All"); setSearch(""); }}
-                style={{
-                  backgroundColor: "#F59E0B",
-                  color: "#151B30",
-                  border: "none",
-                  borderRadius: 10,
-                  padding: "8px 18px",
-                  fontSize: 13,
-                  fontWeight: 800,
-                  cursor: "pointer",
-                  marginTop: 10
-                }}
+                className="btn-amber-cta px-4 py-2 rounded-xl text-xs font-black"
               >
                 Reset Filters
               </button>
@@ -284,46 +186,28 @@ export default function ForumPage() {
       {/* New Topic Modal */}
       {isModalOpen && (
         <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            backgroundColor: "rgba(21,27,48,0.7)",
-            backdropFilter: "blur(4px)",
-            zIndex: 999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 24
-          }}
+          className="fixed inset-0 bg-[#151B30]/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            style={{
-              backgroundColor: "#FFFFFF",
-              borderRadius: 20,
-              border: "2px solid #151B30",
-              maxWidth: 540,
-              width: "100%",
-              padding: 32,
-              boxShadow: "0 20px 50px rgba(0,0,0,0.25)"
-            }}
+            className="master-card rounded-2xl p-7 max-w-lg w-full shadow-2xl border-[#0EA5E9]/50"
             onClick={e => e.stopPropagation()}
           >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-              <h2 style={{ color: "#151B30", fontSize: 20, fontWeight: 800, margin: 0 }}>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-black text-white">
                 Start a New Discussion
               </h2>
               <button
                 onClick={() => setIsModalOpen(false)}
-                style={{ background: "none", border: "none", fontSize: 18, color: "#3B4D7A", cursor: "pointer", fontWeight: 800 }}
+                className="text-lg text-[#F1F4F9]/60 hover:text-white font-bold cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleCreateTopic} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <form onSubmit={handleCreateTopic} className="space-y-4">
               <div>
-                <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>
+                <label className="block text-xs font-bold text-[#F1F4F9] mb-1.5">
                   Discussion Title
                 </label>
                 <input
@@ -331,59 +215,30 @@ export default function ForumPage() {
                   placeholder="e.g. How do you handle authentication in Next.js Server Components?"
                   value={newTitle}
                   onChange={e => setNewTitle(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "10px 14px",
-                    backgroundColor: "#F1F4F9",
-                    border: "1.5px solid #3B4D7A",
-                    borderRadius: 10,
-                    color: "#151B30",
-                    fontSize: 14,
-                    outline: "none"
-                  }}
+                  className="w-full px-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9]"
                 />
               </div>
 
               <div>
-                <label style={{ color: "#151B30", fontSize: 13, fontWeight: 700, display: "block", marginBottom: 6 }}>
+                <label className="block text-xs font-bold text-[#F1F4F9] mb-1.5">
                   Category
                 </label>
                 <select
                   value={newCategory}
                   onChange={e => setNewCategory(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "10px 14px",
-                    backgroundColor: "#F1F4F9",
-                    border: "1.5px solid #3B4D7A",
-                    borderRadius: 10,
-                    color: "#151B30",
-                    fontSize: 14,
-                    outline: "none",
-                    cursor: "pointer"
-                  }}
+                  className="w-full px-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold focus:outline-none focus:border-[#0EA5E9] cursor-pointer"
                 >
                   {categories.filter(c => c !== "All").map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
+                    <option key={cat} value={cat} className="bg-[#151B30]">{cat}</option>
                   ))}
                 </select>
               </div>
 
               <button
                 type="submit"
-                style={{
-                  backgroundColor: "#F59E0B",
-                  color: "#151B30",
-                  border: "none",
-                  borderRadius: 10,
-                  padding: "12px 0",
-                  fontWeight: 800,
-                  fontSize: 15,
-                  cursor: "pointer",
-                  marginTop: 8
-                }}
+                className="btn-amber-cta w-full py-3.5 rounded-xl text-xs font-black shadow-md mt-4 cursor-pointer"
               >
-                Post Discussion 🚀
+                Publish Discussion 🚀
               </button>
             </form>
           </div>
