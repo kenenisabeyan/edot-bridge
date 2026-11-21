@@ -46,14 +46,14 @@ export default function LeaderboardPage() {
               </p>
             </div>
 
-            {/* User Standing Card */}
-            <div className="master-card p-5 rounded-2xl flex items-center gap-6 shadow-xl shrink-0 border-[#0EA5E9]/50">
+            {/* User Standing Card Box */}
+            <div className="luxury-box p-6 flex items-center gap-6 shadow-2xl shrink-0 border-[#0EA5E9]/50">
               <div>
                 <p className="text-[11px] font-bold text-[#F1F4F9]/60 uppercase mb-0.5">Your Rank</p>
                 <p className="text-3xl font-black text-[#0EA5E9]">#4</p>
                 <p className="text-xs font-bold text-[#F59E0B] mt-0.5">🔥 7-Day Streak</p>
               </div>
-              <div className="border-l border-[#3B4D7A]/50 pl-5">
+              <div className="border-l border-[#3B4D7A]/50 pl-6">
                 <p className="text-[11px] font-bold text-[#F1F4F9]/60 uppercase mb-0.5">Total XP</p>
                 <p className="text-2xl font-black text-white">2,450</p>
                 <p className="text-xs font-bold text-[#10B981] mt-0.5">230 XP to 🥉 #3</p>
@@ -65,27 +65,27 @@ export default function LeaderboardPage() {
 
       {/* Main Container */}
       <div className="container mx-auto max-w-5xl px-4 py-12">
-        {/* Weekly Quests Widget */}
-        <div className="master-card rounded-2xl p-6 sm:p-7 mb-10 shadow-lg">
+        {/* Weekly Quests Widget Box */}
+        <div className="luxury-box p-7 sm:p-8 mb-10 shadow-2xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <h2 className="text-xl font-black text-white mb-1">
+              <h2 className="text-xl sm:text-2xl font-black text-white mb-1">
                 ⚡ Weekly Quests
               </h2>
               <p className="text-xs text-[#F1F4F9]/75 font-medium">
                 Complete all weekly milestones to claim extra XP and maintain your league tier.
               </p>
             </div>
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-black bg-[#10B981]/15 border border-[#10B981]/40 text-[#10B981] whitespace-nowrap self-start sm:self-auto">
+            <span className="px-4 py-1.5 rounded-full text-xs font-black bg-[#10B981]/15 border border-[#10B981]/40 text-[#10B981] whitespace-nowrap self-start sm:self-auto shadow-sm">
               800 / 800 XP Claimed 🎯
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             {weeklyQuests.map((q) => (
               <div
                 key={q.id}
-                className="p-4 rounded-xl bg-[#151B30] border border-[#3B4D7A] flex flex-col justify-between"
+                className="nested-box p-4 flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-black text-[#F59E0B]">+{q.xp} XP</span>
@@ -99,10 +99,10 @@ export default function LeaderboardPage() {
           </div>
         </div>
 
-        {/* Leaderboard Table Container */}
-        <div className="master-card rounded-2xl overflow-hidden shadow-2xl">
+        {/* Leaderboard Table Container Box */}
+        <div className="luxury-box overflow-hidden shadow-2xl">
           {/* Table Header with Period Toggle */}
-          <div className="p-5 sm:p-6 bg-[#151B30]/70 border-b border-[#3B4D7A]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="p-6 bg-[#192038]/80 border-b border-[#3B4D7A]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-lg font-black text-white mb-0.5">
                 Global League Standings
@@ -112,15 +112,15 @@ export default function LeaderboardPage() {
               </p>
             </div>
 
-            {/* Period Switcher */}
-            <div className="flex gap-1.5 p-1 rounded-xl bg-[#151B30] border border-[#3B4D7A]">
+            {/* Period Switcher Box */}
+            <div className="nested-box flex gap-1 p-1">
               {(["weekly", "monthly", "allTime"] as const).map((p) => (
                 <button
                   key={p}
                   onClick={() => setPeriod(p)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all cursor-pointer ${
                     period === p
-                      ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-sm"
+                      ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-[0_0_12px_rgba(14,165,233,0.35)]"
                       : "text-[#F1F4F9]/70 hover:text-white"
                   }`}
                 >
@@ -135,7 +135,7 @@ export default function LeaderboardPage() {
             {leaderboardData.map((user) => (
               <div
                 key={user.rank}
-                className={`p-4 sm:p-5 flex items-center justify-between gap-4 transition-colors ${
+                className={`p-5 flex items-center justify-between gap-4 transition-colors ${
                   user.isUser
                     ? "bg-[#0EA5E9]/10 border-l-4 border-l-[#0EA5E9]"
                     : "hover:bg-[#192038]/60"
@@ -147,7 +147,7 @@ export default function LeaderboardPage() {
                     {rankMedals[user.rank] || `#${user.rank}`}
                   </div>
 
-                  <div className="w-10 h-10 rounded-full bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center font-black text-sm text-white shadow-sm">
+                  <div className="w-11 h-11 rounded-full bg-[#151B30] border border-[#3B4D7A]/60 flex items-center justify-center font-black text-sm text-white shadow-inner">
                     {user.name.charAt(0)}
                   </div>
 
@@ -171,7 +171,7 @@ export default function LeaderboardPage() {
                 {/* Right: Tier & XP */}
                 <div className="flex items-center gap-4 sm:gap-6 text-right">
                   <span
-                    className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider"
+                    className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider shadow-sm"
                     style={{
                       backgroundColor: `${user.color}15`,
                       color: user.color,

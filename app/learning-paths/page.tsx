@@ -61,12 +61,12 @@ export default function LearningPathsPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
-                <span className="block text-2xl font-black text-[#F59E0B]">3</span>
+              <div className="luxury-box p-5 text-center min-w-[110px]">
+                <span className="block text-3xl font-black text-[#F59E0B]">3</span>
                 <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Master Tracks</span>
               </div>
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
-                <span className="block text-2xl font-black text-[#0EA5E9]">100%</span>
+              <div className="luxury-box p-5 text-center min-w-[110px]">
+                <span className="block text-3xl font-black text-[#0EA5E9]">100%</span>
                 <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Free Access</span>
               </div>
             </div>
@@ -80,13 +80,13 @@ export default function LearningPathsPage() {
           {paths.map((path) => (
             <div
               key={path.id}
-              className="master-card rounded-2xl p-7 flex flex-col justify-between shadow-xl group"
+              className={`${path.accent === "#F59E0B" ? "luxury-box-amber" : "luxury-box"} p-8 flex flex-col justify-between group`}
             >
               <div>
                 {/* Top Badge */}
-                <div className="flex items-center justify-between gap-2 mb-4">
+                <div className="flex items-center justify-between gap-2 mb-5">
                   <span
-                    className="px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider"
+                    className="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider shadow-sm"
                     style={{
                       backgroundColor: `${path.accent}15`,
                       color: path.accent,
@@ -95,38 +95,40 @@ export default function LearningPathsPage() {
                   >
                     {path.role}
                   </span>
-                  <span className="text-xs text-[#F59E0B] font-bold">{path.xp}</span>
+                  <div className="nested-box px-3 py-1 text-xs text-[#F59E0B] font-extrabold">
+                    {path.xp}
+                  </div>
                 </div>
 
-                <h3 className="text-2xl font-extrabold text-white mb-2 leading-snug group-hover:text-[#0EA5E9] transition-colors">
+                <h3 className="text-2xl font-black text-white mb-2.5 leading-snug group-hover:text-[#0EA5E9] transition-colors">
                   {path.title}
                 </h3>
 
-                <p className="text-sm text-[#F1F4F9]/80 mb-6 leading-relaxed">
+                <p className="text-sm text-[#F1F4F9]/80 mb-6 leading-relaxed font-medium">
                   {path.description}
                 </p>
 
-                {/* Duration & Salary metric */}
-                <div className="grid grid-cols-2 gap-2 mb-6">
-                  <div className="p-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-center">
+                {/* Duration & Salary metric box */}
+                <div className="grid grid-cols-2 gap-2.5 mb-6">
+                  <div className="nested-box p-3.5 text-center">
                     <span className="block text-[10px] font-bold text-[#F1F4F9]/60 uppercase">Timeline</span>
                     <span className="text-xs font-black text-white">{path.duration}</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-center">
+                  <div className="nested-box p-3.5 text-center">
                     <span className="block text-[10px] font-bold text-[#F1F4F9]/60 uppercase">Avg Salary</span>
                     <span className="text-xs font-black text-[#F59E0B]">{path.salary}</span>
                   </div>
                 </div>
 
                 {/* Sequenced Milestones */}
-                <div className="pt-4 border-t border-[#3B4D7A]/40 mb-6">
+                <div className="pt-4 border-t border-[#3B4D7A]/35 mb-6">
                   <p className="text-[11px] font-black uppercase tracking-wider text-[#0EA5E9] mb-3">
                     Curriculum Milestones ({path.courses} Courses):
                   </p>
                   <div className="space-y-2">
                     {path.milestones.map((m, i) => (
                       <div key={i} className="flex items-center gap-2.5 text-xs text-[#F1F4F9]/90 font-semibold">
-                        <span className="w-5 h-5 rounded-full bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center text-[10px] text-[#0EA5E9] font-black shrink-0">
+                        <span className="w-5 h-5 rounded-full bg-[#151B30] border border-[#3B4D7A]/60 flex items-center justify-center text-[10px] text-[#0EA5E9] font-black shrink-0 shadow-inner">
                           {i + 1}
                         </span>
                         <span>{m}</span>
@@ -137,10 +139,10 @@ export default function LearningPathsPage() {
               </div>
 
               <div>
-                <Button asChild className="btn-amber-cta w-full py-3.5 rounded-xl text-xs font-black shadow-md border-none">
+                <Button asChild className="btn-amber-cta w-full py-4 rounded-xl text-xs font-black shadow-lg border-none">
                   <Link href="/courses" className="flex items-center justify-center gap-2">
                     <span>Enroll In Track</span>
-                    <span>→</span>
+                    <span className="text-sm">→</span>
                   </Link>
                 </Button>
               </div>

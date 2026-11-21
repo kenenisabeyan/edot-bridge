@@ -241,12 +241,12 @@ What specific skill or role would you like to master first?`,
       {/* Main Chat Interface */}
       <div className="container mx-auto max-w-5xl px-4 py-8">
         {/* Quick Prompts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-6">
           {quickPrompts.map((item, idx) => (
             <button
               key={idx}
               onClick={() => handleSend(item.prompt)}
-              className="master-card p-4 rounded-xl text-left transition-all hover:-translate-y-1 cursor-pointer group"
+              className="luxury-box p-5 text-left transition-all hover:-translate-y-1 cursor-pointer group"
             >
               <h4 className="text-xs font-extrabold text-white mb-1 group-hover:text-[#0EA5E9] transition-colors">
                 {item.title}
@@ -258,8 +258,8 @@ What specific skill or role would you like to master first?`,
           ))}
         </div>
 
-        {/* Chat Window Container */}
-        <div className="master-card rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[620px]">
+        {/* Chat Window Container Box */}
+        <div className="luxury-box overflow-hidden shadow-2xl flex flex-col h-[640px]">
           {/* Top Window Bar */}
           <div className="px-5 py-3 border-b border-[#3B4D7A]/40 bg-[#151B30]/60 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2 font-mono text-[11px] text-[#F1F4F9]/60">

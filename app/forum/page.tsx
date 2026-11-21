@@ -90,8 +90,8 @@ export default function ForumPage() {
 
       {/* Main Container */}
       <div className="container mx-auto max-w-5xl px-4 py-12">
-        {/* Search & Category Filter */}
-        <div className="master-card rounded-2xl p-6 mb-8 shadow-lg space-y-4">
+        {/* Search & Category Filter Box */}
+        <div className="luxury-box p-6 mb-8 shadow-2xl space-y-4">
           <div className="relative">
             <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#F1F4F9]/50">
               🔍
@@ -101,19 +101,19 @@ export default function ForumPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search discussions by topic title or author..."
-              className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] transition-all"
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] shadow-inner transition-all"
             />
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-1">
+          <div className="nested-box p-1.5 flex flex-wrap gap-1.5 w-fit">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-sm"
-                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                    ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-[0_0_12px_rgba(14,165,233,0.35)]"
+                    : "text-[#F1F4F9]/80 hover:text-white"
                 }`}
               >
                 {cat}
@@ -127,13 +127,13 @@ export default function ForumPage() {
           {filteredTopics.map((topic) => (
             <div
               key={topic.id}
-              className="master-card rounded-2xl p-5 sm:p-6 flex items-center justify-between gap-4 transition-all group"
+              className="luxury-box p-6 flex items-center justify-between gap-4 transition-all group"
             >
               <div className="flex items-center gap-4 flex-1 min-w-[260px]">
-                {/* Upvote Button */}
+                {/* Upvote Button Box */}
                 <button
                   onClick={() => handleUpvote(topic.id)}
-                  className="w-12 h-14 rounded-xl bg-[#151B30] border border-[#3B4D7A] hover:border-[#0EA5E9] flex flex-col items-center justify-center cursor-pointer transition-all shrink-0"
+                  className="w-12 h-14 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 hover:border-[#0EA5E9] flex flex-col items-center justify-center cursor-pointer transition-all shrink-0 shadow-inner group-hover:scale-105"
                 >
                   <span className="text-[#0EA5E9] text-xs font-black">▲</span>
                   <span className="text-white text-xs font-black">{topic.upvotes}</span>
@@ -141,7 +141,7 @@ export default function ForumPage() {
 
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="px-2 py-0.5 rounded-md bg-[#151B30] border border-[#3B4D7A] text-[#0EA5E9] text-[10px] font-black uppercase">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#151B30] border border-[#3B4D7A]/60 text-[#0EA5E9] text-[10px] font-black uppercase shadow-inner">
                       {topic.category}
                     </span>
                     <span className="text-xs text-[#F1F4F9]/60">
@@ -160,9 +160,9 @@ export default function ForumPage() {
                 </div>
               </div>
 
-              {/* Replies Badge */}
+              {/* Replies Badge Box */}
               <div className="text-right shrink-0">
-                <span className="px-3 py-1.5 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-xs font-bold text-white whitespace-nowrap">
+                <span className="nested-box px-3.5 py-1.5 text-xs font-bold text-white whitespace-nowrap">
                   💬 {topic.replies} replies
                 </span>
               </div>
@@ -170,7 +170,7 @@ export default function ForumPage() {
           ))}
 
           {filteredTopics.length === 0 && (
-            <div className="p-16 text-center master-card rounded-2xl">
+            <div className="p-16 text-center luxury-box">
               <p className="text-base font-bold text-white mb-2">No discussions match your filter.</p>
               <button
                 onClick={() => { setSelectedCategory("All"); setSearch(""); }}
@@ -190,7 +190,7 @@ export default function ForumPage() {
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="master-card rounded-2xl p-7 max-w-lg w-full shadow-2xl border-[#0EA5E9]/50"
+            className="luxury-box p-8 max-w-lg w-full shadow-2xl border-[#0EA5E9]/50"
             onClick={e => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-6">
