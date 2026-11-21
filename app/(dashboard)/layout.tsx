@@ -24,13 +24,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F1F4F9]">
-        <div className="text-center">
+      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#151B30" }}>
+        <div style={{ textAlign: "center" }}>
           <div
-            className="w-12 h-12 rounded-full border-4 border-[#3B4D7A]/20 border-t-[#0EA5E9] mx-auto mb-4"
-            style={{ animation: "spin 0.8s linear infinite" }}
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: "50%",
+              border: "4px solid #3B4D7A",
+              borderTopColor: "#0EA5E9",
+              margin: "0 auto 16px",
+              animation: "spin 0.8s linear infinite"
+            }}
           />
-          <p className="text-[#3B4D7A] font-semibold text-sm">Loading…</p>
+          <p style={{ color: "#0EA5E9", fontWeight: 700, fontSize: 14 }}>Loading workspace...</p>
         </div>
         <style>{`@keyframes spin { to { transform: rotate(360deg); }}`}</style>
       </div>
@@ -43,34 +50,49 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     : user.email?.[0].toUpperCase() ?? "U";
 
   return (
-    <div className="flex min-h-screen bg-[#F1F4F9]">
+    <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#151B30" }}>
       {/* ── Sidebar ────────────────────────────────────────── */}
       <aside
         className={`fixed inset-y-0 left-0 z-40 flex flex-col w-64 transition-transform duration-300
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0 md:flex`}
         style={{
-          background: "#151B30",
-          borderRight: "1px solid rgba(59,77,122,0.4)",
+          backgroundColor: "#151B30",
+          borderRight: "1.5px solid rgba(59,77,122,0.4)",
         }}
       >
         {/* Logo */}
         <div
-          className="h-16 flex items-center px-5 border-b"
-          style={{ borderColor: "rgba(59,77,122,0.4)" }}
+          style={{
+            height: 64,
+            display: "flex",
+            alignItems: "center",
+            padding: "0 20px",
+            borderBottom: "1.5px solid rgba(59,77,122,0.4)"
+          }}
         >
-          <Link href="/" className="flex items-center gap-2.5 font-extrabold text-lg text-white">
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
             <span
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-[#151B30] text-xs font-black shadow-sm"
-              style={{ background: "#0EA5E9" }}
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                backgroundColor: "#0EA5E9",
+                color: "#151B30",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 900,
+                fontSize: 16
+              }}
             >
-              s
+              ⚡
             </span>
-            <span className="text-white">SkillBridge</span>
+            <span style={{ color: "#FFFFFF", fontWeight: 800, fontSize: 18 }}>SkillBridge</span>
           </Link>
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 px-3 py-5 space-y-1">
+        <nav style={{ flex: 1, padding: "20px 12px", display: "flex", flexDirection: "column", gap: 4 }}>
           {sidebarLinks.map((l) => {
             const active = pathname === l.href;
             return (
@@ -78,74 +100,87 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 key={l.href}
                 href={l.href}
                 onClick={() => setSidebarOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all"
                 style={{
-                  background: active ? "rgba(14,165,233,0.15)" : "transparent",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  padding: "10px 16px",
+                  borderRadius: 10,
+                  fontSize: 14,
+                  fontWeight: active ? 800 : 600,
+                  textDecoration: "none",
+                  backgroundColor: active ? "rgba(14,165,233,0.15)" : "transparent",
                   color: active ? "#0EA5E9" : "#F1F4F9",
                   borderLeft: active ? "3px solid #0EA5E9" : "3px solid transparent",
+                  transition: "all 0.15s"
                 }}
               >
-                <span className="text-base">{l.icon}</span>
+                <span style={{ fontSize: 16 }}>{l.icon}</span>
                 {l.label}
               </Link>
             );
           })}
         </nav>
 
-        {/* Divider */}
-        <div className="mx-4 h-px bg-[#3B4D7A]/40 mb-3" />
-
-        {/* User card */}
-        <div className="p-3 pb-5">
-          <div className="flex items-center gap-3 px-3 py-3 rounded-xl bg-[#FFFFFF]/5 border border-[#3B4D7A]/30">
+        {/* User Card */}
+        <div style={{ padding: 16, borderTop: "1.5px solid rgba(59,77,122,0.4)" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              padding: 12,
+              borderRadius: 12,
+              backgroundColor: "#192038",
+              border: "1px solid #3B4D7A"
+            }}
+          >
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-[#151B30] text-sm font-black shrink-0 shadow-sm"
-              style={{ background: "#0EA5E9" }}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                backgroundColor: "#0EA5E9",
+                color: "#151B30",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 900,
+                fontSize: 14,
+                flexShrink: 0
+              }}
             >
               {initials}
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-sm text-white truncate">{user.name}</div>
-              <div className="text-xs text-[#F1F4F9] truncate">{user.email}</div>
+            <div style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
+              <div style={{ color: "#FFFFFF", fontWeight: 800, fontSize: 13, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>{user.name}</div>
+              <div style={{ color: "#F1F4F9", fontSize: 11, opacity: 0.7, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>{user.email}</div>
             </div>
           </div>
           <button
             onClick={logout}
-            className="mt-2 w-full text-sm py-2 rounded-xl text-center font-semibold transition-all border border-[#3B4D7A]/40 text-[#F1F4F9] hover:bg-[#3B4D7A]/30 hover:text-white cursor-pointer"
-            style={{ background: "transparent" }}
+            style={{
+              marginTop: 10,
+              width: "100%",
+              padding: "8px 0",
+              borderRadius: 8,
+              border: "1px solid #3B4D7A",
+              backgroundColor: "transparent",
+              color: "#F1F4F9",
+              fontSize: 13,
+              fontWeight: 700,
+              cursor: "pointer",
+              transition: "all 0.15s"
+            }}
           >
             Sign out
           </button>
         </div>
       </aside>
 
-      {/* Mobile overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 z-30 bg-black/50 md:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
-      {/* ── Main Area ──────────────────────────────────────── */}
-      <div className="flex-1 flex flex-col min-w-0">
-        {/* Mobile top bar */}
-        <div
-          className="h-14 flex items-center px-4 gap-3 md:hidden sticky top-0 z-20 border-b"
-          style={{ background: "#151B30", borderColor: "rgba(59,77,122,0.4)" }}
-        >
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="p-1.5 rounded-lg text-[#F1F4F9] hover:bg-[#3B4D7A]/30 cursor-pointer border-none bg-transparent"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
-            </svg>
-          </button>
-          <span className="font-extrabold text-sm text-white">SkillBridge</span>
-        </div>
-
-        <main className="flex-1 p-6 md:p-8 bg-[#F1F4F9]">
+      {/* Main Area */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, backgroundColor: "#151B30" }}>
+        <main style={{ flex: 1, padding: "32px 32px", backgroundColor: "#151B30" }}>
           {children}
         </main>
       </div>

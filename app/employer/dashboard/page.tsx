@@ -43,9 +43,9 @@ export default function EmployerDashboardPage() {
   ];
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh", padding: "0 0 64px" }}>
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "0 0 64px", color: "#F1F4F9" }}>
       {/* Page Header */}
-      <div style={{ backgroundColor: "#151B30", padding: "44px 32px 36px" }}>
+      <div style={{ backgroundColor: "#192038", padding: "44px 32px 36px", borderBottom: "1px solid #3B4D7A" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 10 }}>
             <div
@@ -62,8 +62,8 @@ export default function EmployerDashboardPage() {
               <h1 style={{ color: "#FFFFFF", fontSize: 28, fontWeight: 800, margin: 0 }}>
                 Employer Dashboard
               </h1>
-              <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.75 }}>
-                Manage your job posts and discover verified talent
+              <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
+                Manage your job posts and discover verified, certified talent
               </p>
             </div>
           </div>
@@ -73,14 +73,14 @@ export default function EmployerDashboardPage() {
             {[
               { label: "Active Jobs", value: jobs.length, color: "#0EA5E9" },
               { label: "Total Applicants", value: jobs.reduce((s, j) => s + j.applicants, 0), color: "#F59E0B" },
-              { label: "Verified Candidates", value: mockCandidates.length, color: "#F1F4F9" },
+              { label: "Verified Candidates", value: mockCandidates.length, color: "#FFFFFF" },
             ].map(stat => (
               <div
                 key={stat.label}
                 style={{
-                  backgroundColor: "rgba(255,255,255,0.08)",
+                  backgroundColor: "#151B30",
                   borderRadius: 12, padding: "14px 24px",
-                  border: "1px solid rgba(255,255,255,0.12)"
+                  border: "1px solid #3B4D7A"
                 }}
               >
                 <p style={{ color: stat.color, fontSize: 26, fontWeight: 800, margin: "0 0 2px" }}>
@@ -97,7 +97,7 @@ export default function EmployerDashboardPage() {
         {/* Tab Bar */}
         <div
           style={{
-            display: "flex", gap: 8, backgroundColor: "#FFFFFF",
+            display: "flex", gap: 8, backgroundColor: "#192038",
             borderRadius: 14, padding: 6, marginBottom: 28,
             border: "1px solid #3B4D7A", width: "fit-content"
           }}
@@ -110,8 +110,8 @@ export default function EmployerDashboardPage() {
                 padding: "10px 22px", borderRadius: 10, border: "none",
                 cursor: "pointer", fontWeight: 700, fontSize: 14,
                 transition: "all 0.18s",
-                backgroundColor: activeTab === tab.key ? "#151B30" : "transparent",
-                color: activeTab === tab.key ? "#FFFFFF" : "#3B4D7A",
+                backgroundColor: activeTab === tab.key ? "#0EA5E9" : "transparent",
+                color: activeTab === tab.key ? "#151B30" : "#F1F4F9",
               }}
             >
               {tab.emoji} {tab.label}
@@ -126,22 +126,23 @@ export default function EmployerDashboardPage() {
               <div
                 key={job.id}
                 style={{
-                  backgroundColor: "#FFFFFF", borderRadius: 14,
+                  backgroundColor: "#192038", borderRadius: 14,
                   padding: "20px 24px", border: "1px solid #3B4D7A",
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   flexWrap: "wrap", gap: 14
                 }}
               >
                 <div>
-                  <h3 style={{ color: "#151B30", fontWeight: 700, fontSize: 17, margin: "0 0 6px" }}>
+                  <h3 style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 17, margin: "0 0 6px" }}>
                     {job.title}
                   </h3>
                   <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                    <span style={{ color: "#3B4D7A", fontSize: 13 }}>📅 Posted: {job.posted}</span>
-                    <span style={{ color: "#3B4D7A", fontSize: 13 }}>📍 {job.location}</span>
+                    <span style={{ color: "#F1F4F9", opacity: 0.7, fontSize: 13 }}>📅 Posted: {job.posted}</span>
+                    <span style={{ color: "#F1F4F9", opacity: 0.7, fontSize: 13 }}>📍 {job.location}</span>
                     <span
                       style={{
-                        backgroundColor: "#F1F4F9", color: "#3B4D7A",
+                        backgroundColor: "#151B30", color: "#0EA5E9",
+                        border: "1px solid #3B4D7A",
                         borderRadius: 999, padding: "2px 10px", fontSize: 12, fontWeight: 600
                       }}
                     >
@@ -154,7 +155,7 @@ export default function EmployerDashboardPage() {
                     <p style={{ color: "#F59E0B", fontWeight: 800, fontSize: 22, margin: 0 }}>
                       {job.applicants}
                     </p>
-                    <p style={{ color: "#3B4D7A", fontSize: 11, margin: 0 }}>Applicants</p>
+                    <p style={{ color: "#F1F4F9", opacity: 0.7, fontSize: 11, margin: 0 }}>Applicants</p>
                   </div>
                   <button
                     style={{
@@ -172,12 +173,12 @@ export default function EmployerDashboardPage() {
             {jobs.length === 0 && (
               <div
                 style={{
-                  backgroundColor: "#FFFFFF", borderRadius: 14, padding: 40,
+                  backgroundColor: "#192038", borderRadius: 14, padding: 40,
                   border: "1px solid #3B4D7A", textAlign: "center"
                 }}
               >
-                <p style={{ color: "#151B30", fontSize: 16, fontWeight: 600 }}>No jobs posted yet.</p>
-                <p style={{ color: "#3B4D7A", fontSize: 14 }}>Click "Post a Job" to get started.</p>
+                <p style={{ color: "#FFFFFF", fontSize: 16, fontWeight: 600 }}>No jobs posted yet.</p>
+                <p style={{ color: "#F1F4F9", opacity: 0.7, fontSize: 14 }}>Click "Post a Job" to get started.</p>
               </div>
             )}
           </div>
@@ -188,22 +189,22 @@ export default function EmployerDashboardPage() {
           <div style={{ maxWidth: 600 }}>
             <div
               style={{
-                backgroundColor: "#FFFFFF", borderRadius: 16,
+                backgroundColor: "#192038", borderRadius: 16,
                 padding: "32px 32px", border: "1px solid #3B4D7A"
               }}
             >
-              <h2 style={{ color: "#151B30", fontSize: 20, fontWeight: 800, margin: "0 0 24px" }}>
+              <h2 style={{ color: "#FFFFFF", fontSize: 20, fontWeight: 800, margin: "0 0 24px" }}>
                 Post a New Job
               </h2>
 
               {posted && (
                 <div
                   style={{
-                    backgroundColor: "#F1F4F9", border: "1.5px solid #0EA5E9",
+                    backgroundColor: "#151B30", border: "1.5px solid #0EA5E9",
                     borderRadius: 10, padding: "12px 16px", marginBottom: 20
                   }}
                 >
-                  <p style={{ color: "#151B30", fontWeight: 600, fontSize: 14, margin: 0 }}>
+                  <p style={{ color: "#0EA5E9", fontWeight: 600, fontSize: 14, margin: 0 }}>
                     ✓ Job posted successfully!
                   </p>
                 </div>
@@ -211,7 +212,7 @@ export default function EmployerDashboardPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
                     Job Title *
                   </label>
                   <input
@@ -220,15 +221,15 @@ export default function EmployerDashboardPage() {
                     onChange={(e) => setNewJob({ ...newJob, title: e.target.value })}
                     style={{
                       width: "100%", padding: "10px 14px",
-                      backgroundColor: "#F1F4F9", border: "1.5px solid #3B4D7A",
-                      borderRadius: 10, color: "#151B30", fontSize: 14,
+                      backgroundColor: "#151B30", border: "1.5px solid #3B4D7A",
+                      borderRadius: 10, color: "#FFFFFF", fontSize: 14,
                       outline: "none", boxSizing: "border-box"
                     }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
                     Job Description
                   </label>
                   <textarea
@@ -238,15 +239,15 @@ export default function EmployerDashboardPage() {
                     onChange={(e) => setNewJob({ ...newJob, description: e.target.value })}
                     style={{
                       width: "100%", padding: "10px 14px",
-                      backgroundColor: "#F1F4F9", border: "1.5px solid #3B4D7A",
-                      borderRadius: 10, color: "#151B30", fontSize: 14,
+                      backgroundColor: "#151B30", border: "1.5px solid #3B4D7A",
+                      borderRadius: 10, color: "#FFFFFF", fontSize: 14,
                       outline: "none", resize: "vertical", boxSizing: "border-box"
                     }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
                     Location
                   </label>
                   <input
@@ -255,15 +256,15 @@ export default function EmployerDashboardPage() {
                     onChange={(e) => setNewJob({ ...newJob, location: e.target.value })}
                     style={{
                       width: "100%", padding: "10px 14px",
-                      backgroundColor: "#F1F4F9", border: "1.5px solid #3B4D7A",
-                      borderRadius: 10, color: "#151B30", fontSize: 14,
+                      backgroundColor: "#151B30", border: "1.5px solid #3B4D7A",
+                      borderRadius: 10, color: "#FFFFFF", fontSize: 14,
                       outline: "none", boxSizing: "border-box"
                     }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ color: "#151B30", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
+                  <label style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>
                     Employment Type
                   </label>
                   <select
@@ -271,8 +272,8 @@ export default function EmployerDashboardPage() {
                     onChange={(e) => setNewJob({ ...newJob, type: e.target.value })}
                     style={{
                       width: "100%", padding: "10px 14px",
-                      backgroundColor: "#F1F4F9", border: "1.5px solid #3B4D7A",
-                      borderRadius: 10, color: "#151B30", fontSize: 14,
+                      backgroundColor: "#151B30", border: "1.5px solid #3B4D7A",
+                      borderRadius: 10, color: "#FFFFFF", fontSize: 14,
                       outline: "none", cursor: "pointer"
                     }}
                   >
@@ -305,8 +306,9 @@ export default function EmployerDashboardPage() {
           <div>
             <div
               style={{
-                backgroundColor: "#151B30", borderRadius: 14,
-                padding: "20px 24px", marginBottom: 20
+                backgroundColor: "#192038", borderRadius: 14,
+                padding: "20px 24px", marginBottom: 20,
+                border: "1px solid #3B4D7A"
               }}
             >
               <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0 }}>
@@ -319,7 +321,7 @@ export default function EmployerDashboardPage() {
                 <div
                   key={candidate.id}
                   style={{
-                    backgroundColor: "#FFFFFF", borderRadius: 14,
+                    backgroundColor: "#192038", borderRadius: 14,
                     padding: "22px 24px", border: "1px solid #3B4D7A",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
                     flexWrap: "wrap", gap: 14
@@ -337,7 +339,7 @@ export default function EmployerDashboardPage() {
                       {candidate.name[0]}
                     </div>
                     <div>
-                      <h3 style={{ color: "#151B30", fontWeight: 700, fontSize: 16, margin: "0 0 6px" }}>
+                      <h3 style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 16, margin: "0 0 6px" }}>
                         {candidate.name}
                       </h3>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -345,8 +347,8 @@ export default function EmployerDashboardPage() {
                           <span
                             key={skill}
                             style={{
-                              backgroundColor: "#FFFFFF", border: "1px solid #3B4D7A",
-                              color: "#3B4D7A", borderRadius: 999,
+                              backgroundColor: "#151B30", border: "1px solid #3B4D7A",
+                              color: "#0EA5E9", borderRadius: 999,
                               padding: "2px 10px", fontSize: 12, fontWeight: 600
                             }}
                           >
@@ -367,7 +369,7 @@ export default function EmployerDashboardPage() {
                     </div>
                     <button
                       style={{
-                        backgroundColor: "#151B30", color: "#F1F4F9",
+                        backgroundColor: "#0EA5E9", color: "#151B30",
                         border: "none", borderRadius: 10,
                         padding: "10px 20px", fontWeight: 700,
                         fontSize: 14, cursor: "pointer"

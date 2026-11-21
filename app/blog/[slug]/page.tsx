@@ -60,9 +60,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const tagColor = post.tag === "Career" ? "#F59E0B" : post.tag === "Technology" ? "#0EA5E9" : "#3B4D7A";
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", color: "#F1F4F9" }}>
       {/* Hero Header */}
-      <div style={{ backgroundColor: "#151B30", padding: "52px 24px 44px" }}>
+      <div style={{ backgroundColor: "#192038", padding: "52px 24px 44px", borderBottom: "1px solid #3B4D7A" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
           {/* Back link */}
           <Link
@@ -120,7 +120,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div style={{ maxWidth: 760, margin: "0 auto", padding: "40px 24px 64px" }}>
         <div
           style={{
-            backgroundColor: "#FFFFFF", borderRadius: 16,
+            backgroundColor: "#192038", borderRadius: 16,
             padding: "36px 40px", border: "1px solid #3B4D7A"
           }}
         >
@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <p
               key={i}
               style={{
-                color: "#151B30", fontSize: 16, lineHeight: 1.85,
+                color: "#F1F4F9", fontSize: 16, lineHeight: 1.85,
                 margin: i === 0 ? 0 : "20px 0 0"
               }}
             >
@@ -140,44 +140,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* Share + CTA */}
         <div
           style={{
-            marginTop: 28, backgroundColor: "#151B30", borderRadius: 16,
-            padding: "28px 32px",
+            marginTop: 28, backgroundColor: "#192038", borderRadius: 16,
+            padding: "28px 32px", border: "1px solid #3B4D7A",
             display: "flex", alignItems: "center", justifyContent: "space-between",
             flexWrap: "wrap", gap: 16
           }}
         >
           <div>
             <p style={{ color: "#FFFFFF", fontWeight: 700, fontSize: 17, margin: "0 0 4px" }}>
-              Found this helpful?
+              Ready to learn and earn your verified credentials?
             </p>
-            <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.75 }}>
-              Start learning on SkillBridge for free today.
+            <p style={{ color: "#F1F4F9", opacity: 0.75, fontSize: 14, margin: 0 }}>
+              Join SkillBridge today and fast-track your career with AI-guided courses.
             </p>
           </div>
           <Link
-            href="/register"
+            href="/courses"
             style={{
-              backgroundColor: "#F59E0B", color: "#151B30",
-              borderRadius: 10, padding: "12px 28px",
-              fontWeight: 700, fontSize: 15, textDecoration: "none",
-              display: "inline-block"
+              backgroundColor: "#F59E0B", color: "#151B30", textDecoration: "none",
+              borderRadius: 10, padding: "12px 24px", fontWeight: 800, fontSize: 14
             }}
           >
-            Get Started Free →
-          </Link>
-        </div>
-
-        {/* Back link bottom */}
-        <div style={{ marginTop: 24, textAlign: "center" }}>
-          <Link
-            href="/blog"
-            style={{
-              color: "#3B4D7A", fontSize: 14, fontWeight: 600,
-              textDecoration: "none", borderBottom: "1px solid #3B4D7A",
-              paddingBottom: 2
-            }}
-          >
-            ← More Articles
+            Explore Courses →
           </Link>
         </div>
       </div>

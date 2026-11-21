@@ -7,57 +7,74 @@ export default function MyCoursesPage() {
   const progressData: Record<string, number> = { "1": 45, "2": 10, "3": 0 };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-[#151B30] mb-1">My Courses</h1>
-        <p className="text-[#3B4D7A] font-medium">Your enrolled courses and learning progress.</p>
+    <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+      <div style={{ marginBottom: 32 }}>
+        <h1 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 900, margin: "0 0 6px" }}>
+          My Enrolled Courses
+        </h1>
+        <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.8 }}>
+          Track your course completion, lesson progress, and access interactive coding playgrounds.
+        </p>
       </div>
 
-      <div className="space-y-5">
+      <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
         {mockCourses.map((course) => {
           const progress = progressData[course.id] || 0;
           return (
             <div
               key={course.id}
-              className="rounded-2xl p-6 bg-[#FFFFFF] border border-[#3B4D7A]/20 shadow-sm hover:shadow-md transition-shadow"
+              style={{
+                backgroundColor: "#192038",
+                border: "1.5px solid #3B4D7A",
+                borderRadius: 20,
+                padding: "24px 28px",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.2)"
+              }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16, marginBottom: 20 }}>
                 <div>
-                  <h3 className="font-extrabold text-lg text-[#151B30]">{course.title}</h3>
-                  <p className="text-sm text-[#3B4D7A] font-medium mt-0.5">
-                    {course.lessons?.length || 0} lessons
+                  <h3 style={{ color: "#FFFFFF", fontSize: 20, fontWeight: 800, margin: "0 0 4px" }}>
+                    {course.title}
+                  </h3>
+                  <p style={{ color: "#0EA5E9", fontSize: 13, fontWeight: 700, margin: 0 }}>
+                    {course.lessons?.length || 0} lessons • Verified curriculum
                   </p>
                 </div>
-                <div className="flex items-center gap-3 shrink-0">
+
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <span
-                    className="text-xs font-black px-3 py-1 rounded-full"
                     style={{
-                      background: progress === 0 ? "#F1F4F9" : progress < 50 ? "rgba(14,165,233,0.12)" : "rgba(245,158,11,0.12)",
-                      color: progress === 0 ? "#3B4D7A" : progress < 50 ? "#0EA5E9" : "#F59E0B",
-                      border: `1px solid ${progress === 0 ? "rgba(59,77,122,0.3)" : progress < 50 ? "rgba(14,165,233,0.3)" : "rgba(245,158,11,0.3)"}`,
+                      fontSize: 12,
+                      fontWeight: 800,
+                      padding: "4px 12px",
+                      borderRadius: 999,
+                      backgroundColor: "#151B30",
+                      color: progress === 0 ? "#F1F4F9" : progress >= 100 ? "#0EA5E9" : "#F59E0B",
+                      border: "1px solid #3B4D7A"
                     }}
                   >
                     {progress === 0 ? "Not Started" : progress >= 100 ? "Completed" : "In Progress"}
                   </span>
-                  <Button asChild className="rounded-xl font-bold bg-[#151B30] text-[#FFFFFF] hover:bg-[#3B4D7A] transition-colors shadow-sm border-none px-5 py-2">
+                  <Button asChild className="rounded-xl font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 transition-opacity border-none px-6 py-2.5">
                     <Link href={`/courses/${course.id}`}>
-                      {progress === 0 ? "Start →" : "Continue →"}
+                      {progress === 0 ? "Start Course →" : "Continue →"}
                     </Link>
                   </Button>
                 </div>
               </div>
 
               {/* Progress bar */}
-              <div className="mb-1.5 flex justify-between text-xs font-semibold">
-                <span className="text-[#3B4D7A]">Progress</span>
-                <span style={{ color: progress > 0 ? "#0EA5E9" : "#3B4D7A" }}>{progress}%</span>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, fontWeight: 700, marginBottom: 8 }}>
+                <span style={{ color: "#F1F4F9", opacity: 0.7 }}>Progress</span>
+                <span style={{ color: "#0EA5E9" }}>{progress}%</span>
               </div>
-              <div className="h-2.5 rounded-full bg-[#F1F4F9] overflow-hidden border border-[#3B4D7A]/15">
+              <div style={{ height: 8, borderRadius: 999, backgroundColor: "#151B30", overflow: "hidden", border: "1px solid #3B4D7A" }}>
                 <div
-                  className="h-full rounded-full transition-all duration-700"
                   style={{
+                    height: "100%",
                     width: `${progress}%`,
-                    background: progress >= 80 ? "#F59E0B" : "#0EA5E9",
+                    backgroundColor: progress >= 80 ? "#F59E0B" : "#0EA5E9",
+                    borderRadius: 999
                   }}
                 />
               </div>
