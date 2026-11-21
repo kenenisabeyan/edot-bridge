@@ -68,7 +68,7 @@ const mockResponses: Record<string, { reply: string; actions?: { label: string; 
 2. **Component Lifecycle & Effects**: Proper cleanup functions inside \`useEffect\`, dependency array rules, and avoiding infinite render loops.
 3. **Controlled Inputs**: Binding value and \`onChange\` handlers properly for form validation.
 4. **Context & State Propagation**: Using \`createContext\` and \`useContext\` to prevent prop-drilling without adding unnecessary re-renders.
-5. **Custom Hooks**: Extracting repetitive business logic (e.g. data fetching, debounce, local storage synchronization) into reusable hook functions.
+5. **Custom Hooks**: Extracting repetitive business logic into reusable hook functions.
 
 💡 *Pro Tip*: Take the practice challenge on the SkillBridge homepage to test your reflexes before starting the verified assessment!`,
     actions: [
@@ -163,7 +163,7 @@ export default function CareerCoachPage() {
         responseData = mockResponses.salary;
       } else {
         responseData = {
-          reply: `That is an excellent career goal. In tech, building verifiable proof of work is what sets top candidates apart.
+          reply: `That is an excellent career goal. In modern engineering, building verifiable proof of work is what sets top candidates apart.
 
 I recommend taking these three strategic steps:
 1. Complete our targeted hands-on curriculum to solidify your foundations.
@@ -188,53 +188,34 @@ What specific skill or role would you like to master first?`,
 
       setMessages(prev => [...prev, botMessage]);
       setLoading(false);
-    }, 750);
+    }, 700);
   };
 
   return (
-    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "0 0 64px" }}>
+    <div className="bg-[#151B30] min-h-screen text-[#F1F4F9]">
       {/* Header Banner */}
-      <div style={{ backgroundColor: "#151B30", borderBottom: "1.5px solid rgba(59,77,122,0.4)", padding: "44px 24px 36px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <div
-                style={{
-                  width: 52,
-                  height: 52,
-                  borderRadius: 14,
-                  backgroundColor: "#0EA5E9",
-                  color: "#151B30",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 26,
-                  fontWeight: 800
-                }}
-              >
+      <section className="bg-gradient-to-b from-[#192038] to-[#151B30] border-b border-[#3B4D7A]/40 py-12 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0EA5E9] to-[#0284C7] text-[#151B30] flex items-center justify-center text-3xl font-black shadow-[0_0_25px_rgba(14,165,233,0.4)] shrink-0">
                 🤖
               </div>
               <div>
-                <h1 style={{ color: "#FFFFFF", fontSize: 28, fontWeight: 800, margin: "0 0 4px" }}>
-                  AI Career Coach
+                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#151B30] border border-[#3B4D7A] text-[#0EA5E9] text-[10px] font-black uppercase tracking-wider mb-1">
+                  <span>AI Copilot 24/7</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-black text-white">
+                  SkillBridge Career Coach
                 </h1>
-                <p style={{ color: "#F1F4F9", fontSize: 14, margin: 0, opacity: 0.8 }}>
-                  Real-time career guidance, skill evaluation, and technical interview preparation
+                <p className="text-xs sm:text-sm text-[#F1F4F9]/75 font-medium">
+                  Real-time career roadmaps, mock technical interviews, and salary intelligence
                 </p>
               </div>
             </div>
 
             {/* Mode Switcher */}
-            <div
-              style={{
-                display: "flex",
-                gap: 6,
-                backgroundColor: "rgba(255,255,255,0.08)",
-                borderRadius: 12,
-                padding: 4,
-                border: "1px solid rgba(255,255,255,0.15)"
-              }}
-            >
+            <div className="flex gap-1.5 p-1.5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner self-start sm:self-auto">
               {[
                 { id: "general", label: "Advisor" },
                 { id: "interview", label: "Interview" },
@@ -243,17 +224,11 @@ What specific skill or role would you like to master first?`,
                 <button
                   key={mode.id}
                   onClick={() => setActiveMode(mode.id as any)}
-                  style={{
-                    backgroundColor: activeMode === mode.id ? "#F59E0B" : "transparent",
-                    color: activeMode === mode.id ? "#151B30" : "#F1F4F9",
-                    border: "none",
-                    borderRadius: 8,
-                    padding: "6px 14px",
-                    fontSize: 13,
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    transition: "all 0.2s"
-                  }}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    activeMode === mode.id
+                      ? "bg-[#F59E0B] text-[#151B30] font-black shadow-sm"
+                      : "text-[#F1F4F9]/75 hover:text-white"
+                  }`}
                 >
                   {mode.label}
                 </button>
@@ -261,123 +236,86 @@ What specific skill or role would you like to master first?`,
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div style={{ maxWidth: 1000, margin: "0 auto", padding: "28px 24px 0" }}>
+      {/* Main Chat Interface */}
+      <div className="container mx-auto max-w-5xl px-4 py-8">
         {/* Quick Prompts Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, marginBottom: 24 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           {quickPrompts.map((item, idx) => (
-            <div
+            <button
               key={idx}
               onClick={() => handleSend(item.prompt)}
-              style={{
-                backgroundColor: "#192038",
-                borderRadius: 14,
-                padding: "16px 18px",
-                border: "1.5px solid #3B4D7A",
-                cursor: "pointer",
-                transition: "all 0.2s",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = "#0EA5E9";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = "#3B4D7A";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
+              className="master-card p-4 rounded-xl text-left transition-all hover:-translate-y-1 cursor-pointer group"
             >
-              <h4 style={{ color: "#FFFFFF", fontSize: 14, fontWeight: 800, margin: "0 0 4px" }}>
+              <h4 className="text-xs font-extrabold text-white mb-1 group-hover:text-[#0EA5E9] transition-colors">
                 {item.title}
               </h4>
-              <p style={{ color: "#F1F4F9", fontSize: 12, margin: 0, lineHeight: 1.4, opacity: 0.8 }}>
+              <p className="text-[11px] text-[#F1F4F9]/75 line-clamp-2 leading-relaxed">
                 {item.desc}
               </p>
-            </div>
+            </button>
           ))}
         </div>
 
-        {/* Chat Window */}
-        <div
-          style={{
-            backgroundColor: "#192038",
-            borderRadius: 20,
-            border: "1.5px solid #3B4D7A",
-            overflow: "hidden",
-            boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
-            display: "flex",
-            flexDirection: "column",
-            height: 600
-          }}
-        >
-          {/* Chat Messages */}
-          <div style={{ flex: 1, overflowY: "auto", padding: "24px 24px", display: "flex", flexDirection: "column", gap: 20 }}>
+        {/* Chat Window Container */}
+        <div className="master-card rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[620px]">
+          {/* Top Window Bar */}
+          <div className="px-5 py-3 border-b border-[#3B4D7A]/40 bg-[#151B30]/60 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2 font-mono text-[11px] text-[#F1F4F9]/60">
+              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+              <span>Session: active // fine-tuned-edu-model-v2</span>
+            </div>
+            <span className="text-[11px] font-bold text-[#0EA5E9]">
+              Mode: {activeMode.toUpperCase()}
+            </span>
+          </div>
+
+          {/* Messages Feed */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-5">
             {messages.map(msg => (
               <div
                 key={msg.id}
-                style={{
-                  display: "flex",
-                  justifyContent: msg.role === "user" ? "flex-end" : "flex-start"
-                }}
+                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  style={{
-                    maxWidth: "82%",
-                    backgroundColor: msg.role === "user" ? "#0EA5E9" : "#151B30",
-                    color: msg.role === "user" ? "#151B30" : "#F1F4F9",
-                    borderRadius: 16,
-                    padding: "16px 20px",
-                    border: msg.role === "user" ? "none" : "1.5px solid #3B4D7A",
-                    boxShadow: "0 2px 10px rgba(0,0,0,0.15)"
-                  }}
+                  className={`max-w-[85%] rounded-2xl p-5 shadow-md ${
+                    msg.role === "user"
+                      ? "bg-[#0EA5E9] text-[#151B30] font-medium"
+                      : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]"
+                  }`}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                  <div className="flex items-center gap-2 mb-2">
                     <span
-                      style={{
-                        fontSize: 12,
-                        fontWeight: 800,
-                        color: msg.role === "user" ? "#151B30" : "#0EA5E9"
-                      }}
+                      className={`text-xs font-black ${
+                        msg.role === "user" ? "text-[#151B30]" : "text-[#0EA5E9]"
+                      }`}
                     >
                       {msg.role === "user" ? "You" : "🤖 SkillBridge Coach"}
                     </span>
                     <span
-                      style={{
-                        fontSize: 11,
-                        color: msg.role === "user" ? "#151B30" : "#F1F4F9",
-                        opacity: 0.7
-                      }}
+                      className={`text-[10px] ${
+                        msg.role === "user" ? "text-[#151B30]/70" : "text-[#F1F4F9]/50"
+                      }`}
                     >
                       {msg.timestamp}
                     </span>
                   </div>
 
-                  <div style={{ fontSize: 14, lineHeight: 1.7, whiteSpace: "pre-wrap" }}>
+                  <div className="text-sm leading-relaxed whitespace-pre-wrap">
                     {msg.content}
                   </div>
 
                   {msg.actions && msg.actions.length > 0 && (
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14 }}>
+                    <div className="flex flex-wrap gap-2 mt-4 pt-3 border-t border-[#3B4D7A]/40">
                       {msg.actions.map((act, i) => (
                         <Link
                           key={i}
                           href={act.href}
-                          style={{
-                            backgroundColor: "#192038",
-                            border: "1.5px solid #0EA5E9",
-                            color: "#0EA5E9",
-                            borderRadius: 8,
-                            padding: "6px 14px",
-                            fontSize: 12,
-                            fontWeight: 700,
-                            textDecoration: "none",
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 6
-                          }}
+                          className="px-3.5 py-1.5 rounded-lg bg-[#192038] border border-[#0EA5E9] text-[#0EA5E9] text-xs font-bold hover:bg-[#0EA5E9] hover:text-[#151B30] transition-colors flex items-center gap-1.5"
                         >
-                          {act.label} →
+                          <span>{act.label}</span>
+                          <span>→</span>
                         </Link>
                       ))}
                     </div>
@@ -387,21 +325,11 @@ What specific skill or role would you like to master first?`,
             ))}
 
             {loading && (
-              <div style={{ display: "flex", justifyContent: "flex-start" }}>
-                <div
-                  style={{
-                    backgroundColor: "#151B30",
-                    border: "1px solid #3B4D7A",
-                    borderRadius: 16,
-                    padding: "14px 20px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10
-                  }}
-                >
-                  <span style={{ fontSize: 16 }}>⚡</span>
-                  <span style={{ color: "#F1F4F9", fontSize: 13, fontWeight: 700 }}>
-                    AI Coach is formulating your tailored guidance...
+              <div className="flex justify-start">
+                <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-ping" />
+                  <span className="text-xs font-bold text-[#F1F4F9]/80">
+                    AI Coach is formulating your strategic answer...
                   </span>
                 </div>
               </div>
@@ -409,51 +337,21 @@ What specific skill or role would you like to master first?`,
             <div ref={chatEndRef} />
           </div>
 
-          {/* Input Bar */}
-          <div
-            style={{
-              padding: "16px 20px",
-              backgroundColor: "#151B30",
-              borderTop: "1.5px solid #3B4D7A",
-              display: "flex",
-              gap: 12,
-              alignItems: "center"
-            }}
-          >
+          {/* Chat Input Bar */}
+          <div className="p-4 bg-[#151B30] border-t border-[#3B4D7A]/50 flex items-center gap-3">
             <input
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && handleSend()}
-              placeholder="Ask anything about roadmaps, assessments, resume tips, or interviews..."
-              style={{
-                flex: 1,
-                padding: "14px 18px",
-                backgroundColor: "#192038",
-                border: "1.5px solid #3B4D7A",
-                borderRadius: 12,
-                color: "#FFFFFF",
-                fontSize: 14,
-                outline: "none"
-              }}
+              placeholder="Ask anything about roadmaps, assessment prep, salary benchmarks, or interviews..."
+              className="flex-1 px-4 py-3 rounded-xl bg-[#192038] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] transition-all"
             />
             <button
               onClick={() => handleSend()}
               disabled={loading || !input.trim()}
-              style={{
-                backgroundColor: "#F59E0B",
-                color: "#151B30",
-                border: "none",
-                borderRadius: 12,
-                padding: "14px 24px",
-                fontWeight: 800,
-                fontSize: 14,
-                cursor: loading || !input.trim() ? "not-allowed" : "pointer",
-                opacity: loading || !input.trim() ? 0.6 : 1,
-                transition: "opacity 0.2s",
-                whiteSpace: "nowrap"
-              }}
+              className="btn-amber-cta px-6 py-3 rounded-xl text-xs font-black transition-opacity disabled:opacity-40 disabled:cursor-not-allowed whitespace-nowrap shadow-md cursor-pointer"
             >
-              Send Message
+              Send Message →
             </button>
           </div>
         </div>

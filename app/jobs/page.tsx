@@ -4,7 +4,7 @@ import { JobCard } from "@/components/jobs/JobCard";
 import { mockJobs, Job } from "@/lib/mock-data/jobs";
 
 const availableFilterSkills = ["All", "React", "TypeScript", "Python", "SQL", "Node.js", "PostgreSQL", "Tailwind"];
-const jobTypes = ["All", "full-time", "remote", "part-time", "contract"];
+const jobTypes = ["All", "Full-time", "Remote", "Part-time", "Contract"];
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>(mockJobs);
@@ -22,7 +22,6 @@ export default function JobsPage() {
         }
       })
       .catch(() => {
-        // Fallback to mockJobs if offline
         setJobs(mockJobs);
       });
   }, []);
@@ -53,90 +52,64 @@ export default function JobsPage() {
     });
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh", padding: "0 0 72px" }}>
+    <div className="bg-[#151B30] min-h-screen text-[#F1F4F9]">
       {/* Hero Header */}
-      <div style={{ backgroundColor: "#151B30", padding: "48px 24px 40px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 16 }}>
+      <section className="bg-gradient-to-b from-[#192038] to-[#151B30] border-b border-[#3B4D7A]/40 py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "4px 14px", marginBottom: 12 }}>
-                <span style={{ color: "#0EA5E9", fontSize: 13, fontWeight: 800 }}>⚡ Direct Hiring Pipeline</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#151B30] border border-[#3B4D7A] text-[#0EA5E9] text-xs font-black uppercase tracking-wider mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
+                <span>Direct Talent Pipeline</span>
               </div>
-              <h1 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 800, margin: "0 0 8px" }}>
-                Verified Tech Opportunities
+              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-3">
+                Verified Tech Opportunities.
               </h1>
-              <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.85, maxWidth: 640 }}>
-                Explore open engineering roles with verified salary transparency. Candidates with verified SkillBridge assessment badges receive fast-tracked employer reviews.
+              <p className="text-sm sm:text-base text-[#F1F4F9]/80 max-w-2xl font-medium leading-relaxed">
+                Connect directly with engineering teams looking for verified talent. Candidates holding SkillBridge assessment credentials skip resume screening algorithms.
               </p>
             </div>
 
             {/* Quick Metrics */}
-            <div style={{ display: "flex", gap: 14 }}>
-              <div style={{ backgroundColor: "rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 20px", border: "1px solid rgba(255,255,255,0.12)", textAlign: "center" }}>
-                <p style={{ color: "#F59E0B", fontSize: 22, fontWeight: 900, margin: "0 0 2px" }}>{jobs.length}</p>
-                <p style={{ color: "#F1F4F9", fontSize: 11, margin: 0, opacity: 0.75 }}>Open Roles</p>
+            <div className="flex items-center gap-3">
+              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+                <span className="block text-2xl font-black text-[#F59E0B]">{jobs.length}</span>
+                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Active Roles</span>
               </div>
-              <div style={{ backgroundColor: "rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 20px", border: "1px solid rgba(255,255,255,0.12)", textAlign: "center" }}>
-                <p style={{ color: "#0EA5E9", fontSize: 22, fontWeight: 900, margin: "0 0 2px" }}>100%</p>
-                <p style={{ color: "#F1F4F9", fontSize: 11, margin: 0, opacity: 0.75 }}>Verified Employers</p>
+              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+                <span className="block text-2xl font-black text-[#0EA5E9]">100%</span>
+                <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Verified Companies</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 24px 0" }}>
-        {/* Interactive Search & Filter Controls */}
-        <div
-          style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: 16,
-            padding: "20px 24px",
-            border: "1.5px solid #3B4D7A",
-            boxShadow: "0 4px 16px rgba(21,27,48,0.04)",
-            marginBottom: 24,
-            display: "flex",
-            flexDirection: "column",
-            gap: 16
-          }}
-        >
-          {/* Top row: search & sort */}
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-            <div style={{ flex: 1, minWidth: 260 }}>
+      {/* Main Container */}
+      <div className="container mx-auto max-w-6xl px-4 py-12">
+        {/* Search & Filter Toolbar */}
+        <div className="master-card rounded-2xl p-6 mb-10 shadow-lg space-y-5">
+          {/* Search bar + sort */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="relative w-full sm:flex-1">
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#F1F4F9]/50">
+                🔍
+              </span>
               <input
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder="Search by job title, company, or tech stack..."
-                style={{
-                  width: "100%",
-                  padding: "12px 16px",
-                  backgroundColor: "#F1F4F9",
-                  border: "1.5px solid #3B4D7A",
-                  borderRadius: 10,
-                  color: "#151B30",
-                  fontSize: 14,
-                  outline: "none"
-                }}
+                placeholder="Search by job title, company name, or tech stack..."
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-white text-xs font-semibold placeholder:text-[#F1F4F9]/40 focus:outline-none focus:border-[#0EA5E9] transition-all"
               />
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ color: "#3B4D7A", fontSize: 13, fontWeight: 700 }}>Sort By:</span>
+            <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+              <span className="text-xs font-bold text-[#F1F4F9]/70">Sort By:</span>
               <select
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value as any)}
-                style={{
-                  padding: "10px 14px",
-                  backgroundColor: "#F1F4F9",
-                  border: "1.5px solid #3B4D7A",
-                  borderRadius: 10,
-                  color: "#151B30",
-                  fontSize: 13,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  outline: "none"
-                }}
+                className="px-3.5 py-2.5 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-xs font-bold text-white focus:outline-none focus:border-[#0EA5E9] cursor-pointer"
               >
                 <option value="newest">📅 Newest First</option>
                 <option value="salary">💰 Highest Salary</option>
@@ -145,118 +118,74 @@ export default function JobsPage() {
           </div>
 
           {/* Job Type Pills */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            <span style={{ color: "#151B30", fontSize: 13, fontWeight: 800 }}>Role Type:</span>
-            {jobTypes.map(t => (
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#3B4D7A]/40">
+            <span className="text-xs font-bold text-[#F1F4F9]/60 mr-1">Work Type:</span>
+            {jobTypes.map((type) => (
               <button
-                key={t}
-                onClick={() => setSelectedType(t)}
-                style={{
-                  backgroundColor: selectedType.toLowerCase() === t.toLowerCase() ? "#151B30" : "#F1F4F9",
-                  color: selectedType.toLowerCase() === t.toLowerCase() ? "#FFFFFF" : "#151B30",
-                  border: "1px solid #3B4D7A",
-                  borderRadius: 999,
-                  padding: "6px 14px",
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  textTransform: "capitalize",
-                  transition: "all 0.15s"
-                }}
+                key={type}
+                onClick={() => setSelectedType(type)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  selectedType === type
+                    ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-sm"
+                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                }`}
               >
-                {t}
+                {type}
               </button>
             ))}
           </div>
 
           {/* Skill Filter Pills */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", borderTop: "1px solid rgba(59,77,122,0.15)", paddingTop: 14 }}>
-            <span style={{ color: "#151B30", fontSize: 13, fontWeight: 800 }}>Skills:</span>
-            {availableFilterSkills.map(sk => (
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-bold text-[#F1F4F9]/60 mr-1">Skill Filter:</span>
+            {availableFilterSkills.map((skill) => (
               <button
-                key={sk}
-                onClick={() => setSelectedSkill(sk)}
-                style={{
-                  backgroundColor: selectedSkill === sk ? "#0EA5E9" : "#FFFFFF",
-                  color: "#151B30",
-                  border: "1px solid #3B4D7A",
-                  borderRadius: 8,
-                  padding: "4px 12px",
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  transition: "all 0.15s"
-                }}
+                key={skill}
+                onClick={() => setSelectedSkill(skill)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  selectedSkill === skill
+                    ? "bg-[#F59E0B] text-[#151B30] font-black shadow-sm"
+                    : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                }`}
               >
-                {sk}
+                {skill}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Results Count & Match Banner */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-          <p style={{ color: "#151B30", fontSize: 14, fontWeight: 700, margin: 0 }}>
-            Showing <span style={{ color: "#0EA5E9" }}>{filteredJobs.length}</span> verified roles
-          </p>
+        {/* Results Counter */}
+        <div className="flex items-center justify-between mb-6 text-xs text-[#F1F4F9]/70 font-semibold px-1">
+          <span>Showing {filteredJobs.length} verified opportunities</span>
           {(search || selectedType !== "All" || selectedSkill !== "All") && (
             <button
               onClick={() => { setSearch(""); setSelectedType("All"); setSelectedSkill("All"); }}
-              style={{
-                background: "none",
-                border: "none",
-                color: "#F59E0B",
-                fontWeight: 800,
-                fontSize: 13,
-                cursor: "pointer"
-              }}
+              className="text-[#0EA5E9] hover:underline cursor-pointer"
             >
-              Reset Filters ✕
+              Clear all filters
             </button>
           )}
         </div>
 
-        {/* Job Listings Grid */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          {filteredJobs.map(job => (
-            <JobCard key={job.id} job={job} />
-          ))}
-
-          {filteredJobs.length === 0 && (
-            <div
-              style={{
-                backgroundColor: "#FFFFFF",
-                borderRadius: 16,
-                padding: "48px 24px",
-                textAlign: "center",
-                border: "1.5px solid #3B4D7A"
-              }}
+        {/* Jobs List */}
+        {filteredJobs.length === 0 ? (
+          <div className="p-16 text-center master-card rounded-2xl">
+            <p className="text-lg font-bold text-white mb-2">No jobs match your selected criteria.</p>
+            <p className="text-sm text-[#F1F4F9]/70 mb-4">Try relaxing your search terms or selecting 'All' skills.</p>
+            <button
+              onClick={() => { setSearch(""); setSelectedType("All"); setSelectedSkill("All"); }}
+              className="px-4 py-2 rounded-xl bg-[#0EA5E9] text-[#151B30] text-xs font-black"
             >
-              <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
-              <h3 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: "0 0 6px" }}>
-                No matching opportunities found
-              </h3>
-              <p style={{ color: "#3B4D7A", fontSize: 14, margin: "0 0 16px" }}>
-                Try adjusting your search terms or skill filters to discover more open positions.
-              </p>
-              <button
-                onClick={() => { setSearch(""); setSelectedType("All"); setSelectedSkill("All"); }}
-                style={{
-                  backgroundColor: "#F59E0B",
-                  color: "#151B30",
-                  border: "none",
-                  borderRadius: 10,
-                  padding: "10px 20px",
-                  fontWeight: 800,
-                  fontSize: 14,
-                  cursor: "pointer"
-                }}
-              >
-                Clear All Filters
-              </button>
-            </div>
-          )}
-        </div>
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredJobs.map((job) => (
+              <JobCard key={job.id} job={job} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

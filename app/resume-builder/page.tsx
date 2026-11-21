@@ -416,27 +416,28 @@ export default function ResumeBuilderPage() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 marginBottom: 16,
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#192038",
                 borderRadius: 12,
-                padding: "8px 16px",
-                border: "1px solid #3B4D7A"
+                padding: "10px 18px",
+                border: "1px solid #3B4D7A",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.2)"
               }}
             >
-              <span style={{ color: "#151B30", fontSize: 13, fontWeight: 700 }}>
-                Theme:
+              <span style={{ color: "#FFFFFF", fontSize: 13, fontWeight: 700 }}>
+                Print Preview Palette:
               </span>
               <div style={{ display: "flex", gap: 8 }}>
                 {[
                   { id: "navy", label: "Midnight Navy" },
                   { id: "slate", label: "Slate Accent" },
-                  { id: "minimal", label: "Clean White" }
+                  { id: "minimal", label: "Clean Minimal" }
                 ].map(th => (
                   <button
                     key={th.id}
                     onClick={() => setActiveTheme(th.id as any)}
                     style={{
-                      backgroundColor: activeTheme === th.id ? "#151B30" : "#F1F4F9",
-                      color: activeTheme === th.id ? "#FFFFFF" : "#151B30",
+                      backgroundColor: activeTheme === th.id ? "#0EA5E9" : "#151B30",
+                      color: activeTheme === th.id ? "#151B30" : "#F1F4F9",
                       border: "1px solid #3B4D7A",
                       borderRadius: 8,
                       padding: "6px 12px",

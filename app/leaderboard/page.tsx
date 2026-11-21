@@ -1,17 +1,15 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const leaderboardData = [
-  { rank: 1, name: "Almaz Teshager", title: "Full-Stack Dev", points: 2850, streak: 14, badges: 12, tier: "Diamond", bg: "#151B30", text: "#FFFFFF" },
-  { rank: 2, name: "Tewodros Alemu", title: "Data Analyst", points: 2720, streak: 11, badges: 10, tier: "Diamond", bg: "#3B4D7A", text: "#FFFFFF" },
-  { rank: 3, name: "Hana Kebede", title: "UI/UX Designer", points: 2680, streak: 9, badges: 11, tier: "Platinum", bg: "#F59E0B", text: "#151B30" },
-  { rank: 4, name: "Kenenisa Beyena", title: "Backend Engineer", points: 2450, streak: 7, badges: 8, tier: "Platinum", bg: "#0EA5E9", text: "#151B30" },
-  { rank: 5, name: "Selam Assefa", title: "Frontend Engineer", points: 2310, streak: 6, badges: 9, tier: "Gold", bg: "#3B4D7A", text: "#FFFFFF" },
-  { rank: 6, name: "Bereket Desta", title: "React Specialist", points: 2150, streak: 5, badges: 7, tier: "Gold", bg: "#151B30", text: "#FFFFFF" },
-  { rank: 7, name: "Marta Solomon", title: "Next.js Builder", points: 1980, streak: 4, badges: 6, tier: "Silver", bg: "#0EA5E9", text: "#151B30" },
+  { rank: 1, name: "Almaz Teshager", title: "Full-Stack Dev", points: 2850, streak: 14, badges: 12, tier: "Diamond", color: "#0EA5E9" },
+  { rank: 2, name: "Tewodros Alemu", title: "Data Analyst", points: 2720, streak: 11, badges: 10, tier: "Diamond", color: "#0EA5E9" },
+  { rank: 3, name: "Hana Kebede", title: "UI/UX Designer", points: 2680, streak: 9, badges: 11, tier: "Platinum", color: "#F59E0B" },
+  { rank: 4, name: "Kenenisa Beyena", title: "Backend Engineer", points: 2450, streak: 7, badges: 8, tier: "Platinum", color: "#F59E0B", isUser: true },
+  { rank: 5, name: "Selam Assefa", title: "Frontend Engineer", points: 2310, streak: 6, badges: 9, tier: "Gold", color: "#F1F4F9" },
+  { rank: 6, name: "Bereket Desta", title: "React Specialist", points: 2150, streak: 5, badges: 7, tier: "Gold", color: "#F1F4F9" },
+  { rank: 7, name: "Marta Solomon", title: "Next.js Builder", points: 1980, streak: 4, badges: 6, tier: "Silver", color: "#94A3B8" },
 ];
 
 const weeklyQuests = [
@@ -21,7 +19,7 @@ const weeklyQuests = [
   { id: "q4", title: "Maintain a 7-Day Study Streak", xp: 250, progress: 7, total: 7, done: true },
 ];
 
-const rankBadges: Record<number, string> = {
+const rankMedals: Record<number, string> = {
   1: "🥇",
   2: "🥈",
   3: "🥉",
@@ -31,102 +29,69 @@ export default function LeaderboardPage() {
   const [period, setPeriod] = useState<"weekly" | "monthly" | "allTime">("monthly");
 
   return (
-    <div style={{ backgroundColor: "#F1F4F9", minHeight: "100vh", padding: "0 0 72px" }}>
-      {/* Hero Header */}
-      <div style={{ backgroundColor: "#151B30", padding: "48px 24px 40px" }}>
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+    <div className="bg-[#151B30] min-h-screen text-[#F1F4F9]">
+      {/* Header Banner */}
+      <section className="bg-gradient-to-b from-[#192038] to-[#151B30] border-b border-[#3B4D7A]/40 py-16 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "4px 14px", marginBottom: 12 }}>
-                <span style={{ color: "#F59E0B", fontSize: 13, fontWeight: 800 }}>🏆 Community Rankings</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#151B30] border border-[#3B4D7A] text-[#F59E0B] text-xs font-black uppercase tracking-wider mb-4">
+                <span>🏆 Community Leaderboard</span>
               </div>
-              <h1 style={{ color: "#FFFFFF", fontSize: 32, fontWeight: 800, margin: "0 0 8px" }}>
-                Top Learners & Verified Builders
+              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-3">
+                Top Learners & Verified Builders.
               </h1>
-              <p style={{ color: "#F1F4F9", fontSize: 15, margin: 0, opacity: 0.85, maxWidth: 600 }}>
-                Earn verified XP through hands-on lessons, assessments, and portfolio milestones. Top rankers receive priority recruiter introductions.
+              <p className="text-sm sm:text-base text-[#F1F4F9]/80 max-w-xl font-medium leading-relaxed">
+                Earn XP by completing proctored lessons, assessments, and public milestones. Top 10 rankers receive direct introductions to hiring partners.
               </p>
             </div>
 
-            {/* User Personal Ranking Status Card */}
-            <div
-              style={{
-                backgroundColor: "rgba(255,255,255,0.08)",
-                borderRadius: 16,
-                padding: "16px 24px",
-                border: "1px solid rgba(255,255,255,0.15)",
-                display: "flex",
-                alignItems: "center",
-                gap: 16
-              }}
-            >
+            {/* User Standing Card */}
+            <div className="master-card p-5 rounded-2xl flex items-center gap-6 shadow-xl shrink-0 border-[#0EA5E9]/50">
               <div>
-                <p style={{ color: "#F1F4F9", fontSize: 12, margin: "0 0 2px", opacity: 0.8 }}>Your Standing</p>
-                <p style={{ color: "#0EA5E9", fontSize: 24, fontWeight: 900, margin: 0 }}>Rank #4</p>
-                <p style={{ color: "#F59E0B", fontSize: 11, fontWeight: 700, margin: "2px 0 0" }}>🔥 7-Day Streak</p>
+                <p className="text-[11px] font-bold text-[#F1F4F9]/60 uppercase mb-0.5">Your Rank</p>
+                <p className="text-3xl font-black text-[#0EA5E9]">#4</p>
+                <p className="text-xs font-bold text-[#F59E0B] mt-0.5">🔥 7-Day Streak</p>
               </div>
-              <div style={{ borderLeft: "1px solid rgba(255,255,255,0.15)", paddingLeft: 16, textAlign: "right" }}>
-                <p style={{ color: "#F1F4F9", fontSize: 12, margin: "0 0 2px", opacity: 0.8 }}>Total Score</p>
-                <p style={{ color: "#FFFFFF", fontSize: 22, fontWeight: 800, margin: 0 }}>2,450 XP</p>
-                <p style={{ color: "#0EA5E9", fontSize: 11, fontWeight: 700, margin: "2px 0 0" }}>230 XP to 🥉 #3</p>
+              <div className="border-l border-[#3B4D7A]/50 pl-5">
+                <p className="text-[11px] font-bold text-[#F1F4F9]/60 uppercase mb-0.5">Total XP</p>
+                <p className="text-2xl font-black text-white">2,450</p>
+                <p className="text-xs font-bold text-[#10B981] mt-0.5">230 XP to 🥉 #3</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div style={{ maxWidth: 1000, margin: "0 auto", padding: "28px 24px 0" }}>
+      {/* Main Container */}
+      <div className="container mx-auto max-w-5xl px-4 py-12">
         {/* Weekly Quests Widget */}
-        <div
-          style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: 16,
-            padding: "24px 28px",
-            border: "1.5px solid #3B4D7A",
-            boxShadow: "0 4px 16px rgba(21,27,48,0.04)",
-            marginBottom: 28
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 8 }}>
+        <div className="master-card rounded-2xl p-6 sm:p-7 mb-10 shadow-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              <h2 style={{ color: "#151B30", fontSize: 18, fontWeight: 800, margin: 0 }}>
-                ⚡ Weekly XP Quests
+              <h2 className="text-xl font-black text-white mb-1">
+                ⚡ Weekly Quests
               </h2>
-              <p style={{ color: "#3B4D7A", fontSize: 13, margin: "2px 0 0" }}>
-                Complete weekly challenges to level up your rank and claim bonus badges.
+              <p className="text-xs text-[#F1F4F9]/75 font-medium">
+                Complete all weekly milestones to claim extra XP and maintain your league tier.
               </p>
             </div>
-            <span
-              style={{
-                backgroundColor: "#F1F4F9",
-                border: "1px solid #3B4D7A",
-                color: "#151B30",
-                borderRadius: 999,
-                padding: "4px 14px",
-                fontSize: 12,
-                fontWeight: 700
-              }}
-            >
-              800 / 800 XP Earned This Week 🎯
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-black bg-[#10B981]/15 border border-[#10B981]/40 text-[#10B981] whitespace-nowrap self-start sm:self-auto">
+              800 / 800 XP Claimed 🎯
             </span>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12 }}>
-            {weeklyQuests.map(q => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {weeklyQuests.map((q) => (
               <div
                 key={q.id}
-                style={{
-                  backgroundColor: "#F1F4F9",
-                  borderRadius: 12,
-                  padding: "14px 16px",
-                  border: "1px solid #3B4D7A"
-                }}
+                className="p-4 rounded-xl bg-[#151B30] border border-[#3B4D7A] flex flex-col justify-between"
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                  <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800 }}>+{q.xp} XP</span>
-                  <span style={{ color: "#151B30", fontSize: 12, fontWeight: 800 }}>✅ Completed</span>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-black text-[#F59E0B]">+{q.xp} XP</span>
+                  <span className="text-xs font-bold text-[#10B981]">✓ Done</span>
                 </div>
-                <p style={{ color: "#151B30", fontSize: 13, fontWeight: 700, margin: 0 }}>
+                <p className="text-xs font-bold text-white leading-snug">
                   {q.title}
                 </p>
               </div>
@@ -135,183 +100,99 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Leaderboard Table Container */}
-        <div
-          style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: 20,
-            border: "1.5px solid #3B4D7A",
-            boxShadow: "0 8px 30px rgba(21,27,48,0.06)",
-            overflow: "hidden"
-          }}
-        >
-          {/* Table Toolbar */}
-          <div
-            style={{
-              backgroundColor: "#151B30",
-              padding: "18px 24px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: 12
-            }}
-          >
-            <h3 style={{ color: "#FFFFFF", fontSize: 17, fontWeight: 800, margin: 0 }}>
-              Learner Rankings
-            </h3>
+        <div className="master-card rounded-2xl overflow-hidden shadow-2xl">
+          {/* Table Header with Period Toggle */}
+          <div className="p-5 sm:p-6 bg-[#151B30]/70 border-b border-[#3B4D7A]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-black text-white mb-0.5">
+                Global League Standings
+              </h3>
+              <p className="text-xs text-[#F1F4F9]/70">
+                Updated in real time from assessment completions and course submissions.
+              </p>
+            </div>
 
-            {/* Period switcher */}
-            <div style={{ display: "flex", gap: 6, backgroundColor: "rgba(255,255,255,0.08)", borderRadius: 10, padding: 4 }}>
-              {[
-                { id: "weekly", label: "Weekly" },
-                { id: "monthly", label: "Monthly" },
-                { id: "allTime", label: "All-Time" }
-              ].map(p => (
+            {/* Period Switcher */}
+            <div className="flex gap-1.5 p-1 rounded-xl bg-[#151B30] border border-[#3B4D7A]">
+              {(["weekly", "monthly", "allTime"] as const).map((p) => (
                 <button
-                  key={p.id}
-                  onClick={() => setPeriod(p.id as any)}
-                  style={{
-                    backgroundColor: period === p.id ? "#F59E0B" : "transparent",
-                    color: period === p.id ? "#151B30" : "#F1F4F9",
-                    border: "none",
-                    borderRadius: 6,
-                    padding: "4px 12px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    cursor: "pointer"
-                  }}
+                  key={p}
+                  onClick={() => setPeriod(p)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all cursor-pointer ${
+                    period === p
+                      ? "bg-[#0EA5E9] text-[#151B30] font-black shadow-sm"
+                      : "text-[#F1F4F9]/70 hover:text-white"
+                  }`}
                 >
-                  {p.label}
+                  {p === "allTime" ? "All-Time" : p}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Roster List */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {leaderboardData.map((user, idx) => (
+          {/* Table Rows */}
+          <div className="divide-y divide-[#3B4D7A]/30">
+            {leaderboardData.map((user) => (
               <div
                 key={user.rank}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "18px 24px",
-                  borderBottom: idx === leaderboardData.length - 1 ? "none" : "1px solid rgba(59,77,122,0.15)",
-                  backgroundColor: user.rank === 4 ? "rgba(14,165,233,0.06)" : "#FFFFFF",
-                  transition: "background-color 0.15s"
-                }}
+                className={`p-4 sm:p-5 flex items-center justify-between gap-4 transition-colors ${
+                  user.isUser
+                    ? "bg-[#0EA5E9]/10 border-l-4 border-l-[#0EA5E9]"
+                    : "hover:bg-[#192038]/60"
+                }`}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  {/* Rank badge / number */}
-                  <div style={{ width: 36, textAlign: "center", fontSize: 20, fontWeight: 900 }}>
-                    {rankBadges[user.rank] ? rankBadges[user.rank] : <span style={{ color: "#3B4D7A", fontSize: 16 }}>#{user.rank}</span>}
+                {/* Left: Rank & Avatar */}
+                <div className="flex items-center gap-4">
+                  <div className="w-8 text-center font-black text-sm text-[#F1F4F9]">
+                    {rankMedals[user.rank] || `#${user.rank}`}
                   </div>
 
-                  {/* Avatar */}
-                  <div
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: "50%",
-                      backgroundColor: user.bg,
-                      color: user.text,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontWeight: 800,
-                      fontSize: 16,
-                      flexShrink: 0,
-                      border: "1.5px solid #3B4D7A"
-                    }}
-                  >
+                  <div className="w-10 h-10 rounded-full bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center font-black text-sm text-white shadow-sm">
                     {user.name.charAt(0)}
                   </div>
 
-                  {/* Identity */}
                   <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <p style={{ color: "#151B30", fontWeight: 800, fontSize: 15, margin: 0 }}>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-sm font-extrabold text-white">
                         {user.name}
-                      </p>
-                      {user.rank <= 3 && (
-                        <span
-                          style={{
-                            backgroundColor: "#F59E0B",
-                            color: "#151B30",
-                            borderRadius: 999,
-                            padding: "2px 8px",
-                            fontSize: 10,
-                            fontWeight: 800,
-                            textTransform: "uppercase"
-                          }}
-                        >
-                          Top {user.rank}
-                        </span>
-                      )}
-                      {user.rank === 4 && (
-                        <span
-                          style={{
-                            backgroundColor: "#0EA5E9",
-                            color: "#151B30",
-                            borderRadius: 999,
-                            padding: "2px 8px",
-                            fontSize: 10,
-                            fontWeight: 800,
-                            textTransform: "uppercase"
-                          }}
-                        >
-                          You
+                      </h4>
+                      {user.isUser && (
+                        <span className="px-2 py-0.2 rounded-full text-[10px] font-black bg-[#0EA5E9] text-[#151B30]">
+                          YOU
                         </span>
                       )}
                     </div>
-                    <p style={{ color: "#3B4D7A", fontSize: 12, margin: "2px 0 0", fontWeight: 600 }}>
-                      {user.title} • {user.badges} Badges • <span style={{ color: "#151B30", fontWeight: 700 }}>🔥 {user.streak}d streak</span>
+                    <p className="text-xs text-[#F1F4F9]/60 font-medium">
+                      {user.title} • 🔥 {user.streak}d streak
                     </p>
                   </div>
                 </div>
 
-                {/* Score & Tier */}
-                <div style={{ textAlign: "right" }}>
-                  <p style={{ color: "#0EA5E9", fontSize: 18, fontWeight: 900, margin: 0 }}>
-                    {user.points.toLocaleString()} XP
-                  </p>
+                {/* Right: Tier & XP */}
+                <div className="flex items-center gap-4 sm:gap-6 text-right">
                   <span
+                    className="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider"
                     style={{
-                      backgroundColor: "#F1F4F9",
-                      border: "1px solid #3B4D7A",
-                      color: "#151B30",
-                      borderRadius: 6,
-                      padding: "2px 8px",
-                      fontSize: 10,
-                      fontWeight: 800,
-                      textTransform: "uppercase",
-                      display: "inline-block",
-                      marginTop: 2
+                      backgroundColor: `${user.color}15`,
+                      color: user.color,
+                      border: `1px solid ${user.color}40`,
                     }}
                   >
-                    {user.tier} League
+                    {user.tier}
                   </span>
+
+                  <div>
+                    <p className="text-base font-black text-[#F59E0B]">
+                      {user.points.toLocaleString()} XP
+                    </p>
+                    <p className="text-[10px] text-[#F1F4F9]/60 font-medium">
+                      {user.badges} Badges
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Pro Tip */}
-        <div
-          style={{
-            marginTop: 24,
-            padding: "16px 20px",
-            backgroundColor: "#FFFFFF",
-            borderRadius: 14,
-            border: "1px dashed #3B4D7A",
-            textAlign: "center"
-          }}
-        >
-          <p style={{ color: "#3B4D7A", fontSize: 13, margin: 0 }}>
-            💡 <strong style={{ color: "#151B30" }}>Want to climb the ranks?</strong> Complete courses, pass verified assessments, and maintain daily activity streaks to rise in your league!
-          </p>
         </div>
       </div>
     </div>
