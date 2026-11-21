@@ -175,39 +175,46 @@ body {
   gap: 0.25rem;
   padding: 0.2rem 0.65rem;
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .04em;
   border-radius: var(--radius-full);
   text-transform: uppercase;
 }
 
 .badge-primary {
-  background: hsl(var(--primary) / .12);
-  color: hsl(var(--primary-dark));
+  background: #151B30;
+  color: #FFFFFF;
 }
 
 .badge-accent {
-  background: hsl(var(--accent) / .12);
-  color: hsl(174 100% 32%);
+  background: #0EA5E9;
+  color: #151B30;
 }
 
-.badge-success {
-  background: hsl(var(--success) / .12);
-  color: hsl(var(--success));
+.badge-warm {
+  background: #F59E0B;
+  color: #151B30;
+}
+
+.badge-secondary {
+  background: #F1F4F9;
+  color: #151B30;
+  border: 1px solid #3B4D7A;
 }
 
 /* Progress bar */
 .progress-bar {
   height: 6px;
   border-radius: var(--radius-full);
-  background: hsl(var(--border));
+  background: #F1F4F9;
+  border: 1px solid #3B4D7A;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  background: linear-gradient(90deg, #151B30, #0EA5E9);
   transition: width 0.6s cubic-bezier(.4,0,.2,1);
 }
 
@@ -216,6 +223,6 @@ body {
   width: 48px;
   height: 4px;
   border-radius: var(--radius-full);
-  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  background: linear-gradient(90deg, #151B30, #0EA5E9);
   margin: 0 auto 1.5rem;
 }
