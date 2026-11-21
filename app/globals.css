@@ -53,56 +53,107 @@ body {
   min-height: 100dvh;
 }
 
-/* ─── Master-Level Surface & Lighting Utilities ────────────── */
+/* ─── Master-Level Surface & Container Utilities ───────────── */
 
-/* Background Grid Pattern */
+/* Atmospheric Grid & Dots */
 .bg-tech-grid {
   background-image: 
-    linear-gradient(to right, rgba(59, 77, 122, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 77, 122, 0.15) 1px, transparent 1px);
+    linear-gradient(to right, rgba(59, 77, 122, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 77, 122, 0.12) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .bg-tech-dots {
-  background-image: radial-gradient(rgba(59, 77, 122, 0.3) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(59, 77, 122, 0.25) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Radiant glow effects */
-.glow-cyan-subtle {
-  box-shadow: 0 0 40px -10px rgba(14, 165, 233, 0.25);
-}
+/* ── Luxury Master Container Box System ───────────────────── */
 
-.glow-amber-subtle {
-  box-shadow: 0 0 35px -8px rgba(245, 158, 11, 0.3);
-}
-
-/* Master Glass card with top highlight line */
+/* Primary luxury container card: Deep, luminous, soft-bordered with top specular bevel */
 .master-card {
-  background: linear-gradient(180deg, #192038 0%, #151B30 100%);
-  border: 1px solid #3B4D7A;
-  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(59, 77, 122, 0.25) 0%, rgba(25, 32, 56, 0.85) 45%, rgba(21, 27, 48, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 77, 122, 0.45);
+  box-shadow: 
+    0 12px 36px -8px rgba(0, 0, 0, 0.55),
+    0 4px 16px -2px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 20px 0 rgba(14, 165, 233, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .master-card:hover {
-  border-color: #0EA5E9;
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5), 0 0 25px -4px rgba(14, 165, 233, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  border-color: rgba(14, 165, 233, 0.55);
+  box-shadow: 
+    0 24px 48px -12px rgba(0, 0, 0, 0.7),
+    0 0 30px -4px rgba(14, 165, 233, 0.22),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 25px 0 rgba(14, 165, 233, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Amber-glowing hero card variation */
+.master-card-amber {
+  position: relative;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(245, 158, 11, 0.12) 0%, rgba(25, 32, 56, 0.85) 45%, rgba(21, 27, 48, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 
+    0 12px 36px -8px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 0 rgba(245, 158, 11, 0.25),
+    inset 0 0 20px 0 rgba(245, 158, 11, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.master-card-amber:hover {
+  border-color: rgba(245, 158, 11, 0.65);
+  box-shadow: 
+    0 24px 48px -12px rgba(0, 0, 0, 0.7),
+    0 0 30px -4px rgba(245, 158, 11, 0.25),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+/* Nested Recessed Sub-Container Box: Used inside cards for code snippets, controls, and info blocks */
+.nested-box {
+  background: rgba(21, 27, 48, 0.85);
+  border: 1px solid rgba(59, 77, 122, 0.38);
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4), 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  border-radius: 0.875rem;
+}
+
+/* Glass Floating Window Frame: Used for centerpieces and code studios */
+.glass-window {
+  background: linear-gradient(180deg, rgba(30, 38, 64, 0.92) 0%, rgba(21, 27, 48, 0.98) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(59, 77, 122, 0.5);
+  box-shadow: 
+    0 30px 70px -15px rgba(0, 0, 0, 0.75),
+    0 0 40px -5px rgba(14, 165, 233, 0.15),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Master Button styles */
 .btn-amber-cta {
-  background-color: #F59E0B;
+  background: linear-gradient(180deg, #F59E0B 0%, #D97706 100%);
   color: #151B30;
   font-weight: 800;
-  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(245, 158, 11, 0.8);
+  box-shadow: 
+    0 4px 20px -2px rgba(245, 158, 11, 0.45),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.45);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-amber-cta:hover {
-  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
+  box-shadow: 
+    0 8px 32px rgba(245, 158, 11, 0.65),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-1.5px);
 }
 
 .btn-amber-cta:active {
@@ -110,19 +161,20 @@ body {
 }
 
 .btn-cyan-outline {
-  background: rgba(14, 165, 233, 0.06);
-  border: 1.5px solid #3B4D7A;
+  background: rgba(14, 165, 233, 0.08);
+  border: 1.5px solid rgba(59, 77, 122, 0.6);
   color: #F1F4F9;
   font-weight: 700;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-cyan-outline:hover {
-  border-color: #0EA5E9;
+  border-color: rgba(14, 165, 233, 0.8);
   color: #FFFFFF;
-  background: rgba(14, 165, 233, 0.12);
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
-  transform: translateY(-1px);
+  background: rgba(14, 165, 233, 0.15);
+  box-shadow: 0 0 25px rgba(14, 165, 233, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-1.5px);
 }
 
 /* Monospace code font utility */

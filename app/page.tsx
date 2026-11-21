@@ -157,7 +157,7 @@ export default function Home() {
 
         <div className="container mx-auto max-w-6xl relative z-10 text-center">
           {/* Shimmer Announcement Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#192038] border border-[#3B4D7A] hover:border-[#0EA5E9] shadow-[0_0_20px_rgba(14,165,233,0.15)] mb-8 transition-all cursor-pointer">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#192038]/80 backdrop-blur-md border border-[#3B4D7A]/60 hover:border-[#0EA5E9] shadow-[0_0_20px_rgba(14,165,233,0.15)] mb-8 transition-all cursor-pointer">
             <span className="w-2 h-2 rounded-full bg-[#0EA5E9] animate-pulse" />
             <span className="text-xs font-bold text-[#F1F4F9]">
               SkillBridge 2.0 Engine is Live
@@ -224,30 +224,30 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ── Centerpiece: Interactive Platform Sandbox Preview ── */}
-          <div className="relative mx-auto max-w-5xl rounded-2xl bg-gradient-to-b from-[#1E2640] to-[#151B30] border border-[#3B4D7A] p-2 sm:p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),0_0_35px_rgba(14,165,233,0.15)] text-left">
+          {/* ── Centerpiece: Interactive Platform Sandbox Preview Box ── */}
+          <div className="glass-window relative mx-auto max-w-5xl rounded-3xl p-3 sm:p-5 text-left">
             {/* Terminal Top Bar */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[#3B4D7A]/50 bg-[#151B30]/80 rounded-t-xl mb-3">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[#3B4D7A]/40 bg-[#151B30]/90 rounded-t-2xl mb-4">
               <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-[#EF4444]" />
-                <span className="w-3 h-3 rounded-full bg-[#F59E0B]" />
-                <span className="w-3 h-3 rounded-full bg-[#10B981]" />
-                <span className="text-xs font-mono text-[#F1F4F9]/60 ml-3 hidden sm:inline">
+                <span className="w-3 h-3 rounded-full bg-[#EF4444] shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                <span className="w-3 h-3 rounded-full bg-[#F59E0B] shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
+                <span className="w-3 h-3 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                <span className="text-xs font-mono text-[#F1F4F9]/70 ml-3 hidden sm:inline">
                   skillbridge-studio // interactive-sandbox-v2
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#10B981]/15 border border-[#10B981]/40 text-[#10B981] shadow-inner">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping" />
                   East Africa Cloud Node: 14ms
                 </span>
               </div>
             </div>
 
-            {/* Split Screen Studio */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-2 sm:p-4 bg-[#151B30] rounded-xl border border-[#3B4D7A]/40">
-              {/* Left Column: Code Editor */}
-              <div className="lg:col-span-7 flex flex-col justify-between bg-[#192038] rounded-xl border border-[#3B4D7A]/50 p-4">
+            {/* Split Screen Studio Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+              {/* Left Column: Code Editor Box */}
+              <div className="lg:col-span-7 nested-box p-5 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#3B4D7A]/40 text-xs">
                     <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ export default function Home() {
                     </div>
                     <button
                       onClick={runCodeDemo}
-                      className="px-3 py-1 rounded-lg bg-[#0EA5E9] text-[#151B30] font-black text-xs hover:opacity-90 transition-opacity flex items-center gap-1.5 cursor-pointer shadow-sm"
+                      className="px-3 py-1 rounded-lg bg-[#0EA5E9] text-[#151B30] font-black text-xs hover:opacity-90 transition-opacity flex items-center gap-1.5 cursor-pointer shadow-md"
                     >
                       <span>▶</span>
                       <span>Run Sandbox</span>
@@ -271,13 +271,13 @@ export default function Home() {
                   </pre>
                 </div>
 
-                {/* Output console */}
+                {/* Output console box */}
                 <div className="mt-4 pt-3 border-t border-[#3B4D7A]/40">
                   <div className="flex items-center justify-between text-[11px] font-mono text-[#F1F4F9]/60 mb-1.5">
                     <span>TERMINAL OUTPUT</span>
                     <span>Status: OK</span>
                   </div>
-                  <div className="p-2.5 rounded-lg bg-[#151B30] border border-[#3B4D7A]/40 font-mono text-xs text-[#10B981] flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-[#151B30] border border-[#3B4D7A]/50 font-mono text-xs text-[#10B981] flex items-center justify-between shadow-inner">
                     <span>
                       {codeRan
                         ? "✓ Verified test suites passed: 4/4 assertions (12ms) • +50 XP"
@@ -288,8 +288,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right Column: AI Multilingual Translation Inspector */}
-              <div className="lg:col-span-5 flex flex-col justify-between bg-[#192038] rounded-xl border border-[#3B4D7A]/50 p-4">
+              {/* Right Column: AI Multilingual Translation Inspector Box */}
+              <div className="lg:col-span-5 nested-box p-5 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#3B4D7A]/40">
                     <span className="text-xs font-bold text-[#0EA5E9] uppercase tracking-wider">
@@ -298,7 +298,7 @@ export default function Home() {
                     <span className="text-[11px] text-[#F1F4F9]/60 font-mono">Real-time sync</span>
                   </div>
 
-                  {/* Language switch buttons */}
+                  {/* Language switch button boxes */}
                   <div className="grid grid-cols-2 gap-2 mb-4">
                     {[
                       { id: "om", label: "🇪🇹 Afaan Oromoo" },
@@ -309,10 +309,10 @@ export default function Home() {
                       <button
                         key={lang.id}
                         onClick={() => setActiveLang(lang.id as DemoLang)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all text-left flex items-center justify-between ${
+                        className={`px-3 py-2 rounded-xl text-xs font-bold transition-all text-left flex items-center justify-between cursor-pointer ${
                           activeLang === lang.id
-                            ? "bg-[#0EA5E9] text-[#151B30] shadow-sm font-black"
-                            : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                            ? "bg-[#0EA5E9] text-[#151B30] shadow-[0_0_15px_rgba(14,165,233,0.35)] font-black"
+                            : "bg-[#151B30] border border-[#3B4D7A]/60 text-[#F1F4F9]/80 hover:text-white hover:border-[#0EA5E9]/50"
                         }`}
                       >
                         <span>{lang.label}</span>
@@ -321,27 +321,27 @@ export default function Home() {
                     ))}
                   </div>
 
-                  {/* Active Translation Preview */}
-                  <div className="p-3.5 rounded-xl bg-[#151B30] border border-[#3B4D7A]/50 mb-3">
+                  {/* Active Translation Preview Box */}
+                  <div className="p-4 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 shadow-inner mb-3">
                     <h4 className="text-sm font-extrabold text-white mb-1.5">
                       {currentDemo.title}
                     </h4>
-                    <p className="text-xs text-[#F1F4F9]/85 leading-relaxed">
+                    <p className="text-xs text-[#F1F4F9]/85 leading-relaxed font-medium">
                       {currentDemo.explanation}
                     </p>
                   </div>
                 </div>
 
-                {/* Verified Credential Pill */}
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[#151B30] border border-[#3B4D7A]/50 text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">🛡️</span>
+                {/* Verified Credential Pill Box */}
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 text-xs shadow-inner">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-lg">🛡️</span>
                     <div>
                       <p className="font-bold text-white text-[11px]">Credential ID</p>
                       <p className="font-mono text-[10px] text-[#0EA5E9]">SB-PRO-2026-9821</p>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] text-[10px] font-black">
+                  <span className="px-2.5 py-1 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] text-[10px] font-black shadow-sm">
                     VERIFIED
                   </span>
                 </div>
@@ -352,7 +352,7 @@ export default function Home() {
       </section>
 
       {/* ── 2. Hiring & Institution Partners ──────────────────── */}
-      <section className="py-12 px-4 border-y border-[#3B4D7A]/40 bg-[#192038]">
+      <section className="py-12 px-4 border-y border-[#3B4D7A]/40 bg-[#192038]/50 backdrop-blur-md">
         <div className="container mx-auto max-w-6xl text-center">
           <p className="text-xs font-black uppercase tracking-widest text-[#0EA5E9] mb-6">
             Trusted By Engineering Teams, Telcos & Startups Across Emerging Markets
@@ -371,8 +371,8 @@ export default function Home() {
       {/* ── 3. Live Community Pulse Ticker ─────────────────────── */}
       <LiveCommunityPulse />
 
-      {/* ── 4. Platform Impact Statistics ──────────────────────── */}
-      <section className="py-16 px-4 bg-[#151B30]">
+      {/* ── 4. Platform Impact Statistics Box Grid ─────────────── */}
+      <section className="py-20 px-4 bg-[#151B30]">
         <div className="container mx-auto max-w-6xl grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {[
             { value: "10,000+", label: "Active Learners", sub: "in 30+ countries", color: "#0EA5E9" },
@@ -382,9 +382,14 @@ export default function Home() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="p-6 rounded-2xl bg-[#192038] border border-[#3B4D7A] shadow-md hover:border-[#0EA5E9] transition-all"
+              className="master-card rounded-3xl p-7 relative overflow-hidden group shadow-xl"
             >
-              <p className="text-4xl font-black mb-1" style={{ color: stat.color }}>
+              {/* Subtle radial corner glow */}
+              <div
+                className="absolute -top-10 -right-10 w-28 h-28 rounded-full pointer-events-none opacity-20 blur-xl"
+                style={{ backgroundColor: stat.color }}
+              />
+              <p className="text-4xl sm:text-5xl font-black mb-1.5 tracking-tight" style={{ color: stat.color }}>
                 {stat.value}
               </p>
               <p className="text-sm font-extrabold text-white mb-0.5">{stat.label}</p>
@@ -398,7 +403,7 @@ export default function Home() {
       <section className="py-24 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#192038] border border-[#3B4D7A] text-[#0EA5E9] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#192038] border border-[#3B4D7A] text-[#0EA5E9] text-xs font-bold mb-4">
               <span>✦</span>
               <span>Next-Generation Architecture</span>
             </div>
@@ -414,15 +419,15 @@ export default function Home() {
             {bentoFeatures.map((b) => (
               <div
                 key={b.title}
-                className={`${b.span} master-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between`}
+                className={`${b.span} master-card rounded-3xl p-8 flex flex-col justify-between`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="w-12 h-12 rounded-2xl bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center text-2xl shadow-inner">
+                    <span className="w-14 h-14 rounded-2xl bg-[#151B30] border border-[#3B4D7A]/60 flex items-center justify-center text-3xl shadow-inner">
                       {b.icon}
                     </span>
                     <span
-                      className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider"
+                      className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider"
                       style={{
                         backgroundColor: `${b.accent}15`,
                         color: b.accent,
@@ -436,7 +441,7 @@ export default function Home() {
                   <p className="text-xs font-black uppercase tracking-widest text-[#0EA5E9] mb-2">
                     {b.badge}
                   </p>
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-3">
+                  <h3 className="text-2xl font-extrabold text-white mb-3 leading-snug">
                     {b.title}
                   </h3>
                   <p className="text-sm text-[#F1F4F9]/80 leading-relaxed font-medium">
@@ -444,9 +449,11 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-[#3B4D7A]/30 flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#F1F4F9]/60">SkillBridge Verified Engine</span>
-                  <span className="text-sm text-[#0EA5E9] font-black">Learn more →</span>
+                <div className="pt-6 mt-8 border-t border-[#3B4D7A]/30 flex items-center justify-between text-xs">
+                  <span className="font-bold text-[#F1F4F9]/60">SkillBridge Verified Engine</span>
+                  <span className="text-[#0EA5E9] font-black group-hover:translate-x-1 transition-transform">
+                    Learn more →
+                  </span>
                 </div>
               </div>
             ))}
@@ -455,7 +462,7 @@ export default function Home() {
       </section>
 
       {/* ── 6. Interactive Translation Demo Section ───────────── */}
-      <section className="py-20 px-4 bg-[#192038] border-t border-[#3B4D7A]/40">
+      <section className="py-20 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
         <div className="container mx-auto max-w-6xl">
           <InteractiveTranslationDemo />
         </div>
@@ -469,7 +476,7 @@ export default function Home() {
       </section>
 
       {/* ── 8. Career Roadmap Simulator ────────────────────────── */}
-      <section className="py-20 px-4 bg-[#192038] border-t border-[#3B4D7A]/40">
+      <section className="py-20 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
         <div className="container mx-auto max-w-6xl">
           <CareerRoadmapSimulator />
         </div>
@@ -491,10 +498,10 @@ export default function Home() {
             {steps.map((s) => (
               <div
                 key={s.step}
-                className="p-6 rounded-2xl bg-[#192038] border border-[#3B4D7A] hover:border-[#0EA5E9] transition-all text-center flex flex-col justify-between"
+                className="master-card rounded-2xl p-6 text-center flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#151B30] border-2 border-[#0EA5E9] text-[#0EA5E9] font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <div className="w-12 h-12 rounded-xl bg-[#151B30] border-2 border-[#0EA5E9] text-[#0EA5E9] font-black text-lg flex items-center justify-center mx-auto mb-4 shadow-[0_0_15px_rgba(14,165,233,0.3)]">
                     {s.step}
                   </div>
                   <h4 className="text-base font-extrabold text-white mb-2">{s.title}</h4>
@@ -507,7 +514,7 @@ export default function Home() {
       </section>
 
       {/* ── 10. Comparison Table: SkillBridge vs Traditional ───── */}
-      <section className="py-24 px-4 bg-[#192038] border-t border-[#3B4D7A]/40">
+      <section className="py-24 px-4 bg-[#151B30] border-t border-[#3B4D7A]/40">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-3">
@@ -518,8 +525,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-[#151B30] border border-[#3B4D7A] overflow-hidden shadow-2xl">
-            <div className="grid grid-cols-12 bg-[#192038] p-4 sm:p-5 border-b border-[#3B4D7A] text-xs sm:text-sm font-extrabold">
+          <div className="master-card rounded-3xl overflow-hidden shadow-2xl">
+            <div className="grid grid-cols-12 bg-[#192038]/90 p-4 sm:p-5 border-b border-[#3B4D7A]/50 text-xs sm:text-sm font-extrabold">
               <span className="col-span-4 text-[#F1F4F9]/70 uppercase tracking-wider">Dimension</span>
               <span className="col-span-4 text-[#0EA5E9] flex items-center gap-1.5 font-black">
                 <span>⚡</span>
@@ -528,7 +535,7 @@ export default function Home() {
               <span className="col-span-4 text-[#F1F4F9]/50 uppercase tracking-wider">Traditional Bootcamps</span>
             </div>
 
-            <div className="divide-y divide-[#3B4D7A]/40">
+            <div className="divide-y divide-[#3B4D7A]/30">
               {comparisonData.map((row) => (
                 <div key={row.feature} className="grid grid-cols-12 p-4 sm:p-5 items-center text-xs sm:text-sm">
                   <span className="col-span-4 font-bold text-white">{row.feature}</span>
@@ -557,7 +564,7 @@ export default function Home() {
             {faqs.map((faq, idx) => (
               <div
                 key={faq.q}
-                className="rounded-2xl bg-[#192038] border border-[#3B4D7A] overflow-hidden transition-all"
+                className="master-card rounded-2xl overflow-hidden transition-all"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}

@@ -24,11 +24,11 @@ export default function AssessmentsPage() {
 
             {/* Quick Metrics */}
             <div className="flex items-center gap-3">
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+              <div className="master-card p-4 rounded-2xl text-center shadow-inner">
                 <span className="block text-2xl font-black text-[#F59E0B]">1,200+</span>
                 <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Certs Issued</span>
               </div>
-              <div className="p-4 rounded-2xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+              <div className="master-card p-4 rounded-2xl text-center shadow-inner">
                 <span className="block text-2xl font-black text-[#0EA5E9]">80%</span>
                 <span className="text-[11px] font-bold text-[#F1F4F9]/70 uppercase">Pass Threshold</span>
               </div>
@@ -43,45 +43,47 @@ export default function AssessmentsPage() {
           {mockAssessments.map((assessment) => (
             <div
               key={assessment.id}
-              className="master-card rounded-2xl p-7 flex flex-col justify-between shadow-xl group"
+              className="master-card rounded-3xl p-7 flex flex-col justify-between shadow-2xl group overflow-hidden"
             >
               <div>
                 {/* Badge Row */}
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-[#0EA5E9]/15 border border-[#0EA5E9]/40 text-[#0EA5E9]">
+                <div className="flex items-center justify-between gap-2 mb-5">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-[#0EA5E9]/15 border border-[#0EA5E9]/40 text-[#0EA5E9] shadow-sm">
                     PROCTORED
                   </span>
-                  <span className="text-xs text-[#F59E0B] font-bold">
+                  <div className="nested-box px-3 py-1 text-xs text-[#F59E0B] font-extrabold">
                     Min Score: {assessment.passingScore}%
-                  </span>
+                  </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-extrabold text-white mb-2 leading-snug group-hover:text-[#0EA5E9] transition-colors">
+                <h3 className="text-2xl font-black text-white mb-2 leading-snug group-hover:text-[#0EA5E9] transition-colors">
                   {assessment.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-[#F1F4F9]/80 mb-6 leading-relaxed">
+                <p className="text-sm text-[#F1F4F9]/80 mb-6 leading-relaxed font-medium">
                   {assessment.description}
                 </p>
 
-                {/* Meta details */}
-                <div className="flex flex-wrap gap-2 mb-6 text-xs">
-                  <span className="px-2.5 py-1 rounded-lg bg-[#151B30] border border-[#3B4D7A] text-white font-bold">
+                {/* Meta details box */}
+                <div className="nested-box p-3.5 flex flex-wrap items-center justify-between gap-2 mb-6 text-xs font-bold">
+                  <span className="text-white">
                     📝 {assessment.questions.length} Questions
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#151B30] border border-[#3B4D7A] text-white font-bold">
+                  <span className="text-[#3B4D7A]">•</span>
+                  <span className="text-white">
                     ⏱️ 30 Minutes
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#151B30] border border-[#3B4D7A] text-[#10B981] font-bold">
+                  <span className="text-[#3B4D7A]">•</span>
+                  <span className="text-[#10B981]">
                     🛡️ Public Credential
                   </span>
                 </div>
               </div>
 
               <div>
-                <Button asChild className="btn-amber-cta w-full py-3.5 rounded-xl text-xs font-black shadow-md border-none">
+                <Button asChild className="btn-amber-cta w-full py-4 rounded-xl text-xs font-black shadow-lg border-none">
                   <Link href={`/assessments/${assessment.id}`} className="flex items-center justify-center gap-2">
                     <span>Begin Assessment</span>
                     <span>→</span>

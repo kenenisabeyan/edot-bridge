@@ -98,29 +98,29 @@ export function QuickSkillChallenge() {
           </p>
         </div>
 
-        {/* Gamification badges */}
+        {/* Gamification badge boxes */}
         <div className="flex items-center gap-3">
-          <div className="px-4 py-2 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+          <div className="nested-box px-4 py-2 text-center">
             <span className="block text-[10px] font-black uppercase tracking-wider text-[#F1F4F9]/60">Total XP</span>
             <span className="text-base font-black text-[#F59E0B]">+{score} XP</span>
           </div>
-          <div className="px-4 py-2 rounded-xl bg-[#151B30] border border-[#3B4D7A] text-center shadow-inner">
+          <div className="nested-box px-4 py-2 text-center">
             <span className="block text-[10px] font-black uppercase tracking-wider text-[#F1F4F9]/60">Streak</span>
             <span className="text-base font-black text-[#0EA5E9]">🔥 {streak}x</span>
           </div>
         </div>
       </div>
 
-      {/* Topic selector */}
-      <div className="flex gap-2 mb-6">
+      {/* Topic selector box */}
+      <div className="nested-box p-1.5 flex gap-1.5 w-fit mb-6">
         {(["React", "JavaScript", "Python"] as const).map((topic) => (
           <button
             key={topic}
             onClick={() => resetChallenge(topic)}
             className={`px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
               selectedTopic === topic
-                ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
-                : "bg-[#151B30] border border-[#3B4D7A] text-[#F1F4F9]/80 hover:text-white"
+                ? "bg-[#0EA5E9] text-[#151B30] shadow-[0_0_15px_rgba(14,165,233,0.35)]"
+                : "text-[#F1F4F9]/80 hover:text-white"
             }`}
           >
             {topic}
@@ -128,22 +128,22 @@ export function QuickSkillChallenge() {
         ))}
       </div>
 
-      {/* Question Card */}
-      <div className="p-6 sm:p-7 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner mb-6">
-        <p className="text-base sm:text-lg font-bold text-white mb-6">
+      {/* Question Container Box */}
+      <div className="nested-box p-6 sm:p-8 mb-6">
+        <p className="text-base sm:text-lg font-bold text-white mb-6 leading-snug">
           {currentQ.question}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
           {currentQ.options.map((option, idx) => {
-            let btnStyle = "bg-[#192038] border-[#3B4D7A] text-[#F1F4F9] hover:border-[#0EA5E9]";
+            let btnStyle = "bg-[#151B30] border-[#3B4D7A]/50 text-[#F1F4F9] hover:border-[#0EA5E9] hover:bg-[#192038]";
             if (isAnswered) {
               if (idx === currentQ.correctAnswer) {
-                btnStyle = "bg-[#10B981]/20 border-[#10B981] text-[#10B981] font-black";
+                btnStyle = "bg-[#10B981]/20 border-[#10B981] text-[#10B981] font-black shadow-[0_0_15px_rgba(16,185,129,0.25)]";
               } else if (idx === selectedOption) {
-                btnStyle = "bg-[#EF4444]/20 border-[#EF4444] text-[#EF4444]";
+                btnStyle = "bg-[#EF4444]/20 border-[#EF4444] text-[#EF4444] shadow-[0_0_15px_rgba(239,68,68,0.25)]";
               } else {
-                btnStyle = "bg-[#192038]/50 border-[#3B4D7A]/40 text-[#F1F4F9]/40";
+                btnStyle = "bg-[#151B30]/50 border-[#3B4D7A]/30 text-[#F1F4F9]/40";
               }
             }
 
@@ -152,9 +152,9 @@ export function QuickSkillChallenge() {
                 key={idx}
                 disabled={isAnswered}
                 onClick={() => handleSelect(idx)}
-                className={`p-4 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-start gap-3 cursor-pointer ${btnStyle}`}
+                className={`p-4 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-start gap-3.5 cursor-pointer shadow-sm ${btnStyle}`}
               >
-                <span className="w-5 h-5 rounded-full bg-[#151B30] border border-[#3B4D7A] flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-[#192038] border border-[#3B4D7A]/60 flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
                   {String.fromCharCode(65 + idx)}
                 </span>
                 <span>{option}</span>
@@ -163,7 +163,7 @@ export function QuickSkillChallenge() {
           })}
         </div>
 
-        {/* Result Explanation */}
+        {/* Result Explanation Box */}
         {isAnswered && (
           <div
             className={`p-4 rounded-xl border text-xs sm:text-sm font-medium ${
@@ -181,12 +181,12 @@ export function QuickSkillChallenge() {
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-        <span className="text-xs text-[#F1F4F9]/60">
+        <span className="text-xs text-[#F1F4F9]/60 font-medium">
           Want full proctored certification? Earn tamper-proof credentials today.
         </span>
         <Link
           href="/assessments"
-          className="btn-amber-cta px-6 py-2.5 rounded-xl text-xs font-black text-center"
+          className="btn-amber-cta px-6 py-2.5 rounded-xl text-xs font-black text-center shadow-md"
         >
           Take Full Certification Assessment →
         </Link>

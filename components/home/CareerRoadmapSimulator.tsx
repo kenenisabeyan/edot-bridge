@@ -62,8 +62,8 @@ export function CareerRoadmapSimulator() {
           </p>
         </div>
 
-        {/* Role toggle */}
-        <div className="flex gap-1.5 p-1.5 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
+        {/* Role toggle box */}
+        <div className="nested-box flex gap-1.5 p-1.5">
           {[
             { id: "frontend", label: "Frontend" },
             { id: "fullstack", label: "Full-Stack" },
@@ -74,7 +74,7 @@ export function CareerRoadmapSimulator() {
               onClick={() => setSelectedRole(item.id)}
               className={`px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
                 selectedRole === item.id
-                  ? "bg-[#0EA5E9] text-[#151B30] shadow-md"
+                  ? "bg-[#0EA5E9] text-[#151B30] shadow-[0_0_15px_rgba(14,165,233,0.35)]"
                   : "text-[#F1F4F9]/80 hover:text-white"
               }`}
             >
@@ -84,10 +84,10 @@ export function CareerRoadmapSimulator() {
         </div>
       </div>
 
-      {/* Detail Showcase */}
+      {/* Detail Showcase Boxes */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-        {/* Left summary */}
-        <div className="lg:col-span-7 bg-[#151B30] border border-[#3B4D7A] rounded-2xl p-6 flex flex-col justify-between shadow-inner">
+        {/* Left summary box */}
+        <div className="lg:col-span-7 nested-box p-7 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#3B4D7A]/40">
               <span className="text-xs font-black uppercase tracking-wider text-[#0EA5E9]">
@@ -108,7 +108,7 @@ export function CareerRoadmapSimulator() {
               {active.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1.5 rounded-xl bg-[#192038] border border-[#3B4D7A] text-xs font-bold text-white shadow-sm"
+                  className="px-3 py-1.5 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 text-xs font-bold text-white shadow-sm"
                 >
                   {skill}
                 </span>
@@ -116,23 +116,23 @@ export function CareerRoadmapSimulator() {
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#192038] border border-[#3B4D7A] flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-[#151B30] border border-[#3B4D7A]/60 flex items-center justify-between shadow-inner">
             <div>
               <p className="text-[11px] text-[#F1F4F9]/60 font-semibold uppercase">Recommended Starting Course</p>
               <p className="text-sm font-extrabold text-white">{active.firstCourse}</p>
             </div>
             <Link
               href="/courses"
-              className="px-3 py-1.5 rounded-lg bg-[#0EA5E9] text-[#151B30] text-xs font-black hover:opacity-90"
+              className="px-3.5 py-1.5 rounded-lg bg-[#0EA5E9] text-[#151B30] text-xs font-black hover:opacity-90 transition-opacity"
             >
               Enroll Free →
             </Link>
           </div>
         </div>
 
-        {/* Right Metric Cards */}
+        {/* Right Metric Box Jewels */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          <div className="p-6 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
+          <div className="nested-box p-6 relative overflow-hidden">
             <span className="block text-xs font-black uppercase tracking-wider text-[#F1F4F9]/60 mb-1">
               Estimated Global Remote Salary
             </span>
@@ -140,7 +140,7 @@ export function CareerRoadmapSimulator() {
             <p className="text-xs text-[#F1F4F9]/70">Based on verified 2026 hired graduates</p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-[#151B30] border border-[#3B4D7A] shadow-inner">
+          <div className="nested-box p-6 relative overflow-hidden">
             <span className="block text-xs font-black uppercase tracking-wider text-[#F1F4F9]/60 mb-1">
               Learning Time to First Job
             </span>
@@ -148,11 +148,11 @@ export function CareerRoadmapSimulator() {
             <p className="text-xs text-[#F1F4F9]/70">Includes assessments, projects & coaching</p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#0EA5E9]/10 border border-[#0EA5E9]/30">
+          <div className="p-5 rounded-2xl bg-[#0EA5E9]/10 border border-[#0EA5E9]/30 shadow-inner">
             <p className="text-xs font-black text-[#0EA5E9] uppercase tracking-wider mb-1">
               🛡️ Guaranteed Placement Pathway
             </p>
-            <p className="text-xs text-white leading-relaxed">
+            <p className="text-xs text-white leading-relaxed font-medium">
               Achieve 90%+ on this path's proctored assessments to unlock direct recruiter intro calls without resume filtering.
             </p>
           </div>
@@ -160,7 +160,7 @@ export function CareerRoadmapSimulator() {
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-        <span className="text-xs text-[#F1F4F9]/60">
+        <span className="text-xs text-[#F1F4F9]/60 font-medium">
           Want a customized roadmap generated specifically for your background?
         </span>
         <Link
