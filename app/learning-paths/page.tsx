@@ -2,44 +2,62 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const paths = [
-  { id: "frontend", title: "Frontend Developer Path", description: "Become a professional frontend developer", courses: 4, duration: "8 weeks" },
-  { id: "fullstack", title: "Full Stack Engineer Path", description: "Build complete web applications with modern tech", courses: 6, duration: "12 weeks" },
-  { id: "data", title: "Data Analyst & AI Path", description: "Master data analysis with Python and ML models", courses: 5, duration: "10 weeks" },
+  { id: "frontend", title: "Frontend Developer Path", description: "Become a professional frontend developer with React, TypeScript & Next.js", courses: 4, duration: "8 weeks" },
+  { id: "fullstack", title: "Full Stack Engineer Path", description: "Build complete end-to-end web applications with modern databases & APIs", courses: 6, duration: "12 weeks" },
+  { id: "data", title: "Data Analyst & AI Path", description: "Master data analysis with Python, Pandas, SQL and modern LLM frameworks", courses: 5, duration: "10 weeks" },
 ];
 
 export default function LearningPathsPage() {
   return (
-    <div className="container mx-auto py-12 px-4 max-w-7xl bg-[#FFFFFF]">
-      <div className="mb-12">
-        <h1 className="text-4xl font-extrabold text-[#151B30] mb-2">Learning Paths</h1>
-        <p className="text-lg text-[#3B4D7A] font-medium">Structured curriculums to take you from beginner to job‑ready.</p>
-      </div>
+    <div style={{ backgroundColor: "#151B30", minHeight: "100vh", padding: "48px 24px 80px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, backgroundColor: "rgba(14,165,233,0.12)", border: "1px solid #0EA5E9", borderRadius: 999, padding: "4px 14px", marginBottom: 12 }}>
+            <span style={{ color: "#0EA5E9", fontSize: 12, fontWeight: 800 }}>🗺️ Structured Roadmaps</span>
+          </div>
+          <h1 style={{ color: "#FFFFFF", fontSize: 36, fontWeight: 900, margin: "0 0 10px" }}>
+            Career Learning Paths
+          </h1>
+          <p style={{ color: "#F1F4F9", fontSize: 16, margin: 0, opacity: 0.85, maxWidth: 640 }}>
+            Structured curriculums designed to take you from foundational concepts to job-ready with verified milestones.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {paths.map(path => (
-          <div
-            key={path.id}
-            className="rounded-2xl p-7 flex flex-col justify-between shadow-md"
-            style={{ background: "#151B30", border: "1px solid rgba(59, 77, 122, 0.4)" }}
-          >
-            <div>
-              <h3 className="text-2xl font-extrabold text-white tracking-tight leading-snug">
-                {path.title}
-              </h3>
-              <p className="mt-2 text-base text-[#F1F4F9]">
-                {path.description}
-              </p>
-              <div className="mt-6 text-sm font-semibold text-white">
-                {path.courses} courses • {path.duration}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
+          {paths.map(path => (
+            <div
+              key={path.id}
+              style={{
+                backgroundColor: "#192038",
+                border: "1.5px solid #3B4D7A",
+                borderRadius: 20,
+                padding: "28px 28px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 8px 30px rgba(0,0,0,0.2)"
+              }}
+            >
+              <div>
+                <h3 style={{ color: "#FFFFFF", fontSize: 22, fontWeight: 800, margin: "0 0 8px" }}>
+                  {path.title}
+                </h3>
+                <p style={{ color: "#F1F4F9", fontSize: 14, margin: "0 0 16px", opacity: 0.85, lineHeight: 1.6 }}>
+                  {path.description}
+                </p>
+                <div style={{ backgroundColor: "#151B30", border: "1px solid #3B4D7A", color: "#0EA5E9", padding: "6px 14px", borderRadius: 10, fontSize: 13, fontWeight: 700, width: "fit-content", marginBottom: 24 }}>
+                  {path.courses} courses • {path.duration}
+                </div>
+              </div>
+
+              <div>
+                <Button asChild className="w-full rounded-xl px-6 py-3 font-bold bg-[#F59E0B] text-[#151B30] hover:opacity-90 transition-opacity shadow-sm border-none">
+                  <Link href={`/learning-paths`}>View Full Path →</Link>
+                </Button>
               </div>
             </div>
-            <div className="mt-8">
-              <Button asChild className="rounded-lg px-6 py-2.5 font-bold bg-[#FFFFFF] text-[#151B30] hover:bg-[#F1F4F9] transition-colors shadow-sm">
-                <Link href={`/learning-paths/${path.id}`}>View Path</Link>
-              </Button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
